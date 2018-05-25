@@ -126,7 +126,7 @@
                 <table>
                   <tr>
                     <td>网贷黑名单</td>
-                    <td>{{netcreit}}</td>
+                    <td @click="net_creit">{{netcreit}}</td>
                   </tr>
                 </table>
               </div>
@@ -262,6 +262,9 @@
           hight_risk(){
             this.$router.push({path:'/highrisk_list'});
           },
+          net_creit(){
+            this.$router.push({path:'/netcredit_Blacklist'});
+          }
         },
         computed: {
 

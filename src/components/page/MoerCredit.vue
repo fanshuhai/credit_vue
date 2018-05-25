@@ -7,8 +7,9 @@
                   <p>征信查询</p>
                 </div>
                 <div class="header_radio">
-                  <span @click="changeContain"><el-radio v-model="radio" label="1">个人</el-radio></span>
-                  <span @click="changeContain" style='margin-left:40px'><el-radio v-model="radio" label="2">企业</el-radio></span> 
+                 <!--  <span @click="changeContain"><el-radio  v-model="radio" label="1">个人</el-radio></span> -->
+                  <span><el-radio  v-model="radio" label="1">个人</el-radio></span>
+                  <span style='margin-left:40px' ><el-radio  v-model="radio" disabled label="2">企业</el-radio></span> 
                 </div>
                 <div v-if="seen_personal" class="header_input">
                   <el-row :gutter="30">
