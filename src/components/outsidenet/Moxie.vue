@@ -1,0 +1,185 @@
+<template>
+    <div class="huifa">
+      <div class="huifa_header">
+        当前位置：<span @click="goBack">首页</span>>>魔蝎科技（第三方数据查询）
+      </div>
+      <div class="huifa_main">
+          <div style="width:60%;">
+            <el-form :model='ruleForm' :rules='rules' ref='ruleForm'>
+                <div style="margin-bottom:10px;text-align:center;">
+                   <span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</span>
+                    <el-form-item style="width:70%;display:inline-block;"  prop='name'>
+                      <el-input placeholder="请输入内容" v-model="ruleForm.name" clearable></el-input>
+                    </el-form-item>
+                </div>
+                 <div style="margin-bottom:10px;text-align:center">   
+                    <span>身份证号：</span>
+                    <el-form-item  style="width:70%;display:inline-block"    prop='cardId'>
+                      <el-input placeholder="请输入内容" v-model="ruleForm.cardId" clearable></el-input>
+                    </el-form-item>
+              </div>  
+              <div style="margin-bottom:30px;text-align:center">
+                    <span>手机号码：</span>
+                    <el-form-item style="width:70%;display:inline-block"    prop='phone'>
+                       <el-input style='height:40px' placeholder="请输入内容" v-model="ruleForm.phone" clearable></el-input>
+                    </el-form-item>
+              </div>
+              <div style="text-align:center">
+                <el-button @click="TQueryResult" plain>查询</el-button>
+              </div>
+            </el-form>
+          </div>
+        
+      </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        data() {
+            let validataName=(rule,value,callback)=>{
+              if(value===''){
+                callback(new Error('请输入姓名'));
+              }else{
+                callback();
+              }
+            };
+
+            let validataCardId=(rule,value,callback)=>{
+              let regId=/(^\d{15}$)|(d{18}$)|(^\d{17}(\d|X|x)$)/;
+              if(value===''){
+                callback(new Error('请输入身份证号码'))
+              }else if(regId.test(value)===false){
+                callback(new Error('身份证号码不正确'));
+              }else{
+                callback();
+              }
+            };
+
+            let validataPhone=(rule,value,callback)=>{
+              let regPhone=/^1[0-9]{10}$/;
+              if(value===''){
+                callback(new Error('请输入手机号码'))
+              }else if(regPhone.test(value)===false){
+                callback(new Error('手机号码不正确'))
+              }else{
+                callback();
+              }
+            };
+            return { 
+              ruleForm:{
+                name:'',
+                cardId:'',
+                phone:''
+              },
+              rules:{
+                name:[
+                  {validator:validataName,trigger:'blur'}
+                ],
+                cardId:[
+                  {validator:validataCardId,trigger:'blur'}
+                ],
+                phone:[
+                  {validator:validataPhone,trigger:'blur'}
+                ]
+              }
+            }
+        },
+        methods:{
+          goBack(){
+            this.$router.push('/moerCredit');
+          },
+          TQueryResult(){  
+            // this.$refs[formName].validate((valid)=>{
+            //   if(valid){
+            //     this.$axios.get('http://10.1.2.113:9990/api/v1/search',{
+            //       params:{
+            //         name:this.ruleForm.name,
+            //         cardId:this.ruleForm.cardId,
+            //         phone:this.ruleForm.phone,
+            //       }
+            //     })
+            //     .then(res=>{
+            //       console.log(res.data);
+            //       if(res.data===''||res.data===null||res.data==='{}'){
+            //         this.$message('暂无信息');
+            //       }else{
+            //         let msgData=res.data;
+            //         msgData=JSON.stringify(msgData);
+            //         localStorage.setItem("msgData",msgData);
+
+            //         this.$router.push('/queryResult');
+
+            //       }
+            //     })
+            //     .catch(error=>{
+            //       alert('暂无服务');
+            //         console.log(error);
+            //     })
+            //   }
+            // });
+            this.$router.push('/huifaQuery')
+          }
+        },
+        computed: {
+
+        },
+    }
+
+</script>
+
+<style scoped>
+  .huifa{
+    height: 92.5vh;
+    width: 100%;
+    padding:0;
+    margin: 0;
+    background: #fff;
+    box-sizing: border-box;
+  }
+  .huifa_header{
+    width: 70%;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #ccc; 
+    margin: 0 auto;
+    padding:30px 0 0  0;
+  }
+  .huifa_header span{
+    cursor: pointer;
+  }
+  .huifa_header span:hover{
+    color: rgb(22,155,213)
+  }
+  .huifa_main{
+    width: 40%;
+    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .el-button{
+      background:#00D1B2;
+      height: 45px;
+      width: 120px;
+      border-radius:10px; 
+      color: #fff;
+      font-weight: bold;
+      font-size: 18px;
+      letter-spacing: 4px;
+  }
+  .el-button:hover{
+      background:#00D1B2;
+      height: 45px;
+      width: 120px;
+      border-radius:10px; 
+      color: #fff;
+      font-weight: bold;
+      font-size: 18px;
+      letter-spacing: 4px;
+  }
+</style>
