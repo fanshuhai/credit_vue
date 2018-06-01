@@ -6,7 +6,7 @@
                     运营商报告
                 </h3>
                 <div style="text-align: right;font-size: 10px">
-                    报告编号：639672c0-8689-22e7-84c5-00163e1d50ad
+                    报告编号：{{carriertitle.task_id}}
                 </div>
             </div>
             <div>
@@ -21,45 +21,45 @@
                     <table>
                         <tr>
                             <td>真实姓名</td>
-                            <td>魔蝎测试</td>
+                            <td>{{carriertitle.name}}</td>
                             <td>性别</td>
-                            <td>男</td>
+                            <td>{{carriertitle.gender}}</td>
                         </tr>
                         <tr>
                             <td>年龄</td>
-                            <td>1990-11-01</td>
+                            <td>{{carriertitle.age}}</td>
                             <td>星座</td>
-                            <td>汉族</td>
+                            <td>{{carriertitle.constellation}}</td>
                         </tr>
                         <tr>
                             <td>籍贯</td>
-                            <td>投保</td>
+                            <td>{{carriertitle.native_place}}</td>
                             <td>邮箱</td>
-                            <td>杭州人才市场XXX有限公司</td>
+                            <td>{{carriertitle.gender}}</td>
                         </tr>
                         <tr>
                             <td>身份证号</td>
-                            <td>中心城区非农业户口</td>
+                            <td>{{carriertitle.gender}}</td>
                             <td>手机号码</td>
-                            <td>西湖区湖畔花园XX号X栋</td>
+                            <td>{{carriertitle.gender}}</td>
                         </tr>
                         <tr>
                             <td>手机号码归属地</td>
-                            <td>18600000000</td>
+                            <td>{{carriertitle.gender}}</td>
                             <td>通讯地址</td>
-                            <td>900000000000000000</td>
+                            <td>{{carriertitle.gender}}</td>
                         </tr>
                         <tr>
                             <td>居住地址</td>
-                            <td>投保</td>
+                            <td>{{carriertitle.gender}}</td>
                             <td>工作地址</td>
-                            <td>杭州人才市场XXX有限公司</td>
+                            <td>{{carriertitle.gender}}</td>
                         </tr>
                         <tr>
                             <td>入网时长</td>
-                            <td>40550.74</td>
+                            <td>{{carriertitle.gender}}</td>
                             <td>账户余额</td>
-                            <td>1016.4</td>
+                            <td>{{carriertitle.gender}}</td>
                         </tr>
                     </table>
                 </div>
@@ -958,12 +958,68 @@
 <script>
     const msgData=localStorage.getItem('msgData');
     const newmsgData=JSON.parse(msgData);
-    const security=newmsgData.mx_security[0];
-    console.log(security);
+    const carrier=newmsgData.mx_carrier;
+
+    const yunyingshang={}
+    for(let i=0;i<newmsgData.mx_carrier.report.length;i++){
+      if(newmsgData.mx_carrier.report[i].key=="source_name_zh" ){
+        yunyingshang.source_name_zh=newmsgData.mx_carrier.report[i].value;
+      }
+      if(newmsgData.mx_carrier.report[i].key=="task_id" ){
+        yunyingshang.task_id=newmsgData.mx_carrier.report[i].value;
+      }
+      if(newmsgData.mx_carrier.report[i].key=="data_gain_time" ){
+        yunyingshang.data_gain_time=newmsgData.mx_carrier.report[i].value;
+      }
+      if(newmsgData.mx_carrier.report[i].key=="update_time" ){
+        yunyingshang.update_time=newmsgData.mx_carrier.report[i].value;
+      }
+    }
+    for(let i=0;i<newmsgData.mx_carrier.user_basic.length;i++){
+      if(newmsgData.mx_carrier.user_basic[i].key=="name" ){
+        yunyingshang.name=newmsgData.mx_carrier.user_basic[i].value;
+      }
+      if(newmsgData.mx_carrier.user_basic[i].key=="id_card" ){
+        yunyingshang.id_card=newmsgData.mx_carrier.user_basic[i].value;
+      }
+      if(newmsgData.mx_carrier.user_basic[i].key=="gender" ){
+        yunyingshang.gender=newmsgData.mx_carrier.user_basic[i].value;
+      }
+      if(newmsgData.mx_carrier.user_basic[i].key=="age" ){
+        yunyingshang.age=newmsgData.mx_carrier.user_basic[i].value;
+      }
+      if(newmsgData.mx_carrier.user_basic[i].key=="constellation" ){
+        yunyingshang.constellation=newmsgData.mx_carrier.user_basic[i].value;
+      }
+      if(newmsgData.mx_carrier.user_basic[i].key=="native_place" ){
+        yunyingshang.native_place=newmsgData.mx_carrier.user_basic[i].value;
+      }
+    }
+    for(let i=0;i<newmsgData.mx_carrier.cell_phone.length;i++){
+      if(newmsgData.mx_carrier.cell_phone[i].key=="reg_time" ){
+        yunyingshang.reg_time=newmsgData.mx_carrier.cell_phone[i].value;
+      }
+      if(newmsgData.mx_carrier.cell_phone[i].key=="in_time" ){
+        yunyingshang.in_time=newmsgData.mx_carrier.cell_phone[i].value;
+      }
+      if(newmsgData.mx_carrier.cell_phone[i].key=="package_name" ){
+        yunyingshang.package_name=newmsgData.mx_carrier.cell_phone[i].value;
+      }
+      if(newmsgData.mx_carrier.cell_phone[i].key=="bill_certification_day" ){
+        yunyingshang.bill_certification_day=newmsgData.mx_carrier.cell_phone[i].value;
+      }
+      if(newmsgData.mx_carrier.cell_phone[i].key=="phone_attribution" ){
+        yunyingshang.phone_attribution=newmsgData.mx_carrier.cell_phone[i].value;
+      }
+      if(newmsgData.mx_carrier.cell_phone[i].key=="available_balance" ){
+        yunyingshang.available_balance=newmsgData.mx_carrier.cell_phone[i].value;
+      }
+    }
+    console.log(yunyingshang);
     export default {
         data() {
             return { 
-              society:security,
+              carriertitle:yunyingshang,
             }
         },
         methods:{
