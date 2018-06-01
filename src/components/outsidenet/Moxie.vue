@@ -23,7 +23,7 @@
                     <el-form-item style="width:70%;display:inline-block"    prop='phone'>
                        <el-input style='height:40px' placeholder="请输入内容" v-model="ruleForm.phone" clearable></el-input>
                     </el-form-item>
-              </div><测试1>
+              </div>
               <div style="text-align:center">
                 <el-button @click="TQueryResult" plain>查询</el-button>
               </div>
