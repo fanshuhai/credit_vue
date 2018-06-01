@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <template>
   <div>
       <div class="box">
@@ -7,7 +8,7 @@
                     公积金报告
                 </h3>
                 <div style="text-align: right;font-size: 10px">
-                    报告编号：87997ba0-86e1-23e7-a144-00163e0d37dd
+                    报告编号：无
                 </div>
             </div>
             <div class="tab-content">
@@ -24,35 +25,35 @@
                         <table>
                             <tbody><tr>
                                 <td>姓名：</td>
-                                <td>魔蝎测试</td>
+                                <td>{{userinfo.real_name}}</td>
                                 <td>证件号码：</td>
-                                <td>330101198801010110</td>
+                                <td>{{userinfo.certificate_number}}</td>
                                 <td>证件类型：</td>
-                                <td>身份证</td>
+                                <td>{{userinfo.certificate_type}}</td>
                             </tr>
                             <tr>
                                 <td>性别：</td>
-                                <td>男</td>
+                                <td>{{userinfo.gender}}</td>
                                 <td>年龄：</td>
-                                <td>20</td>
+                                <td>{{userinfo.age}}</td>
                                 <td>出生地区：</td>
-                                <td>浙江省杭州市西湖区</td>
+                                <td>{{userinfo.native_place}}</td>
                             </tr>
                             <tr>
                                 <td>邮箱：</td>
-                                <td>xxx@qq.com</td>
+                                <td>{{userinfo.email}}</td>
                                 <td>家庭地址：</td>
-                                <td>西湖区湖畔花园XX号X栋</td>
+                                <td>{{userinfo.home_address}}</td>
                                 <td>手机号码：</td>
-                                <td>18600000000</td>
+                                <td>{{userinfo.mobile}}</td>
                             </tr>
                             <tr>
                                 <td>公积金地区：</td>
-                                <td>杭州</td>
+                                <td>{{userinfo.description}}</td>
                                 <td>单位名称：</td>
-                                <td>杭州市公安局</td>
+                                <td>{{userinfo.corporation_name}}</td>
                                 <td>单位类型：</td>
-                                <td>国企</td>
+                                <td>{{userinfo.compay_type}}</td>
                             </tr>
                         </tbody></table>
                     </div>
@@ -69,19 +70,19 @@
                             </tr>
                             <tr>
                                 <td>身份证号码是否有效</td>
-                                <td>有效实名制客户</td>
+                                <td>{{usercheck.certificate_number_check}}</td>
                             </tr>
                             <tr>
                                 <td>家庭地址与公积金地区是否匹配</td>
-                                <td>否</td>
+                                <td>{{usercheck.description_is_match_home_address}}</td>
                             </tr>
                             <tr>
                                 <td>出生地区与公积金地区是否匹配</td>
-                                <td>是</td>
+                                <td>{{usercheck.native_place_is_match_description}}</td>
                             </tr>
                             <tr>
                                 <td>家庭地址与出生地区是否匹配</td>
-                                <td>否</td>
+                                <td>{{usercheck.home_address_is_match_native_place}}</td>
                             </tr>
 
                         </tbody></table>
@@ -94,43 +95,43 @@
                         <table>
                                                     <tbody><tr>
                                 <td>账号余额（元）：</td>
-                                <td>23976.59</td>
+                                <td>{{fundinfo.balance}}</td>
                                 <td>公积金存缴状态：</td>
-                                <td> 正常</td>
+                                <td> {{fundinfo.pay_status}}</td>
                                 <td>开户日期：</td>
-                                <td>2011-06-13</td>
+                                <td>{{fundinfo.begin_date}}</td>
                             </tr>
                             <tr>
                                 <td>月缴金额（元）：</td>
-                                <td>1284.0</td>
+                                <td>{{fundinfo.monthly_total_income}}</td>
                                 <td>单位月缴金额（元）：</td>
-                                <td>641.64</td>
+                                <td>{{fundinfo.monthly_corporation_income}}</td>
                                 <td>个人月缴金额（元）：</td>
-                                <td>641.64</td>
+                                <td>{{fundinfo.monthly_customer_income}}</td>
                             </tr>
                             <tr>
                                 <td>基数（元）：</td>
-                                <td>5347.0</td>
+                                <td>{{fundinfo.base_number}}</td>
                                 <td>单位月缴比例：</td>
-                                <td>0.12</td>
+                                <td>{{fundinfo.corporation_ratio}}</td>
                                 <td>个人月缴比例：</td>
-                                <td>0.12</td>
+                                <td>{{fundinfo.customer_ratio}}</td>
                             </tr>
                             <tr>
                                 <td>最后缴费日期：</td>
-                                <td>2017-08</td>
+                                <td>{{fundinfo.last_pay_date}}</td>
                                 <td>最早缴费日期：</td>
-                                <td>2013-06-30</td>
+                                <td>{{fundinfo.earlyest_time}}</td>
                                 <td>近24个月内公积金缴费公司数：</td>
-                                <td>0</td>
+                                <td>{{fundinfo.corporation_name_num}}</td>
                             </tr>
                             <tr>
                                 <td>贷款金额（元）：</td>
-                                <td>公积金未提供该数据</td>
+                                <td>{{fundinfo.loan_amount}}</td>
                                 <td>贷款年限：</td>
-                                <td>公积金未提供该数据</td>
+                                <td>{{fundinfo.loan_periods}}</td>
                                 <td>剩余贷款（元）：</td>
-                                <td>公积金未提供该数据</td>
+                                <td>{{fundinfo.loan_remain_amount}}</td>
                             </tr>
                         </tbody></table>
                     </div>
@@ -158,39 +159,39 @@
 
                             <tr>
                                 <td>缴存金额（元）</td>
-                                <td>1284.0</td>
-                                <td>3212.0</td>
-                                <td>7372.0</td>
-                                <td>307.17</td>
+                                <td>{{paymentinfo.income_6}}</td>
+                                <td>{{paymentinfo.income_12}}</td>
+                                <td>{{paymentinfo.income_24}}</td>
+                                <td>{{paymentinfo.income_avg_24}}</td>
                             </tr>
                             <tr>
                                 <td>未缴月数</td>
-                                <td>5</td>
-                                <td>9</td>
-                                <td>16</td>
-                                <td>0.67</td>
+                                <td>{{paymentinfo.un_month_6}}</td>
+                                <td>{{paymentinfo.un_month_12}}</td>
+                                <td>{{paymentinfo.un_month_24}}</td>
+                                <td>{{paymentinfo.un_month_avg_24}}</td>
                             </tr>
                             <tr>
                                 <td>取出金额（元）</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>37000.0</td>
-                                <td>1541.67</td>
+                                <td>{{paymentinfo.outcome_6}}</td>
+                                <td>{{paymentinfo.outcome_12}}</td>
+                                <td>{{paymentinfo.outcome_24}}</td>
+                                <td>{{paymentinfo.outcome_avg_24}}</td>
                             </tr>
                             <tr>
                                 <td>取出笔数</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>1</td>
-                                <td>0.04</td>
+                                <td>{{paymentinfo.outcome_num_6}}</td>
+                                <td>{{paymentinfo.outcome_num_12}}</td>
+                                <td>{{paymentinfo.outcome_num_24}}</td>
+                                <td>{{paymentinfo.outcome_num_avg_24}}</td>
                             </tr>
 
                             <tr>
                                 <td>最大连续缴存月数</td>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>0.13</td>
+                                <td>{{paymentinfo.max_month_6}}</td>
+                                <td>{{paymentinfo.max_month_12}}</td>
+                                <td>{{paymentinfo.max_month_24}}</td>
+                                <td>{{paymentinfo.max_month_avg_24}}</td>
                             </tr>
 
                             </tbody>
@@ -220,59 +221,59 @@
 
                             <tr>
                                 <td>还款月数</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
+                                <td>{{repayinfo.repay_month_6}}</td>
+                                <td>{{repayinfo.repay_month_12}}</td>
+                                <td>{{repayinfo.repay_month_24}}</td>
+                                <td>{{repayinfo.repay_month_avg_24}}</td>
                             </tr>
                             <tr>
                                 <td>最大连续还款月数</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
+                                <td>{{repayinfo.repay_continues_month_6}}</td>
+                                <td>{{repayinfo.repay_continues_month_12}}</td>
+                                <td>{{repayinfo.repay_continues_month_24}}</td>
+                                <td>{{repayinfo.repay_continues_month_avg_24}}</td>
                             </tr>
                             <tr>
                                 <td>逾期还款合同数占比(%)</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
+                                <td>{{repayinfo.delay_repay_ratio_6}}</td>
+                                <td>{{repayinfo.delay_repay_ratio_12}}</td>
+                                <td>{{repayinfo.delay_repay_ratio_24}}</td>
+                                <td>{{repayinfo.delay_repay_ratio_avg_24}}</td>
                             </tr>
                             <tr>
                                 <td>还款合同数</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
+                                <td>{{repayinfo.repay_num_6}}</td>
+                                <td>{{repayinfo.repay_num_12}}</td>
+                                <td>{{repayinfo.repay_num_24}}</td>
+                                <td>{{repayinfo.repay_num_avg_24}}</td>
                             </tr>
                             <tr>
                                 <td>还款金额（元）</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
+                                <td>{{repayinfo.repay_amount_6}}</td>
+                                <td>{{repayinfo.repay_amount_12}}</td>
+                                <td>{{repayinfo.repay_amount_24}}</td>
+                                <td>{{repayinfo.repay_amount_avg_24}}</td>
                             </tr>
                             <tr>
                                 <td>还款本金（元）</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
+                                <td>{{repayinfo.repay_capital_6}}</td>
+                                <td>{{repayinfo.repay_capital_12}}</td>
+                                <td>{{repayinfo.repay_capital_24}}</td>
+                                <td>{{repayinfo.repay_capital_avg_24}}</td>
                             </tr>
                             <tr>
                                 <td>还款利息（元）</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
+                                <td>{{repayinfo.repay_interest_6}}</td>
+                                <td>{{repayinfo.repay_interest_12}}</td>
+                                <td>{{repayinfo.repay_interest_24}}</td>
+                                <td>{{repayinfo.repay_interest_avg_24}}</td>
                             </tr>
                             <tr>
                                 <td>还款罚息（元）</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
+                                <td>{{repayinfo.repay_penalty_6}}</td>
+                                <td>{{repayinfo.repay_penalty_12}}</td>
+                                <td>{{repayinfo.repay_penalty_24}}</td>
+                                <td>{{repayinfo.repay_penalty_avg_24}}</td>
                             </tr>
 
                             </tbody>
@@ -282,19 +283,26 @@
             </div>
         </div>
       </div>
-  </div>   
+  </div>
 </template>
 
 <script>
     const msgData=localStorage.getItem('msgData');
     const newmsgData=JSON.parse(msgData);
-    const zhixing_items_t=newmsgData.judicial.fxcontent.zhixing;
-    console.log(zhixing_items_t)
+    const user_info=newmsgData.mx_fund[0].user_basic_info;
+    const user_check=newmsgData.mx_fund[0].user_basic_info_check;
+    const fund_info=newmsgData.mx_fund[0].fund_basic_info;
+    const repay_info=newmsgData.mx_fund[0].repay_info;
+    const payment_info=newmsgData.mx_fund[0].payment_info;
+    console.log(user_check)
     export default {
         data() {
-            return { 
-              law_t:zhixing_items_t.length,
-              law_infos:zhixing_items_t,
+            return {
+                userinfo:user_info,
+                usercheck:user_check,
+                fundinfo:fund_info,
+                repayinfo:repay_info,
+                paymentinfo:payment_info,
             }
         },
         methods:{
