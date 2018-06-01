@@ -3,7 +3,7 @@
         <v-head></v-head>
         <!-- <v-sidebar></v-sidebar> -->
         <div class="content-box" :class="{'content-collapse':collapse}">
-            <v-tags></v-tags>
+            <!-- <v-tags></v-tags> -->
             <div class="content">
                 <transition name="move" mode="out-in">
                     <!-- <keep-alive> -->
@@ -30,11 +30,11 @@
             //vHead, vSidebar, vTags
             vHead
         },
-        created(){
-            // bus.$on('collapse', msg => {
-            //     this.collapse = msg;
-            // })
-        }
+        // created(){
+        //     // bus.$on('collapse', msg => {
+        //     //     this.collapse = msg;
+        //     // })
+        // }
     }
 </script>
 <style scoped>
