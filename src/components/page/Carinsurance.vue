@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <template>
   <div>
     <div class="box">
@@ -189,10 +190,10 @@
                 </div>
             </div>
 
-      
+
 
     </div>
-  </div>   
+  </div>
 </template>
 
 <script>
@@ -205,7 +206,7 @@
     const carinfo_jilu=carinfo.insurance_one[0].insuranceDamageInfos;
     export default {
         data() {
-            return { 
+            return {
               car_basic:carinfo_basic,
               car_xianzhongs:carinfo_xianzhongs,
               car_jilus:carinfo_jilu,
