@@ -48,7 +48,7 @@
                   </tr>
                   <tr>
                     <td>学历</td>
-                    <td></td>
+                    <td @click="xueli_info">{{xueli}}</td>
                   </tr>
                   <tr>
                     <td>任职</td>
@@ -91,7 +91,7 @@
                 <table>
                   <tr>
                     <td>信用卡</td>
-                    <td>5张</td>
+                    <td></td>
                   </tr>
                 </table>
               </div>
@@ -102,7 +102,7 @@
                 <table>
                   <tr>
                     <td>法律案件详情</td>
-                    <td>{{lawDetail}}</td>
+                    <td @click="lawCasedetail">{{lawDetail}}</td>
                   </tr>
                 </table>
               </div>
@@ -114,7 +114,7 @@
                 <table>
                   <tr>
                     <td>失信黑名单</td>
-                    <td>{{shixinB}}</td>
+                    <td @click="breach_B">{{shixinB}}</td>
                   </tr>
                   <tr>
                     <td>高风险</td>
@@ -138,11 +138,11 @@
                 <table>
                   <tr>
                     <td>网购消费</td>
-                    <td></td>
+                    <td @click="netMoney">{{taobao}}</td>
                   </tr>
                   <tr>
                     <td>社保</td>
-                    <td></td>
+                    <td>{{socialsecurity}}</td>
                   </tr>
                   <tr>
                     <td>寿险</td>
@@ -158,15 +158,15 @@
                 <table>
                   <tr>
                     <td>运营商（电信）</td>
-                    <td></td>
+                    <td @click="operators">{{operator}}</td>
                   </tr>
                   <tr>
                     <td>公积金</td>
-                    <td></td>
+                    <td @click="gongjijindetail">{{gongjijin}}</td>
                   </tr>
                   <tr>
                     <td>车险</td>
-                    <td></td>
+                    <td>{{insurance}}</td>
                   </tr>
                   <tr>
                     <td>燃气</td>
@@ -183,31 +183,72 @@
 <script>
     const msgData=localStorage.getItem('msgData');
     const newmsgData=JSON.parse(msgData);
-    console.log(newmsgData);
+   // console.log(newmsgData);
     if(newmsgData.judicial.fxcontent.shixing===''||newmsgData.judicial.fxcontent.shixing===null||newmsgData.judicial.fxcontent.shixing==='{}'){
         var shixinBlack='未命中';
     }else{
         var shixinBlack='命中';
     }
     if(newmsgData.tongdun.result_desc.ANTIFRAUD.risk_items.length>0){
-      //alert(newmsgData.tongdun.result_desc.ANTIFRAUD.risk_items.length)
-      // var dataBlacklist=newmsgData.tongdun.result_desc.ANTIFRAUD.risk_items;
-      // for(var i=0;i<dataBlacklist.length;i++){
-      //   // alert(dataBlacklist[i].risk_detail.type);
-      //   if(dataBlacklist[i].risk_detail.type=='discredit_count'){
-      //     var netBlacklist='命中';
-      //     alert(11111)
-      //   }else{
-      //     // var netBlacklist='未命中';
-      //     alert(2222)
-      //   }
-      // }
       var netBlacklist='命中';
       var hightrisklist='命中';
     }else{
       var netBlacklist='未命中';
       var hightrisklist='未命中';
     }
+    const yunyingshang={};
+    for(let i=0;i<newmsgData.mx_carrier.report.length;i++){
+      if(newmsgData.mx_carrier.report[i].key=="source_name_zh" ){
+        yunyingshang.source_name_zh=newmsgData.mx_carrier.report[i].value;
+      }
+      if(newmsgData.mx_carrier.report[i].key=="data_gain_time" ){
+        yunyingshang.data_gain_time=newmsgData.mx_carrier.report[i].value;
+      }
+      if(newmsgData.mx_carrier.report[i].key=="update_time" ){
+        yunyingshang.update_time=newmsgData.mx_carrier.report[i].value;
+      }
+    }
+    for(let i=0;i<newmsgData.mx_carrier.user_basic.length;i++){
+      if(newmsgData.mx_carrier.user_basic[i].key=="name" ){
+        yunyingshang.name=newmsgData.mx_carrier.user_basic[i].value;
+      }
+      if(newmsgData.mx_carrier.user_basic[i].key=="id_card" ){
+        yunyingshang.id_card=newmsgData.mx_carrier.user_basic[i].value;
+      }
+      if(newmsgData.mx_carrier.user_basic[i].key=="gender" ){
+        yunyingshang.gender=newmsgData.mx_carrier.user_basic[i].value;
+      }
+      if(newmsgData.mx_carrier.user_basic[i].key=="age" ){
+        yunyingshang.age=newmsgData.mx_carrier.user_basic[i].value;
+      }
+      if(newmsgData.mx_carrier.user_basic[i].key=="constellation" ){
+        yunyingshang.constellation=newmsgData.mx_carrier.user_basic[i].value;
+      }
+      if(newmsgData.mx_carrier.user_basic[i].key=="native_place" ){
+        yunyingshang.native_place=newmsgData.mx_carrier.user_basic[i].value;
+      }
+    }
+    for(let i=0;i<newmsgData.mx_carrier.cell_phone.length;i++){
+      if(newmsgData.mx_carrier.cell_phone[i].key=="reg_time" ){
+        yunyingshang.reg_time=newmsgData.mx_carrier.cell_phone[i].value;
+      }
+      if(newmsgData.mx_carrier.cell_phone[i].key=="in_time" ){
+        yunyingshang.in_time=newmsgData.mx_carrier.cell_phone[i].value;
+      }
+      if(newmsgData.mx_carrier.cell_phone[i].key=="package_name" ){
+        yunyingshang.package_name=newmsgData.mx_carrier.cell_phone[i].value;
+      }
+      if(newmsgData.mx_carrier.cell_phone[i].key=="bill_certification_day" ){
+        yunyingshang.bill_certification_day=newmsgData.mx_carrier.cell_phone[i].value;
+      }
+      if(newmsgData.mx_carrier.cell_phone[i].key=="phone_attribution" ){
+        yunyingshang.phone_attribution=newmsgData.mx_carrier.cell_phone[i].value;
+      }
+      if(newmsgData.mx_carrier.cell_phone[i].key=="available_balance" ){
+        yunyingshang.available_balance=newmsgData.mx_carrier.cell_phone[i].value;
+      }
+    }
+    console.log(yunyingshang)
     export default {
         data() {
             return { 
@@ -215,12 +256,22 @@
               input2:'',
               input3:'',
               user_basic:'姓名：'+newmsgData.basicInfo.name+',年龄：'+newmsgData.basicInfo.age+',手机号码：'+newmsgData.basicInfo.phone,
+
+              xueli:newmsgData.mx_chsi[0].studentInfo_list[0].level+','+newmsgData.mx_chsi[0].studentInfo_list[0].school_name+','+newmsgData.mx_chsi[0].studentInfo_list[0].specialty,
+
               renzhi_now:newmsgData.industry.gscontent.renzhi_now[0].position+','+newmsgData.industry.gscontent.renzhi_now[1].position+','+newmsgData.industry.gscontent.renzhi_now[0].entname,
+
               netcreit:netBlacklist,
               touzi_now:'',
               lawDetail:newmsgData.judicial.fxcontent.zhixing[0].court,
               shixinB:shixinBlack,
               hightrisk:hightrisklist,
+              gongjijin:newmsgData.mx_fund[0].user_basic_info.description+','+newmsgData.mx_fund[0].user_basic_info.corporation_name+','+newmsgData.mx_fund[0].user_basic_info.compay_type,
+              operator:yunyingshang.source_name_zh+','+yunyingshang.data_gain_time+','+yunyingshang.update_time,
+              socialsecurity:newmsgData.mx_security[0].basic_info.user_basic_info.real_name+','+newmsgData.mx_security[0].basic_info.user_basic_info.household_registration+','+newmsgData.mx_security[0].basic_info.user_basic_info.social_security_no,
+              taobao:newmsgData.mx_taobao[0].basic_info.user_and_account_basic_info.taobao_name+','+newmsgData.mx_taobao[0].basic_info.user_and_account_basic_info.taobao_email+','+newmsgData.mx_taobao[0].basic_info.user_and_account_basic_info.taobao_vip_count,
+
+              insurance:newmsgData.mx_insurance[0].insurance_one[0].insurancePolicyBaseInfo.plate_num+','+newmsgData.mx_insurance[0].insurance_one[0].insurancePolicyBaseInfo.insurance_name+','+newmsgData.mx_insurance[0].insurance_one[0].insurancePolicyBaseInfo.brand_model,
               options: [
                 {
                   value: '选项1',
@@ -238,10 +289,12 @@
                 }, {
                   value: '选项5',
                   label: '鹏元'
-                }, {
+                },
+                 {
                   value: '选项6',
                   label: '国政通'
-                }, {
+                }, 
+                {
                   value: '选项7',
                   label: '商汤'
                 }, {
@@ -259,11 +312,29 @@
           basic_info(){
             this.$router.push({path:'/perInfoBasic'});
           },
+          xueli_info(){
+            this.$router.push({path:'/xueli'});    
+          },
           hight_risk(){
             this.$router.push({path:'/highrisk_list'});
           },
           net_creit(){
             this.$router.push({path:'/netcredit_Blacklist'});
+          },
+          breach_B(){
+            this.$router.push({path:'/breach_Blacklist'});
+          },
+          lawCasedetail(){
+            this.$router.push('/lawCasedetail')
+          },
+          gongjijindetail(){
+            this.$router.push('/gongjijin')
+          },
+          netMoney(){
+            this.$router.push('/onlineshopping')
+          },
+          operators(){
+            this.$router.push('/yunyingshang')
           }
         },
         computed: {

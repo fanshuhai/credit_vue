@@ -27,6 +27,40 @@ export default new Router({
                     meta: { title: '查询结果' }
                 },
                 {
+                    path: '/huifa',
+                    component: resolve => require(['../components/outsidenet/Huifa.vue'], resolve),
+                    meta: { title: '汇法网查询' },
+
+                },
+                {
+                    path:'/tongdun',
+                    component:resolve => require(['../components/outsidenet/Tongdun.vue'], resolve),
+                    meta: { title: '同盾科技-查询' },
+                },
+                {
+                    path: '/threenQuery',
+                    component: resolve => require(['../components/outsidenet/ThreenQuery.vue'], resolve),
+                    meta: { title: '三网查询结果' },
+                    children:[
+                        {
+                            path:'/huifaQuery',
+                            component:resolve => require(['../components/outsidenet/HuifaQuery.vue'], resolve),
+                            meta: { title: '汇法网结果-查询' },
+                        },
+                        {
+                            path:'/tongdunQuery',
+                            component:resolve => require(['../components/outsidenet/TongdunQuery.vue'], resolve),
+                            meta: { title: '同盾科技结果-查询' },
+                        },
+                        {
+                            path:'/moxie',
+                            component:resolve => require(['../components/outsidenet/Moxie.vue'], resolve),
+                            meta: { title: '魔蝎科技结果-查询' },
+                        },
+                    ]
+
+                },
+                {
                     path: '/totalInfo',
                     component: resolve => require(['../components/page/TotalInfo.vue'], resolve),
                     meta: { title: '详细信息' },
@@ -35,6 +69,11 @@ export default new Router({
                             path:'/perInfoBasic',
                             component:resolve => require(['../components/page/PerInfoBasic.vue'], resolve),
                             meta: { title: '个人信息-基本信息' },
+                        },
+                        {
+                            path:'/xueli',
+                            component:resolve => require(['../components/page/Xueli.vue'], resolve),
+                            meta: { title: '司法信息-法律案件详情' },
                         },
                         {
                             path:'/lawCasedetail',
@@ -55,6 +94,31 @@ export default new Router({
                             path:'/highrisk_list',
                             component:resolve => require(['../components/page/Highrisk_list.vue'], resolve),
                             meta: { title: '反欺诈信息-高风险名单' },
+                        },
+                        {
+                            path:'/gongjijin',
+                            component:resolve => require(['../components/page/Gongjijin.vue'], resolve),
+                            meta: { title: '公共信息-公积金' },
+                        },
+                        {
+                            path:'/onlineshopping',
+                            component:resolve => require(['../components/page/Onlineshopping.vue'], resolve),
+                            meta: { title: '公共信息-网购消费' },
+                        },
+                        {
+                            path:'/yunyingshang',
+                            component:resolve => require(['../components/page/Yunyingshang.vue'], resolve),
+                            meta: { title: '公共信息-运营商' },
+                        },
+                        {
+                            path:'/societysecurity',
+                            component:resolve => require(['../components/page/Societysecurity.vue'], resolve),
+                            meta: { title: '公共信息-社保' },
+                        },
+                        {
+                            path:'/carinsurance',
+                            component:resolve => require(['../components/page/Carinsurance.vue'], resolve),
+                            meta: { title: '公共信息-车险' },
                         },
                     ]
                 },

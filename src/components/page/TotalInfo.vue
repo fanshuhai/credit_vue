@@ -111,7 +111,7 @@
                               title: '基本信息'
                           },
                           {
-                              index: '',
+                              index: 'xueli',
                               title: '学历'
                           },
                           {
@@ -187,33 +187,33 @@
                       title: '公共信息',
                       subs: [
                           {
-                              index: '',
+                              index: 'onlineshopping',
                               title: '网购消费'
                           },
                           {
-                              index: '',
+                              index: 'yunyingshang',
                               title: '运营商'
                           },
                           {
-                              index: '',
+                              index: 'societysecurity',
                               title: '社保'
                           },
                           {
-                              index: '',
+                              index: 'gongjijin',
                               title: '公积金'
                           },
+                          // {
+                          //     index: '',
+                          //     title: '寿险'
+                          // },
                           {
-                              index: '',
-                              title: '寿险'
-                          },
-                          {
-                              index: '',
+                              index: 'carinsurance',
                               title: '车险'
                           },
-                          {
-                              index: '',
-                              title: '水电'
-                          }
+                          // {
+                          //     index: '',
+                          //     title: '水电'
+                          // }
                       ]
                   }
               ],
@@ -236,9 +236,6 @@
         computed: {
 
         },
-        created:{
-
-        }
     }
 
 </script>

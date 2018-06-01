@@ -136,9 +136,9 @@
                  </div>
                  <div class="footer_bottom">
                    <el-row :gutter="80">
-                    <el-col :span="6"><div @click="open" class="grid-content footer_thirdP1"></div></el-col>
-                    <el-col :span="6"><div class="grid-content footer_thirdP2"></div></el-col>
-                    <el-col :span="6"><div class="grid-content footer_thirdP3"></div></el-col>
+                    <el-col :span="6"><div @click="huifa" class="grid-content footer_thirdP1"></div></el-col>
+                    <el-col :span="6"><div @click="tongdun" class="grid-content footer_thirdP2"></div></el-col>
+                    <el-col :span="6"><div @click="moxieinfo" class="grid-content footer_thirdP3"></div></el-col>
                    </el-row>
                  </div>
                </div>
@@ -184,9 +184,9 @@
             seen_personal:true,
             seen_enterprise:false,
             ruleForm:{
-              name:'',
-              cardId:'',
-              phone:'',
+              name:'龚来富',
+              cardId:'330121196212241414',
+              phone:'13333333333',
             },
             rules:{
               name:[
@@ -211,23 +211,19 @@
               this.seen_enterprise=false
             }
           },
-          open() {
-              this.$confirm('<div>'
-                            +'<p><span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</span><input></input></p>'
-                            +'<p><span>手机号码：</span><input></input></p>'
-                            +'<p><span>身份证号：</span><input></input></p>'
-                            +'</div>', '汇法网', {
-                dangerouslyUseHTMLString: true,
-                center:true,
-                showClose:false,
-                showCancelButton:false,
-                confirmButtonText:'查询'
-              });
+          huifa() {
+              this.$router.push('/huifa');
           },
-          QueryResult(formName){
+          tongdun() {
+              this.$router.push('/tongdun');
+          },
+          moxieinfo(){
+              this.$router.push('/moxie');
+          },
+          QueryResult(formName){  
             this.$refs[formName].validate((valid)=>{
               if(valid){
-                this.$axios.get('http://10.1.2.113:9990/api/v1/search',{
+                this.$axios.get('http://10.1.2.32:9990/api/v1/search',{
                   params:{
                     name:this.ruleForm.name,
                     cardId:this.ruleForm.cardId,
@@ -248,6 +244,7 @@
                   }
                 })
                 .catch(error=>{
+                  alert('暂无服务');
                     console.log(error);
                 })
               }
@@ -282,7 +279,7 @@
       text-align: center !important;
     }
     .moerCredit{
-        height: 93vh;
+        height: 92.5vh;
         width: 100%;
         padding:0;
         margin: 0;
