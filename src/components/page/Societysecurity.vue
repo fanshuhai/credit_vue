@@ -21,39 +21,50 @@
                     <table>
                         <tr>
                             <td>真实姓名：</td>
-                            <td>魔蝎测试</td>
+                            <td>{{basic_info.user_basic_info.real_name}}</td>
                             <td>性别：</td>
-                            <td>男</td>
+                            <td>{{basic_info.user_basic_info.sex}}</td>
                         </tr>
                         <tr>
                             <td>出生日期：</td>
-                            <td>1990-11-01</td>
+                            <td>{{basic_info.user_basic_info.birth_day}}</td>
                             <td>民族：</td>
-                            <td>汉族</td>
+                            <td>{{basic_info.user_basic_info.nation}}</td>
                         </tr>
                         <tr>
                             <td>户籍性质：</td>
-                            <td>中心城区非农业户口</td>
+                            <td>{{basic_info.user_basic_info.household_registration}}</td>
                             <td>联系地址：</td>
-                            <td>西湖区湖畔花园XX号X栋</td>
+                            <td>{{basic_info.user_basic_info.address}}</td>
                         </tr>
                         <tr>
                             <td>手机号码／电话：</td>
-                            <td>18600000000</td>
+                            <td>{{basic_info.user_basic_info.phone}}</td>
                             <td>社保账号／编号：</td>
-                            <td>900000000000000000</td>
+                            <td>{{basic_info.user_basic_info.social_security_no}}</td>
                         </tr>
                         <tr>
                             <td>人员状态：</td>
-                            <td>投保</td>
+                            <td>{{basic_info.user_basic_info.personnel_status}}</td>
                             <td>参保单位：</td>
-                            <td>杭州人才市场XXX有限公司</td>
+                            <td>{{basic_info.user_basic_info.insured_unit}}</td>
                         </tr>
                         <tr>
                             <td>累计缴纳金额（元）：</td>
-                            <td>40550.74</td>
+                            <td>{{basic_info.user_basic_info.amount_sum}}</td>
                             <td>医保累计消费金额（元）：</td>
-                            <td>1016.4</td>
+                            <td>{{basic_info.user_basic_info.money_sum}}</td>
+                        </tr>
+                        <tr>
+                            <td>缴存状态：</td>
+                            <td>{{basic_info.user_basic_info.pay_status}}</td>
+                            <td>首次参保时间：</td>
+                            <td>{{basic_info.user_basic_info.first_insured_date}}</td>
+                        </tr>
+                        <tr>
+                            <td>缴存基数：</td>
+                            <td>{{basic_info.user_basic_info.base_number}}</td>
+                            
                         </tr>
                     </table>
                 </div>
@@ -70,7 +81,7 @@
                         </tr>
                         <tr>
                             <td>身份证号码是否有效</td>
-                            <td>否</td>
+                            <td>{{basic_info.user_basic_info_check.card_decide}}</td>
                         </tr>
 
                     </table>
@@ -100,107 +111,81 @@
 
                         <tr>
                             <td>险种名称</td>
-                            <td>医疗保险</td>
-                            <td>养老保险</td>
-                            <td>工伤保险</td>
-                            <td>生育保险</td>
-                            <td>失业保险</td>
+                            <td v-for="item in society_details">
+                            {{item.insurance_name}}
+                        </td>
                         </tr>
                         <tr>
                             <td>缴存单位名称</td>
-                            <td>杭州人才市场XXX有限公司</td>
-                            <td>杭州人才市场XXX有限公司</td>
-                            <td>杭州人才市场XXX有限公司</td>
-                            <td>杭州人才市场XXX有限公司</td>
-                            <td>杭州人才市场XXX有限公司</td>
+                            <td v-for="item in society_details">
+                            {{item.corporation_name}}
+                        </td>
                         </tr>
                         <tr>
                             <td>累计缴纳金额(元)</td>
-                            <td>9682.91</td>
-                            <td>28228.3</td>
-                            <td>467.82</td>
-                            <td>677.84</td>
-                            <td>1297.87</td>
+                            <td v-for="item in society_details">
+                            {{item.amount_sum_2}}
+                        </td>
                         </tr>
                         <tr>
                             <td>累计缴纳月份</td>
-                            <td>26</td>
-                            <td>26</td>
-                            <td>26</td>
-                            <td>26</td>
-                            <td>26</td>
+                            <td v-for="item in society_details">
+                            {{item.month_cnt}}
+                        </td>
                         </tr>
                         <tr>
                             <td>连续参保月数</td>
-                            <td>26</td>
-                            <td>26</td>
-                            <td>26</td>
-                            <td>26</td>
-                            <td>26</td>
+                            <td v-for="item in society_details">
+                            {{item.month_cont}}
+                        </td>
                         </tr>
                         <tr>
                             <td>最近两年停缴月数</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
+                            <td v-for="item in society_details">
+                            {{item.month_stop}}
+                        </td>
                         </tr>
                         <tr>
                             <td>最近两年停缴次数</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
+                            <td v-for="item in society_details">
+                            {{item.stop_cnt}}
+                        </td>
                         </tr>
                         <tr>
                             <td>历史停缴月数</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
+                            <td v-for="item in society_details">
+                            {{item.month_stop_all}}
+                        </td>
                         </tr>
                         <tr>
                             <td>历史停缴次数</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
+                            <td v-for="item in society_details">
+                            {{item.stop_cnt_all}}
+                        </td>
                         </tr>
                         <tr>
                             <td>历史补缴次数</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
+                            <td v-for="item in society_details">
+                            {{item.patch_cnt}}
+                       </td>
                         </tr>
                         <tr>
                             <td>6月社保缴纳不同单位数</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
+                            <td v-for="item in society_details">
+                            {{item.corporation_name_cnt_6}}
+                       </td>
                         </tr>
                         <tr>
                             <td>12月社保缴纳不同单位数</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
+                            <td v-for="item in society_details">
+                            {{item.corporation_name_cnt_12}}
+                        </td>
                         </tr>
                         <tr>
                             <td>24月社保缴纳不同单位数</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
+                            <td v-for="item in society_details">
+                            {{item.corporation_name_cnt_24}}
+                        </td>
                         </tr>
 
                         </tbody>
@@ -220,58 +205,31 @@
                     <table>
                         <thead>
                             <th>魔蝎变量</th>
-                            <th>2017-07</th>
-                            <th>2017-06</th>
-                            <th>2017-05</th>
-                            <th>2017-04</th>
-                            <th>2017-03</th>
-                            <th>2017-02</th>
+                            <th v-for="(val,key,index) in medical_insurance_pay.medical_insurance_type">{{key}}</th>
                         </thead>
                         <tbody>
                         <tr>
                             <td>保险名称</td>
-                            <td>基本医疗</td>
-                            <td>基本医疗</td>
-                            <td>基本医疗</td>
-                            <td>基本医疗</td>
-                            <td>基本医疗</td>
-                            <td>基本医疗</td>
+                            
+                            <td v-for="(val,key,index) in medical_insurance_pay.medical_insurance_type">{{val}}</td>
+                            
+
                         </tr>
                         <tr>
                             <td>缴费基数（元）</td>
-                            <td>4599.3</td>
-                            <td>4599.3</td>
-                            <td>3500.0</td>
-                            <td>4599.3</td>
-                            <td>4599.3</td>
-                            <td>4599.3</td>
+                            <td v-for="(val,key,index) in medical_insurance_pay.base_number">{{val}}</td>
                         </tr>
                         <tr>
                             <td>单位缴存金额（元）</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
+                            <td v-for="(val,key,index) in medical_insurance_pay.corporation_payment">{{val}}</td>
                         </tr>
                         <tr>
                             <td>个人缴费额（元）</td>
-                            <td>91.99</td>
-                            <td>91.99</td>
-                            <td>70.0</td>
-                            <td>91.99</td>
-                            <td>91.99</td>
-                            <td>91.99</td>
+                            <td v-for="(val,key,index) in medical_insurance_pay.personal_payment">{{val}}</td>
                         </tr>
                         <tr>
                             <td>缴费状态标识</td>
-                            <td>已缴费</td>
-                            <td>已缴费</td>
-                            <td>已缴费</td>
-                            <td>已缴费</td>
-                            <td>已缴费</td>
-                            <td>已缴费</td>
+                            <td v-for="(val,key,index) in medical_insurance_pay.status">{{val}}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -288,40 +246,20 @@
                         <thead>
                         <tr>
                             <th>魔蝎变量</th>
-                            <th>2017-07</th>
-                            <th>2017-06</th>
-                            <th>2017-05</th>
-                            <th>2017-04</th>
-                            <th>2017-03</th>
-                            <th>2017-02</th>
+                            <td v-for="(val,key,index) in medical_consumption_basic.month_money_sum">{{key}}</td>
                         </tr>
                         </thead>
                         <tr>
                             <td>消费金额（元）</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>60.0</td>
-                            <td>0</td>
+                            <td v-for="(val,key,index) in medical_consumption_basic.month_money_sum">{{val}}</td>
                         </tr>
                         <tr>
                             <td>消费次数</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>1</td>
-                            <td></td>
+                            <td v-for="(val,key,index) in medical_consumption_basic.medical_insurance_cnt">{{val}}</td>
                         </tr>
                         <tr>
                             <td>单笔最大消费（元）</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>60.0</td>
-                            <td>0</td>
+                            <td v-for="(val,key,index) in medical_consumption_basic.month_money_sum">{{val}}</td>
                         </tr>
 
                     </table>
@@ -340,48 +278,12 @@
                             <th>医疗机构名称</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody v-for="item in securities_report">
                             <tr>
-                                <td>2017-03-07</td>
-                                <td>60.0</td>
-                                <td>直接购药</td>
-                                <td>浙江省XXX医院</td>
-                            </tr>
-                            <tr>
-                                <td>2017-02-15</td>
-                                <td>115.52</td>
-                                <td>普通门诊</td>
-                                <td>浙江省XXX医院</td>
-                            </tr>
-                            <tr>
-                                <td>2016-09-25</td>
-                                <td>328.94</td>
-                                <td>普通门诊</td>
-                                <td>浙江省XXX医院</td>
-                            </tr>
-                            <tr>
-                                <td>2016-09-25</td>
-                                <td>328.94</td>
-                                <td>普通门诊</td>
-                                <td>浙江省XXX医院</td>
-                            </tr>
-                            <tr>
-                                <td>2016-09-25</td>
-                                <td>150.0</td>
-                                <td>普通门诊</td>
-                                <td>浙江省XXX医院</td>
-                            </tr>
-                            <tr>
-                                <td>2016-09-17</td>
-                                <td>0</td>
-                                <td>普通门诊</td>
-                                <td>浙江省XXX医院</td>
-                            </tr>
-                            <tr>
-                                <td>2016-09-17</td>
-                                <td>33.0</td>
-                                <td>普通门诊</td>
-                                <td>浙江省XXX医院</td>
+                                <td>{{item.settlemen_time}}</td>
+                                <td>{{item.money}}</td>
+                                <td>{{item.type}}</td>
+                                <td>{{item.organization_name}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -396,11 +298,21 @@
     const msgData=localStorage.getItem('msgData');
     const newmsgData=JSON.parse(msgData);
     const security=newmsgData.mx_security[0];
-    console.log(security);
+
+    const basic_info=security.basic_info;
+    const insurance_summary=security.social_insurance_summary;
+    const insurance_bill=security.medical_insurance_bill;
+    const consumption_details=security.medical_consumption_details;
+    
+    
     export default {
         data() {
             return { 
-              society:security,
+              basic_info:basic_info,
+              society_details:insurance_summary.society_detail,
+              medical_insurance_pay:insurance_bill.medical_insurance_pay,
+              medical_consumption_basic:consumption_details.medical_consumption_basic,
+              securities_report:consumption_details.medical_consumption_record.securities_report,
             }
         },
         methods:{
