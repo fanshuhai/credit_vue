@@ -12,24 +12,24 @@
                       <el-input placeholder="请输入内容" v-model="ruleForm.name" clearable></el-input>
                     </el-form-item>
                 </div>
-                 <div style="margin-bottom:10px;text-align:center">   
+                 <div style="margin-bottom:10px;text-align:center">
                     <span>身份证号：</span>
                     <el-form-item  style="width:70%;display:inline-block"    prop='cardId'>
                       <el-input placeholder="请输入内容" v-model="ruleForm.cardId" clearable></el-input>
                     </el-form-item>
-              </div>  
+              </div>
               <div style="margin-bottom:30px;text-align:center">
                     <span>手机号码：</span>
                     <el-form-item style="width:70%;display:inline-block"    prop='phone'>
                        <el-input style='height:40px' placeholder="请输入内容" v-model="ruleForm.phone" clearable></el-input>
                     </el-form-item>
-              </div>
+              </div><测试1>
               <div style="text-align:center">
                 <el-button @click="TQueryResult" plain>查询</el-button>
               </div>
             </el-form>
           </div>
-        
+
       </div>
     </div>
 </template>
@@ -66,7 +66,7 @@
                 callback();
               }
             };
-            return { 
+            return {
               ruleForm:{
                 name:'',
                 cardId:'',
@@ -89,7 +89,7 @@
           goBack(){
             this.$router.push('/moerCredit');
           },
-          TQueryResult(){  
+          TQueryResult(){
             // this.$refs[formName].validate((valid)=>{
             //   if(valid){
             //     this.$axios.get('http://10.1.2.113:9990/api/v1/search',{
@@ -141,7 +141,7 @@
     width: 70%;
     height: 50px;
     line-height: 50px;
-    border-bottom: 1px solid #ccc; 
+    border-bottom: 1px solid #ccc;
     margin: 0 auto;
     padding:30px 0 0  0;
   }
@@ -166,7 +166,7 @@
       background:#00D1B2;
       height: 45px;
       width: 120px;
-      border-radius:10px; 
+      border-radius:10px;
       color: #fff;
       font-weight: bold;
       font-size: 18px;
@@ -176,7 +176,7 @@
       background:#00D1B2;
       height: 45px;
       width: 120px;
-      border-radius:10px; 
+      border-radius:10px;
       color: #fff;
       font-weight: bold;
       font-size: 18px;
