@@ -27,7 +27,7 @@
                         </tr>
                         <tr>
                             <td>年龄</td>
-                            <td>{{carriertitle.age}}</td>
+                            <td>{{carriertitle.age}}岁</td>
                             <td>星座</td>
                             <td>{{carriertitle.constellation}}</td>
                         </tr>
@@ -35,31 +35,25 @@
                             <td>籍贯</td>
                             <td>{{carriertitle.native_place}}</td>
                             <td>邮箱</td>
-                            <td>{{carriertitle.gender}}</td>
+                            <td>{{carriertitle.email}}</td>
                         </tr>
                         <tr>
                             <td>身份证号</td>
-                            <td>{{carriertitle.gender}}</td>
+                            <td>{{carriertitle.id_card}}</td>
                             <td>手机号码</td>
-                            <td>{{carriertitle.gender}}</td>
+                            <td>{{carriertitle.mobile}}</td>
                         </tr>
                         <tr>
                             <td>手机号码归属地</td>
-                            <td>{{carriertitle.gender}}</td>
+                            <td>{{carriertitle.phone_attribution}}</td>
                             <td>通讯地址</td>
-                            <td>{{carriertitle.gender}}</td>
-                        </tr>
-                        <tr>
-                            <td>居住地址</td>
-                            <td>{{carriertitle.gender}}</td>
-                            <td>工作地址</td>
-                            <td>{{carriertitle.gender}}</td>
+                            <td>{{carriertitle.address}}</td>
                         </tr>
                         <tr>
                             <td>入网时长</td>
-                            <td>{{carriertitle.gender}}</td>
+                            <td>{{carriertitle.in_time}}个月</td>
                             <td>账户余额</td>
-                            <td>{{carriertitle.gender}}</td>
+                            <td>{{carriertitle.available_balance}}元</td>
                         </tr>
                     </table>
                 </div>
@@ -73,39 +67,39 @@
                         <tr>
                             <td rowspan="9" width="150">用户查询信息</td>
                             <td >查询过该用户的相关企业数量</td>
-                            <td>结果</td>
+                            <td>{{user_info_check.check_search_info.searched_org_cnt}}</td>
                         </tr>
                         <tr>
                             <td>查询过该用户的相关企业类型</td>
-                            <td>否</td>
+                            <td>{{user_info_check.check_search_info.searched_org_type}}</td>
                         </tr>
                         <tr>
                             <td>身份证组合过的其他姓名</td>
-                            <td>否</td>
+                            <td>{{user_info_check.check_search_info.idcard_with_other_names}}</td>
                         </tr>
                         <tr>
                             <td>身份证组合过的其他电话</td>
-                            <td>否</td>
+                            <td>{{user_info_check.check_search_info.idcard_with_other_phones}}</td>
                         </tr>
                         <tr>
                             <td>电话号码组合过其他姓名</td>
-                            <td>否</td>
+                            <td>{{user_info_check.check_search_info.phone_with_other_names}}</td>
                         </tr>
                         <tr>
                             <td>电话号码组合过其他身份证</td>
-                            <td>否</td>
+                            <td>{{user_info_check.check_search_info.phone_with_other_idcards}}</td>
                         </tr>
                         <tr>
                             <td>电话号码注册过的相关企业数量</td>
-                            <td>否</td>
+                            <td>{{user_info_check.check_search_info.register_org_cnt}}</td>
                         </tr>
                         <tr>
                             <td>电话号码注册过的相关企业类型</td>
-                            <td>否</td>
+                            <td>{{user_info_check.check_search_info.register_org_type}}</td>
                         </tr>
                         <tr>
                             <td>电话号码出现过的公开信息网站</td>
-                            <td>否</td>
+                            <td>{{user_info_check.check_search_info.arised_open_web}}</td>
                         </tr>
 
                     </table>
@@ -120,27 +114,27 @@
                         <tr>
                             <td rowspan="9" width="150">黑名单信息</td>
                             <td >黑中介分数</td>
-                            <td>结果</td>
+                            <td>{{user_info_check.check_black_info.phone_gray_score}}</td>
                         </tr>
                         <tr>
                             <td>直接联系人中黑名单人数</td>
-                            <td>否</td>
+                            <td>{{user_info_check.check_black_info.contacts_class1_blacklist_cnt}}</td>
                         </tr>
                         <tr>
                             <td>间接联系人中黑名单人数</td>
-                            <td>否</td>
+                            <td>{{user_info_check.check_black_info.contacts_class2_blacklist_cnt}}</td>
                         </tr>
                         <tr>
                             <td>直接联系人人数</td>
-                            <td>否</td>
+                            <td>{{user_info_check.check_black_info.contacts_class1_cnt}}</td>
                         </tr>
                         <tr>
                             <td>引起黑名单的直接联系人数量</td>
-                            <td>否</td>
+                            <td>{{user_info_check.check_black_info.contacts_router_cnt}}</td>
                         </tr>
                         <tr>
                             <td>直接联系人中引起间接黑名单占比</td>
-                            <td>否</td>
+                            <td>{{user_info_check.check_black_info.contacts_router_ratio}}</td>
                         </tr>
 
                     </table>
@@ -148,18 +142,20 @@
             </div>
 
             <div class="table" style="padding-left: 0px">
-                <h5 class="h5">1.2数据来源</h5>
+                <h5 class="h5">1.2行为监测</h5>
                 <div class="tabbox  textCenter">
                     <table>
                         <tr>
-                            <th>来源名称</th>
-                            <th >黑中介分数</th>
-                            <th>结果</th>
+                            <th>分析点</th>
+                            <th >结果</th>
+                            <th>证据</th>
+                            <th>标记分</th>
                         </tr>
-                        <tr>
-                            <td>黑名单信息</td>
-                            <td>数据类别</td>
-                            <td>获取时间</td>
+                        <tr  v-for="behavior_check in behavior_checks">
+                            <td>{{behavior_check.check_point_cn}}</td>
+                            <td>{{behavior_check.result}}</td>
+                            <td>{{behavior_check.evidence}}</td>
+                            <td>{{behavior_check.score}}</td>
                         </tr>
 
                     </table>
@@ -175,30 +171,9 @@
                             <th>结果</th>
                         </thead>
                         <tbody>
-
-                            <tr>
-                                <td>身份证号码有效性</td>
-                                <td>数据类别</td>
-                            </tr>
-                            <tr>
-                                <td>邮箱有效性</td>
-                                <td>数据类别</td>
-                            </tr>
-                            <tr>
-                                <td>通讯地址有效性</td>
-                                <td>数据类别</td>
-                            </tr>
-                            <tr>
-                                <td>身份证号码是否与运营商数据匹配</td>
-                                <td>数据类别</td>
-                            </tr>
-                            <tr>
-                                <td>姓名是否与运营商数据匹配</td>
-                                <td>数据类别</td>
-                            </tr>
-                            <tr>
-                                <td>通话记录完整性</td>
-                                <td>数据类别</td>
+                            <tr v-for="basic_check_item in basic_check_items">
+                                <td>{{basic_check_item.check}}</td>
+                                <td>{{basic_check_item.result}}</td>
                             </tr>
                           
                         </tbody>
@@ -206,9 +181,15 @@
                     </table>
                 </div>
             </div>
+            
 
+            <div>
+                <h3 style="padding-left: 0px">
+                    2.通话社交
+                </h3>
+            </div>
             <div class="table" style="padding-left: 0px">
-                <h5 class="h5">1.4社交分析摘要</h5>
+                <h5 class="h5">2.1社交分析摘要</h5>
                 <span>朋友圈</span>
                 <div class="tabbox">
                     <table>
@@ -257,27 +238,47 @@
                 </div>
             </div>
 
+             <div class="table" style="padding-left: 0px">
+                <span>朋友圈联系人数量</span>
+                <div class="tabbox">
+                    <table>
+                        <tbody>
+
+                            <tr v-for="info_peoplenum in info_peoplenums">
+                                <td>{{info_peoplenum.check}}</td>
+                                <td>{{info_peoplenum.result}}</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
             <div class="table" style="padding-left: 0px">
                 <span>联系人Top3（近3月通话次数降序）</span>
                 <div class="tabbox">
                     <table>
                         <thead>
-                            <th>号码</th>
+                            <th>对方号码</th>
                             <th>归属地</th>
                             <th>通话次数</th>
                             <th>通话时长（秒）</th>
                             <th>主叫次数</th>
                             <th>被叫次数</th>
+                            <th>主叫时长（秒）</th>
+                            <th>被叫时长（秒）</th>
                         </thead>
                         <tbody>
 
-                            <tr>
-                                <td>身份证号码有效性</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                                <td>数据类别</td>
+                            <tr v-for="peer_num_top_list3month in peer_num_top_list3months">
+                                <td>{{peer_num_top_list3month.peer_number}}</td>
+                                <td>{{peer_num_top_list3month.peer_num_loc}}</td>
+                                <td>{{peer_num_top_list3month.dial_cnt}}</td>
+                                <td>{{peer_num_top_list3month.call_time}}</td>
+                                <td>{{peer_num_top_list3month.dial_cnt}}</td>
+                                <td>{{peer_num_top_list3month.dialed_cnt}}</td>
+                                <td>{{peer_num_top_list3month.dial_time}}</td>
+                                <td>{{peer_num_top_list3month.dialed_time}}</td>
                             </tr>
                           
                         </tbody>
@@ -291,22 +292,26 @@
                 <div class="tabbox">
                     <table>
                         <thead>
-                            <th>号码</th>
+                            <th>对方号码</th>
                             <th>归属地</th>
                             <th>通话次数</th>
                             <th>通话时长（秒）</th>
                             <th>主叫次数</th>
                             <th>被叫次数</th>
+                            <th>主叫时长（秒）</th>
+                            <th>被叫时长（秒）</th>
                         </thead>
                         <tbody>
 
-                            <tr>
-                                <td>身份证号码有效性</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                                <td>数据类别</td>
+                            <tr v-for="peer_num_top_list6month in peer_num_top_list6months">
+                                <td>{{peer_num_top_list6month.peer_number}}</td>
+                                <td>{{peer_num_top_list6month.peer_num_loc}}</td>
+                                <td>{{peer_num_top_list6month.dial_cnt}}</td>
+                                <td>{{peer_num_top_list6month.call_time}}</td>
+                                <td>{{peer_num_top_list6month.dial_cnt}}</td>
+                                <td>{{peer_num_top_list6month.dialed_cnt}}</td>
+                                <td>{{peer_num_top_list6month.dial_time}}</td>
+                                <td>{{peer_num_top_list6month.dialed_time}}</td>
                             </tr>
                           
                         </tbody>
@@ -320,22 +325,26 @@
                 <div class="tabbox">
                     <table>
                         <thead>
-                            <th>地址</th>
+                            <th>通话地</th>
                             <th>通话次数</th>
                             <th>通话号码数</th>
                             <th>通话时长（秒）</th>
                             <th>主叫次数</th>
                             <th>被叫次数</th>
+                            <th>主叫时长（秒）</th>
+                            <th>被叫时长（秒）</th>
                         </thead>
                         <tbody>
-
-                            <tr>
-                                <td>身份证号码有效性</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                                <td>数据类别</td>
+                                                  
+                            <tr v-for="location_top_list3month in location_top_list3months">
+                                <td>{{location_top_list3month.location}}</td>
+                                <td>{{location_top_list3month.call_cnt}}</td>
+                                <td>{{location_top_list3month.peer_number_cnt}}</td>
+                                <td>{{location_top_list3month.call_time}}</td>
+                                <td>{{location_top_list3month.dial_cnt}}</td>
+                                <td>{{location_top_list3month.dialed_cnt}}</td>
+                                <td>{{location_top_list3month.dial_time}}</td>
+                                <td>{{location_top_list3month.dialed_time}}</td>
                             </tr>
                           
                         </tbody>
@@ -349,22 +358,26 @@
                 <div class="tabbox">
                     <table>
                         <thead>
-                            <th>地址</th>
+                            <th>通话地</th>
                             <th>通话次数</th>
                             <th>通话号码数</th>
                             <th>通话时长（秒）</th>
                             <th>主叫次数</th>
                             <th>被叫次数</th>
+                            <th>主叫时长（秒）</th>
+                            <th>被叫时长（秒）</th>
                         </thead>
                         <tbody>
-
-                            <tr>
-                                <td>身份证号码有效性</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                                <td>数据类别</td>
+                                                  
+                            <tr v-for="location_top_list6month in location_top_list6months">
+                                <td>{{location_top_list6month.location}}</td>
+                                <td>{{location_top_list6month.call_cnt}}</td>
+                                <td>{{location_top_list6month.peer_number_cnt}}</td>
+                                <td>{{location_top_list6month.call_time}}</td>
+                                <td>{{location_top_list6month.dial_cnt}}</td>
+                                <td>{{location_top_list6month.dialed_cnt}}</td>
+                                <td>{{location_top_list6month.dial_time}}</td>
+                                <td>{{location_top_list6month.dialed_time}}</td>
                             </tr>
                           
                         </tbody>
@@ -372,6 +385,250 @@
                     </table>
                 </div>
             </div>
+
+            <div class="table" style="padding-left: 0px">
+                <span>用户行为分析</span>
+                <div class="tabbox">
+                    <table>
+                        <thead>
+                            <th>短信次数</th>
+                            <th>手机号码</th>
+                            <th>流量使用</th>
+                            <th>消费金额</th>
+                            <th>月份</th>
+                            <th>归属地</th>
+                            <th>运营商</th>
+                            <th>通话次数</th>
+                            <th>通话时长（秒）</th>
+                            <th>主叫时长（秒）</th>
+                            <th>主叫次数</th>
+                            <th>被叫次数</th>
+                            <th>被叫时长（秒）</th>
+                            <th>充值次数</th>
+                            <th>充值金额</th>
+                        </thead>
+                        <tbody>
+
+                            <tr v-for="cell_behavior in cell_behaviors">
+                                <td>{{cell_behavior.sms_cnt}}</td>
+                                <td>{{cell_behavior.cell_phone_num}}</td>
+                                <td>{{cell_behavior.net_flow}}</td>
+                                <td>{{cell_behavior.total_amount}}</td>
+                                <td>{{cell_behavior.cell_mth}}</td>
+                                <td>{{cell_behavior.cell_loc}}</td>
+                                <td>{{cell_behavior.cell_operator_zh}}</td>
+                                <td>{{cell_behavior.call_cnt}}</td>
+                                <td>{{cell_behavior.call_time}}</td>
+                                <td>{{cell_behavior.dial_cnt}}</td>
+                                <td>{{cell_behavior.dial_time}}</td>
+                                <td>{{cell_behavior.dialed_cnt}}</td>
+                                <td>{{cell_behavior.dialed_time}}</td>
+                                <td>{{cell_behavior.rechange_cnt}}</td>
+                                <td>{{cell_behavior.rechange_amount}}</td>
+                            </tr>
+                          
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+             <div class="table" style="padding-left: 0px">
+                <span>亲情号通话分析</span>
+                <div class="tabbox">
+                    <table>
+                        <thead>
+                            <th>分析项</th>
+                            <th>近1月数量</th>
+                            <th>近3月数量</th>
+                            <th>近6月数量</th>
+                            <th>近3月平均数量</th>
+                            <th>近6月平均数量</th>
+                        </thead>
+                        <tbody>
+
+                            <tr v-for="call_family_detail in call_family_details">
+                                <td>{{call_family_detail.app_point_zh}}</td>
+                                <td>{{call_family_detail.item.item_1m}}</td>
+                                <td>{{call_family_detail.item.item_3m}}</td>
+                                <td>{{call_family_detail.item.item_6m}}</td>
+                                <td>{{call_family_detail.item.avg_item_3m}}</td>
+                                <td>{{call_family_detail.item.avg_item_6m}}</td>
+                            </tr>
+                          
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+            <div class="table" style="padding-left: 0px">
+                <span>通话时段（近三个月）</span>
+                <div class="tabbox">
+                    <table>
+                        <thead>
+                            <th>通话时间段</th>
+                            <th>通话次数</th>
+                            <th>通话号码数</th>
+                            <th>通话时长（秒）</th>
+                            <th>主叫次数</th>
+                            <th>被叫次数</th>
+                            <th>主叫时长</th>
+                            <th>被叫时长</th>
+                            <th>最后一次通话时间</th>
+                            <th>第一次通话时间</th>
+                        </thead>
+                        <tbody>
+
+                            <tr v-for="call_duration_detail3m in call_duration_detail3ms">
+                                <td>{{call_duration_detail3m.time_step_zh}}</td>
+                                <td>{{call_duration_detail3m.item.uniq_num_cnt}}</td>
+                                <td>{{call_duration_detail3m.item.total_time}}</td>
+                                <td>{{call_duration_detail3m.item.dial_cnt}}</td>
+                                <td>{{call_duration_detail3m.item.dialed_cnt}}</td>
+                                <td>{{call_duration_detail3m.item.dial_time}}</td>
+                                <td>{{call_duration_detail3m.item.dialed_time}}</td>
+                                <td>{{call_duration_detail3m.item.latest_call_time}}</td>
+                                <td>{{call_duration_detail3m.item.farthest_call_time}}</td>
+                            </tr>
+                          
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+            <div class="table" style="padding-left: 0px">
+                <span>通话时段（近六个月）</span>
+                <div class="tabbox">
+                    <table>
+                        <thead>
+                            <th>通话时间段</th>
+                            <th>通话次数</th>
+                            <th>通话号码数</th>
+                            <th>通话时长（秒）</th>
+                            <th>主叫次数</th>
+                            <th>被叫次数</th>
+                            <th>主叫时长</th>
+                            <th>被叫时长</th>
+                            <th>最后一次通话时间</th>
+                            <th>第一次通话时间</th>
+                        </thead>
+                        <tbody>
+
+                            <tr v-for="call_duration_detail6m in call_duration_detail6ms">
+                                <td>{{call_duration_detail6m.time_step_zh}}</td>
+                                <td>{{call_duration_detail6m.item.uniq_num_cnt}}</td>
+                                <td>{{call_duration_detail6m.item.total_time}}</td>
+                                <td>{{call_duration_detail6m.item.dial_cnt}}</td>
+                                <td>{{call_duration_detail6m.item.dialed_cnt}}</td>
+                                <td>{{call_duration_detail6m.item.dial_time}}</td>
+                                <td>{{call_duration_detail6m.item.dialed_time}}</td>
+                                <td>{{call_duration_detail6m.item.latest_call_time}}</td>
+                                <td>{{call_duration_detail6m.item.farthest_call_time}}</td>
+                            </tr>
+                          
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>      
+
+
+            <div class="table" style="padding-left: 0px">
+                <span>联系人区域汇总（近3月通话次数降序）</span>
+                <div class="tabbox">
+                    <table>
+                        <thead>
+                            <th>地区名称</th>
+                            <th>通话号码数</th>
+                            <th>通话次数</th>
+                            <th>通话时长（秒）</th>
+
+                            <th>被叫次数</th>
+                            <th>被叫时长（秒）</th>
+                            <th>主叫次数</th>
+                            <th>主叫时长（秒）</th>
+                            <th>主叫平均时长（秒）</th>
+                            <th>被叫平均时长（秒）</th>
+                            <th>主叫次数占比</th>
+                            <th>主叫时长占比</th>
+                            <th>被叫次数占比</th>
+                            <th>被叫时长占比</th>
+                        </thead>
+                        <tbody>
+
+                            <tr v-for="contact_region3month in contact_region3months">
+                                <td>{{contact_region3month.region_loc}}</td>
+                                <td>{{contact_region3month.region_uniq_num_cnt}}</td>
+                                <td>{{contact_region3month.region_call_cnt}}</td>
+                                <td>{{contact_region3month.region_call_time}}</td>
+                                <td>{{contact_region3month.region_dial_cnt}}</td>
+                                <td>{{contact_region3month.region_dial_time}}</td>
+                                <td>{{contact_region3month.region_dialed_cnt}}</td>
+                                <td>{{contact_region3month.region_dialed_time}}</td>
+                                <td>{{contact_region3month.region_avg_dial_time}}</td>
+                                <td>{{contact_region3month.region_avg_dialed_time}}</td>
+                                <td>{{contact_region3month.region_dial_cnt_pct}}%</td>
+                                <td>{{contact_region3month.region_dial_time_pct}}%</td>
+                                <td>{{contact_region3month.region_dialed_cnt_pct}}%</td>
+                                <td>{{contact_region3month.region_dialed_time_pct}}%</td>
+                            </tr>
+                          
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+
+
+            <div class="table" style="padding-left: 0px">
+                <span>联系人区域汇总（近6月通话次数降序）</span>
+                <div class="tabbox">
+                    <table>
+                        <thead>
+                            <th>地区名称</th>
+                            <th>通话号码数</th>
+                            <th>通话次数</th>
+                            <th>通话时长（秒）</th>
+
+                            <th>被叫次数</th>
+                            <th>被叫时长（秒）</th>
+                            <th>主叫次数</th>
+                            <th>主叫时长（秒）</th>
+                            <th>主叫平均时长（秒）</th>
+                            <th>被叫平均时长（秒）</th>
+                            <th>主叫次数占比</th>
+                            <th>主叫时长占比</th>
+                            <th>被叫次数占比</th>
+                            <th>被叫时长占比</th>
+                        </thead>
+                        <tbody>
+
+                            <tr v-for="contact_region6month in contact_region6months">
+                                <td>{{contact_region6month.region_loc}}</td>
+                                <td>{{contact_region6month.region_uniq_num_cnt}}</td>
+                                <td>{{contact_region6month.region_call_cnt}}</td>
+                                <td>{{contact_region6month.region_call_time}}</td>
+                                <td>{{contact_region6month.region_dial_cnt}}</td>
+                                <td>{{contact_region6month.region_dial_time}}</td>
+                                <td>{{contact_region6month.region_dialed_cnt}}</td>
+                                <td>{{contact_region6month.region_dialed_time}}</td>
+                                <td>{{contact_region6month.region_avg_dial_time}}</td>
+                                <td>{{contact_region6month.region_avg_dialed_time}}</td>
+                                <td>{{contact_region6month.region_dial_cnt_pct}}%</td>
+                                <td>{{contact_region6month.region_dial_time_pct}}%</td>
+                                <td>{{contact_region6month.region_dialed_cnt_pct}}%</td>
+                                <td>{{contact_region6month.region_dialed_time_pct}}%</td>
+                            </tr>
+                          
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+
 
             <div class="table" style="padding-left: 0px">
                 <span>是否呼叫指定联系人号码（近6月通话次数降序）</span>
@@ -394,7 +651,7 @@
                         </thead>
                         <tbody>
 
-                            <tr>
+                            <tr >
                                 <td>身份证号码有效性</td>
                                 <td>数据类别</td>
                                 <td>身份证号码有效性</td>
@@ -414,60 +671,39 @@
                     </table>
                 </div>
             </div>
+            
 
+
+
+            <div>
+                <h3 style="padding-left: 0px">
+                    3.风险状况
+                </h3>
+            </div>
             <div class="table" style="padding-left: 0px">
-                <h5 class="h5">1.5风险分析摘要</h5>
-                <span>风险识别</span>
+                <h5 class="h5">3.1通话风险分析摘要</h5>
+                <span>近一个月通话风险分析</span>
                 <div class="tabbox">
                     <table>
                         <thead>
-                            <th>魔蝎变量</th>
-                            <th>近3月</th>
-                            <th>近6月</th>
-                            <th>备注</th>
+                            <th>分析项</th>
+                            <th>近1月通话次数</th>
+                            <th>近1月通话时长（秒）</th>
+                            <th>近1月主叫通话次数</th>
+                            <th>近1月主叫通话时长（秒）</th>
+                            <th>近1月被叫通话次数</th>
+                            <th>近1月被叫通话时长（秒）</th>
                         </thead>
                         <tbody>
 
-                            <tr>
-                                <td>号码沉默度</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                                <td>数据类别</td>
-                            </tr>
-                            <tr>
-                                <td>欠费风险度</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                                <td>数据类别</td>
-                            </tr>
-                            <tr>
-                                <td>亲情网风险度</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                                <td>数据类别</td>
-                            </tr>
-                          
-                        </tbody>
-
-                    </table>
-                    <table>
-                        <thead>
-                            <th>魔蝎变量</th>
-                            <th>结果</th>
-                        </thead>
-                        <tbody>
-
-                            <tr>
-                                <td>申请人姓名+身份证号码是否出现在法院黑名单</td>
-                                <td>数据类别</td>
-                            </tr>
-                            <tr>
-                                <td>申请人姓名+身份证号码是否出现在金融机构黑名单</td>
-                                <td>数据类别</td>
-                            </tr>
-                            <tr>
-                                <td>申请人姓名+手机号码是否出现在法院黑名单</td>
-                                <td>数据类别</td>
+                            <tr v-for="call_risk_analysi in call_risk_analysis">
+                                <td>{{call_risk_analysi.analysis_desc}}</td>
+                                <td>{{call_risk_analysi.analysis_point.call_cnt_1m}}</td>
+                                <td>{{call_risk_analysi.analysis_point.call_time_1m}}</td>
+                                <td>{{call_risk_analysi.analysis_point.call_analysis_dial_point.call_dial_cnt_1m}}</td>
+                                <td>{{call_risk_analysi.analysis_point.call_analysis_dial_point.call_dial_time_1m}}</td>
+                                <td>{{call_risk_analysi.analysis_point.call_analysis_dialed_point.call_dialed_cnt_1m}}</td>
+                                <td>{{call_risk_analysi.analysis_point.call_analysis_dialed_point.call_dialed_time_1m}}</td>
                             </tr>
                           
                         </tbody>
@@ -477,67 +713,100 @@
             </div>
 
             <div class="table" style="padding-left: 0px">
-                <span>风险联系</span>
+                <span>近三个月通话风险分析</span>
                 <div class="tabbox">
                     <table>
                         <thead>
-                            <th>号码类别</th>
+                            <th>分析项</th>
                             <th>近3月通话次数</th>
-                            <th>近6月通话次数</th>
                             <th>近3月通话时长（秒）</th>
-                            <th>近6月通话时长（秒）</th>
+                            <th>近3月主叫通话次数</th>
+                            <th>近3月主叫通话时长（秒）</th>
+                            <th>近3月被叫通话次数</th>
+                            <th>近3月被叫通话时长（秒）</th>
                         </thead>
                         <tbody>
 
-                            <tr>
-                                <td>号码沉默度</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                                <td>数据类别</td>
-                                <td>数据类别</td>
+                            <tr v-for="call_risk_analysi in call_risk_analysis">
+                                <td>{{call_risk_analysi.analysis_desc}}</td>
+                                <td>{{call_risk_analysi.analysis_point.call_cnt_3m}}</td>
+                                <td>{{call_risk_analysi.analysis_point.call_time_3m}}</td>
+                                <td>{{call_risk_analysi.analysis_point.call_analysis_dial_point.call_dial_cnt_3m}}</td>
+                                <td>{{call_risk_analysi.analysis_point.call_analysis_dial_point.call_dial_time_3m}}</td>
+                                <td>{{call_risk_analysi.analysis_point.call_analysis_dialed_point.call_dialed_cnt_3m}}</td>
+                                <td>{{call_risk_analysi.analysis_point.call_analysis_dialed_point.call_dialed_time_3m}}</td>
                             </tr>
+                          
                         </tbody>
 
                     </table>
                 </div>
             </div>
 
+            <div class="table" style="padding-left: 0px">
+                <span>近六个月通话风险分析</span>
+                <div class="tabbox">
+                    <table>
+                        <thead>
+                            <th>分析项</th>
+                            <th>近6月通话次数</th>
+                            <th>近6月通话时长（秒）</th>
+                            <th>近6月主叫通话次数</th>
+                            <th>近6月主叫通话时长（秒）</th>
+                            <th>近6月被叫通话次数</th>
+                            <th>近6月被叫通话时长（秒）</th>
+                        </thead>
+                        <tbody>
+
+                            <tr v-for="call_risk_analysi in call_risk_analysis">
+                                <td>{{call_risk_analysi.analysis_desc}}</td>
+                                <td>{{call_risk_analysi.analysis_point.call_cnt_6m}}</td>
+                                <td>{{call_risk_analysi.analysis_point.call_time_6m}}</td>
+                                <td>{{call_risk_analysi.analysis_point.call_analysis_dial_point.call_dial_cnt_6m}}</td>
+                                <td>{{call_risk_analysi.analysis_point.call_analysis_dial_point.call_dial_time_6m}}</td>
+                                <td>{{call_risk_analysi.analysis_point.call_analysis_dialed_point.call_dialed_cnt_6m}}</td>
+                                <td>{{call_risk_analysi.analysis_point.call_analysis_dialed_point.call_dialed_time_6m}}</td>
+                            </tr>
+                          
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+            
+
+
+
+
+
+             <div>
+                <h3 style="padding-left: 0px">
+                    4.活跃程度
+                </h3>
+            </div>
              <div class="table" style="padding-left: 0px">
-                <h5 class="h5">1.6活跃分析摘要</h5>
+                <h5 class="h5">4.1活跃分析摘要</h5>
                 <span>活跃识别</span>
                 <div class="tabbox">
                     <table>
                         <thead>
-                            <th>魔蝎变量</th>
-                            <th>近3月</th>
-                            <th>近6月</th>
+                            <th>分析项</th>
+                            <th>近1月数量</th>
+                            <th>近3月数量</th>
+                            <th>近6月数量</th>
+                            <th>近3月平均数量</th>
+                            <th>近6月平均数量</th>
                         </thead>
                         <tbody>
 
-                            <tr>
-                                <td>通话活跃天数</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                            </tr>
-                            <tr>
-                                <td>主叫次数</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                            </tr>
-                            <tr>
-                                <td>被叫次数</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                            </tr>
-                            <tr>
-                                <td>主叫时长（秒）</td>
-                                <td>数据类别</td>
-                                <td>数据类别</td>
-                            </tr>
-                            <tr>
-                                <td>被叫时长（秒）</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
+                            <tr v-for="active_degree in active_degrees">
+                                <td>{{active_degree.app_point_zh}}</td>
+                                <td>{{active_degree.item.item_1m}}</td>
+                                <td>{{active_degree.item.item_3m}}</td>
+                                <td>{{active_degree.item.item_6m}}</td>
+                                <td>{{active_degree.item.avg_item_3m}}</td>
+                                <td>{{active_degree.item.avg_item_6m}}</td>
                             </tr>
                           
                         </tbody>
@@ -545,38 +814,68 @@
                     </table>
                 </div>
             </div>
-
              <div class="table" style="padding-left: 0px">
-                <h5 class="h5">1.7消费分析摘要</h5>
+                <h5 class="h5">4.2通话活跃度分析摘要</h5>
+                <span>通话活跃分析</span>
+                <div class="tabbox">
+                    <table>
+                        <thead>
+                            <th>分析项</th>
+                            <th>近1月数量</th>
+                            <th>近3月数量</th>
+                            <th>近6月数量</th>
+                            <th>近3月平均数量</th>
+                            <th>近6月平均数量</th>
+                        </thead>
+                        <tbody>
+
+                            <tr v-for="call_time_detail in call_time_details">
+                                <td>{{call_time_detail.app_point_zh}}</td>
+                                <td>{{call_time_detail.item.item_1m}}</td>
+                                <td>{{call_time_detail.item.item_3m}}</td>
+                                <td>{{call_time_detail.item.item_6m}}</td>
+                                <td>{{call_time_detail.item.avg_item_3m}}</td>
+                                <td>{{call_time_detail.item.avg_item_6m}}</td>
+                            </tr>
+                          
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+            
+
+
+
+
+
+             <div>
+                <h3 style="padding-left: 0px">
+                    5.消费情况
+                </h3>
+            </div>
+             <div class="table" style="padding-left: 0px">
+                <h5 class="h5">5.1消费分析摘要</h5>
                 <span>消费识别</span>
                 <div class="tabbox">
                     <table>
                         <thead>
-                            <th>魔蝎变量</th>
-                            <th>近3月</th>
-                            <th>近6月</th>
+                            <th>分析项</th>
+                            <th>近1月数量</th>
+                            <th>近3月数量</th>
+                            <th>近6月数量</th>
+                            <th>近3月平均数量</th>
+                            <th>近6月平均数量</th>
                         </thead>
                         <tbody>
 
-                            <tr>
-                                <td>消费总金额（分）</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                            </tr>
-                            <tr>
-                                <td>单次充值最大金额（分）</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                            </tr>
-                            <tr>
-                                <td>充值次数</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                            </tr>
-                            <tr>
-                                <td>账单最新认证时间</td>
-                                <td>数据类别</td>
-                                <td>数据类别</td>
+                            <tr v-for="consumption_detail in consumption_details">
+                                <td>{{consumption_detail.app_point_zh}}</td>
+                                <td>{{consumption_detail.item.item_1m}}</td>
+                                <td>{{consumption_detail.item.item_3m}}</td>
+                                <td>{{consumption_detail.item.item_6m}}</td>
+                                <td>{{consumption_detail.item.avg_item_3m}}</td>
+                                <td>{{consumption_detail.item.avg_item_6m}}</td>
                             </tr>
                           
                         </tbody>
@@ -613,340 +912,96 @@
                     </table>
                 </div>
             </div>
+              
 
-             <div class="table" style="padding-left: 0px">
-                <span>运营商消费数据</span>
-                <div class="tabbox">
-                    <table>
-                        <thead>
-                            <th>运营商</th>
-                            <th>号码</th>
-                            <th>归属地</th>
-                            <th>月份</th>
-                            <th>呼叫次数</th>
-                            <th>主叫次数</th>
-                            <th>主叫时间（分）</th>
-                            <th>被叫次数</th>
-                            <th>被叫时间（分）</th>
-                            <th>短信数量</th>
-                            <th>话费消费（元）</th>
-                        </thead>
-                        <tbody>
 
-                            <tr>
-                                <td>消费总金额（分）</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                                <td>消费总金额（分）</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                                <td>消费总金额（分）</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                                <td>消费总金额（分）</td>
-                                <td>数据类别</td>
-                            </tr>
-                          
-                        </tbody>
-
-                    </table>
-                </div>
-            </div>
-
-             <div class="table" style="padding-left: 0px">
-                <h5 class="h5">1.8漫游分析摘要</h5>
-                <div class="tabbox">
-                    <table>
-                        <thead>
-                            <th>漫游地</th>
-                            <th>近3月漫游天数</th>
-                            <th>近6月漫游天数</th>
-                            <th>近3月最大漫游天数</th>
-                            <th>近6月最大漫游天数</th>
-                            <th>近3月连续漫游1天以上次数</th>
-                            <th>近6月连续漫游1天以上次数</th>
-                        </thead>
-                        <tbody>
-
-                            <tr>
-                                <td>消费总金额（分）</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                                <td>消费总金额（分）</td>
-                                <td>数据类别</td>
-                                <td>身份证号码有效性</td>
-                                <td>身份证号码有效性</td>
-                            </tr>
-                          
-                        </tbody>
-
-                    </table>
-                </div>
-            </div>
-
-            <div>
-                <h3 style="padding-left: 0px">
-                    2.通话社交
-                </h3>
-            </div>
-
-            <div class="table" style="padding-left: 0px">
-                <h5 class="h5">2.1 总体统计</h5>
-                <div class="tabbox">
-                    <table>
-                        <thead>
-                            <th>魔蝎变量</th>
-                            <th>近1月</th>
-                            <th>近3月</th>
-                            <th>近6月</th>
-                            <th>近3月月均</th>
-                            <th>近6月月均</th>
-
-                        </thead>
-                        <tbody>
-
-                        <tr>
-                            <td>险种名称</td>
-                            <td>医疗保险</td>
-                            <td>养老保险</td>
-                            <td>工伤保险</td>
-                            <td>生育保险</td>
-                            <td>失业保险</td>
-                        </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div>
-                <h3 style="padding-left: 0px">
-                    3.风险状况
-                </h3>
-            </div>
-
-            <div class="table" style="padding-left: 0px">
-                <h5 class="h5">3.1 风险统计</h5>
-                <div class="tabbox">
-                    <table>
-                        <thead>
-                            <th>魔蝎变量</th>
-                            <th>近1月</th>
-                            <th>近3月</th>
-                            <th>近6月</th>
-                            <th>近3月月均</th>
-                            <th>近6月月均</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>保险名称</td>
-                                <td>基本医疗</td>
-                                <td>基本医疗</td>
-                                <td>基本医疗</td>
-                                <td>基本医疗</td>
-                                <td>基本医疗</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-          
-            <div class="table" style="padding-left: 0px">
-                <h5 class="h5">3.2 稳定性</h5>
-                <div class="tabbox">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>魔蝎变量</th>
-                                <th>近1月</th>
-                                <th>近3月</th>
-                                <th>近6月</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>保险名称</td>
-                                <td>基本医疗</td>
-                                <td>基本医疗</td>
-                                <td>基本医疗</td>
-                            </tr>
-                        </tbody>
-
-                    </table>
-                </div>
-            </div>
-
-            <div class="table" style="padding-left: 0px">
-                <span >常用服务</span>
-                <div class="tabbox">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>服务类型</th>
-                                <th>近1月</th>
-                                <th>近3月</th>
-                                <th>近6月</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>2017-03-07</td>
-                                <td>60.0</td>
-                                <td>直接购药</td>
-                                <td>浙江省XXX医院</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="table" style="padding-left: 0px">
-                <span >与服务号通话详情（按月统计）</span>
-                <div class="tabbox">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>服务号码</th>
-                                <th>月份</th>
-                                <th>通话次数</th>
-                                <th>通话时长（秒）</th>
-                                <th>主叫次数</th>
-                                <th>被叫次数</th>
-                                <th>主叫时长</th>
-                                <th>被叫时长</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>2017-03-07</td>
-                                <td>60.0</td>
-                                <td>直接购药</td>
-                                <td>浙江省XXX医院</td>
-                                <td>2017-03-07</td>
-                                <td>60.0</td>
-                                <td>直接购药</td>
-                                <td>浙江省XXX医院</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div>
-                <h3 style="padding-left: 0px">
-                    4.活跃程度
-                </h3>
-            </div>
-
-            <div class="table" style="padding-left: 0px">
-                <h5 class="h5">4.1 通话活跃</h5>
-                <div class="tabbox">
-                    <table>
-                        <thead>
-                            <th>魔蝎变量</th>
-                            <th>近1月</th>
-                            <th>近3月</th>
-                            <th>近6月</th>
-                            <th>近3月月均</th>
-                            <th>近6月月均</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>保险名称</td>
-                                <td>基本医疗</td>
-                                <td>基本医疗</td>
-                                <td>基本医疗</td>
-                                <td>基本医疗</td>
-                                <td>基本医疗</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div>
-                <h3 style="padding-left: 0px">
-                    5.消费情况
-                </h3>
-            </div>
-
-            <div class="table" style="padding-left: 0px">
-                <h5 class="h5">5.1 消费统计</h5>
-                <div class="tabbox">
-                    <table>
-                        <thead>
-                            <th>魔蝎变量</th>
-                            <th>近1月</th>
-                            <th>近3月</th>
-                            <th>近6月</th>
-                            <th>近3月月均</th>
-                            <th>近6月月均</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>保险名称</td>
-                                <td>基本医疗</td>
-                                <td>基本医疗</td>
-                                <td>基本医疗</td>
-                                <td>基本医疗</td>
-                                <td>基本医疗</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
 
             <div>
                 <h3 style="padding-left: 0px">
                     6.漫游详情统计
                 </h3>
             </div>
+             <div class="table" style="padding-left: 0px">
+                <h5 class="h5">6.1漫游分析摘要</h5>
+                <div class="tabbox">
+                    <table>
+                        <thead>
+                            <th>漫游地</th>
+                            <th>近3月漫游天数</th>
+                            <th>近6月漫游天数</th>
+                            <th>近3月连续漫游天数</th>
+                            <th>近6月连续漫游天数</th>
+                            <th>近3月漫游地最大连续漫游天数</th>
+                            <th>近6月漫游地最大连续漫游天数</th>
+                        </thead>
+                        <tbody>
 
-            <div class="table" style="padding-left: 0px">
-                <h5 class="h5">6.1 漫游详情统计（近6月漫游日期降序）</h5>
+                            <tr  v-for="roam_analysi in roam_analysis">
+                                <td>{{roam_analysi.roam_location}}</td>
+                                <td>{{roam_analysi.roam_day_cnt_3m}}</td>
+                                <td>{{roam_analysi.roam_day_cnt_6m}}</td>
+                                <td>{{roam_analysi.continue_roam_cnt_3m}}</td>
+                                <td>{{roam_analysi.continue_roam_cnt_6m}}</td>
+                                <td>{{roam_analysi.max_roam_day_cnt_3m}}</td>
+                                <td>{{roam_analysi.max_roam_day_cnt_6m}}</td>
+                            </tr>
+                          
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+             <div class="table" style="padding-left: 0px">
+                <h5 class="h5">6.2漫游详单</h5>
                 <div class="tabbox">
                     <table>
                         <thead>
                             <th>漫游日期</th>
-                            <th>近1月</th>
+                            <th>漫游地</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>漫游城市</td>
-                                <td>基本医疗</td>
+
+                            <tr  v-for="roam_detail in roam_details">
+                                <td>{{roam_detail.roam_day}}</td>
+                                <td>{{roam_detail.roam_location}}</td>
                             </tr>
+                          
                         </tbody>
+
                     </table>
                 </div>
             </div>
 
+     
             <div>
                 <h3 style="padding-left: 0px">
-                    7.运行商出行分析
+                   7.用户出行分析
                 </h3>
             </div>
-
             <div class="table" style="padding-left: 0px">
-                <h5 class="h5">7.1 出行数据分析</h5>
+                <h5 class="h5">7.用户出行分析</h5>
+                <span>用户出行数据</span>
                 <div class="tabbox">
                     <table>
                         <thead>
-                            <th>出发地</th>
                             <th>目的地</th>
                             <th>出发时间</th>
-                            <th>结束时间</th>
-                            <th>类型</th>
+                            <th>回程时间</th>
+                            <th>出发地</th>
+                            <th>时间段</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>漫游城市</td>
-                                <td>基本医疗</td>
-                                <td>漫游城市</td>
-                                <td>基本医疗</td>
-                                <td>基本医疗</td>
+
+                            <tr v-for="trip_info in trip_infos">
+                                <td>{{trip_info.trip_dest}}</td>
+                                <td>{{trip_info.trip_start_time}}</td>
+                                <td>{{trip_info.trip_end_time}}</td>
+                                <td>{{trip_info.trip_leave}}</td>
+                                <td>{{trip_info.trip_type}}</td>
                             </tr>
+                          
                         </tbody>
+
                     </table>
                 </div>
             </div>
@@ -996,6 +1051,9 @@
       }
     }
     for(let i=0;i<newmsgData.mx_carrier.cell_phone.length;i++){
+      if(newmsgData.mx_carrier.cell_phone[i].key=="mobile" ){
+        yunyingshang.mobile=newmsgData.mx_carrier.cell_phone[i].value;
+      }
       if(newmsgData.mx_carrier.cell_phone[i].key=="reg_time" ){
         yunyingshang.reg_time=newmsgData.mx_carrier.cell_phone[i].value;
       }
@@ -1014,12 +1072,266 @@
       if(newmsgData.mx_carrier.cell_phone[i].key=="available_balance" ){
         yunyingshang.available_balance=newmsgData.mx_carrier.cell_phone[i].value;
       }
+      if(newmsgData.mx_carrier.cell_phone[i].key=="email" ){
+        yunyingshang.email=newmsgData.mx_carrier.cell_phone[i].value;
+      }
+      if(newmsgData.mx_carrier.cell_phone[i].key=="address" ){
+        yunyingshang.address=newmsgData.mx_carrier.cell_phone[i].value;
+      }
     }
-    console.log(yunyingshang);
+    // console.log(yunyingshang);
+    const info_jioayan=[];
+    const basic_check_items_info=newmsgData.mx_carrier.basic_check_items;
+    for(let i=0;i<basic_check_items_info.length;i++){
+      
+      if(basic_check_items_info[i].check_item=='idcard_check'){
+        let infor={};
+        infor.check="身份证号码有效性";
+        infor.result=basic_check_items_info[i].result;
+
+        info_jioayan.push(infor);
+      }
+
+      if(basic_check_items_info[i].check_item=='email_check'){
+        let infor={};
+        infor.check="邮箱有效性";
+        infor.result=basic_check_items_info[i].result;
+
+        info_jioayan.push(infor);
+      }
+
+      if(basic_check_items_info[i].check_item=='address_check'){
+        let infor={};
+        infor.check="地址有效性";
+        infor.result=basic_check_items_info[i].result;
+
+        info_jioayan.push(infor);
+      }
+
+      if(basic_check_items_info[i].check_item=='call_data_check'){
+        let infor={};
+        infor.check="通话记录完整性";
+        infor.result=basic_check_items_info[i].result;
+
+        info_jioayan.push(infor);
+      }
+
+      if(basic_check_items_info[i].check_item=='idcard_match'){
+        let infor={};
+        infor.check="身份证号码是否与运营商数据匹配";
+        infor.result=basic_check_items_info[i].result;
+
+        info_jioayan.push(infor);
+      }
+
+      if(basic_check_items_info[i].check_item=='name_match'){
+        let infor={};
+        infor.check="姓名是否与运营商数据匹配";
+        infor.result=basic_check_items_info[i].result;
+
+        info_jioayan.push(infor);
+      }
+
+      if(basic_check_items_info[i].check_item=='is_name_and_idcard_in_court_black'){
+        let infor={};
+        infor.check="申请人姓名+身份证号码是否出现在法院黑名单";
+        infor.result=basic_check_items_info[i].result;
+
+        info_jioayan.push(infor);
+      }
+
+      if(basic_check_items_info[i].check_item=='is_name_and_idcard_in_finance_black'){
+        let infor={};
+        infor.check="申请人姓名+身份证号码是否出现在金融机构黑名单";
+        infor.result=basic_check_items_info[i].result;
+
+        info_jioayan.push(infor);
+      }
+
+      if(basic_check_items_info[i].check_item=='is_name_and_mobile_in_finance_black'){
+        let infor={};
+        infor.check="申请人姓名+手机号码是否出现在金融机构黑名单";
+        infor.result=basic_check_items_info[i].result;
+
+        info_jioayan.push(infor);
+      }
+
+      if(basic_check_items_info[i].check_item=='mobile_silence_3m'){
+        let infor={};
+        infor.check="号码沉默度(近3月)";
+        infor.result=basic_check_items_info[i].result;
+
+        info_jioayan.push(infor);
+      }
+
+      if(basic_check_items_info[i].check_item=='mobile_silence_6m'){
+        let infor={};
+        infor.check="号码沉默度(近6月)";
+        infor.result=basic_check_items_info[i].result;
+
+        info_jioayan.push(infor);
+      }
+
+      if(basic_check_items_info[i].check_item=='arrearage_risk_3m'){
+        let infor={};
+        infor.check="欠费风险度(近3月)";
+        infor.result=basic_check_items_info[i].result;
+
+        info_jioayan.push(infor);
+      }
+
+      if(basic_check_items_info[i].check_item=='arrearage_risk_6m'){
+        let infor={};
+        infor.check="欠费风险度(近6月)";
+        infor.result=basic_check_items_info[i].result;
+
+        info_jioayan.push(infor);
+      }
+
+      if(basic_check_items_info[i].check_item=='binding_risk'){
+        let infor={};
+        infor.check="亲情网风险度";
+        infor.result=basic_check_items_info[i].result;
+
+        info_jioayan.push(infor);
+      }
+    }
+    // console.log(info_jioayan)
+
+    //朋友圈联系人数量
+    const info_peoplenum=[];
+    const basic_check_info_peoplenum=newmsgData.mx_carrier.friend_circle.summary;
+    for(let i=0;i<basic_check_info_peoplenum.length;i++){
+      console.log(basic_check_info_peoplenum.length)
+      if(basic_check_info_peoplenum[i].key=='friend_num_3m'){
+        let infor={};
+        infor.check="近3月朋友联系数量";
+        infor.result=basic_check_info_peoplenum[i].value;
+
+        info_peoplenum.push(infor);
+      }
+
+      if(basic_check_info_peoplenum[i].key=='good_friend_num_3m'){
+        let infor={};
+        infor.check="近3月好朋友联系数量（联系10次以上）";
+        infor.result=basic_check_info_peoplenum[i].value;
+
+        info_peoplenum.push(infor);
+      }
+
+      if(basic_check_info_peoplenum[i].key=='friend_city_center_3m'){
+        let infor={};
+        infor.check="近3月朋友圈中心城市";
+        infor.result=basic_check_info_peoplenum[i].value;
+
+        info_peoplenum.push(infor);
+      }
+
+      if(basic_check_info_peoplenum[i].key=='is_city_match_friend_city_center_3m'){
+        let infor={};
+        infor.check="近3月朋友圈中心地是否与手机归属地一致";
+        infor.result=basic_check_info_peoplenum[i].value;
+
+        info_peoplenum.push(infor);
+      }
+
+      if(basic_check_info_peoplenum[i].key=='inter_peer_num_3m'){
+        let infor={};
+        infor.check="近3月互通电话号码数目";
+        infor.result=basic_check_info_peoplenum[i].value;
+
+        info_peoplenum.push(infor);
+      }
+
+      if(basic_check_info_peoplenum[i].key=='friend_num_6m'){
+        let infor={};
+        infor.check="近6月朋友联系数量";
+        infor.result=basic_check_info_peoplenum[i].value;
+
+        info_peoplenum.push(infor);
+      }
+
+      if(basic_check_info_peoplenum[i].key=='good_friend_num_6m'){
+        let infor={};
+        infor.check="近6月好朋友联系数量（联系10次以上）";
+        infor.result=basic_check_info_peoplenum[i].value;
+
+        info_peoplenum.push(infor);
+      }
+
+      if(basic_check_info_peoplenum[i].key=='friend_city_center_6m'){
+        let infor={};
+        infor.check="近6月朋友圈中心城市";
+        infor.result=basic_check_info_peoplenum[i].value;
+
+        info_peoplenum.push(infor);
+      }
+
+      if(basic_check_info_peoplenum[i].key=='is_city_match_friend_city_center_6m'){
+        let infor={};
+        infor.check="近6月朋友圈中心地是否与手机归属地一致";
+        infor.result=basic_check_info_peoplenum[i].value;
+
+        info_peoplenum.push(infor);
+      }
+
+      if(basic_check_info_peoplenum[i].key=='inter_peer_num_6m'){
+        let infor={};
+        infor.check="近6月互通电话号码数目";
+        infor.result=basic_check_info_peoplenum[i].value;
+
+        info_peoplenum.push(infor);
+      }
+    }
+    console.log(info_peoplenum)
+    
     export default {
         data() {
             return { 
               carriertitle:yunyingshang,
+              basic_check_items:info_jioayan,
+              // 行为检测
+              behavior_checks:carrier.behavior_check,
+              //朋友圈联系人数量
+              info_peoplenums:info_peoplenum,
+              // 联系人top3 （3月）
+              peer_num_top_list3months:newmsgData.mx_carrier.friend_circle.peer_num_top_list[0].top_item,
+               // 联系人top3 （6月）
+              peer_num_top_list6months:newmsgData.mx_carrier.friend_circle.peer_num_top_list[1].top_item,
+              // 联系人号码归属地top3 （3月）
+              location_top_list3months:newmsgData.mx_carrier.friend_circle.location_top_list[0].top_item,
+              // 联系人号码归属地top3 （6月）
+              location_top_list6months:newmsgData.mx_carrier.friend_circle.location_top_list[1].top_item,
+              // 用户行为分析
+              cell_behaviors:newmsgData.mx_carrier.cell_behavior[0].behavior, 
+
+              // 联系人区域汇总 （3月）
+              contact_region3months:newmsgData.mx_carrier.contact_region[0].region_list, 
+
+              // 联系人区域汇总 （6月）
+              contact_region6months:newmsgData.mx_carrier.contact_region[1].region_list,
+              // 通话风险分析 （1月）
+              call_risk_analysis:newmsgData.mx_carrier.call_risk_analysis,
+              // 活跃程度分析
+              active_degrees:newmsgData.mx_carrier.active_degree,
+              // 消费活跃程度分析
+              consumption_details:newmsgData.mx_carrier.consumption_detail,
+              // 通话活跃程度分析
+              call_time_details:newmsgData.mx_carrier.call_time_detail,
+              // 亲情号通话分析
+              call_family_details:newmsgData.mx_carrier.call_time_detail,
+              // 通话时段3个月
+              call_duration_detail3ms:newmsgData.mx_carrier.call_duration_detail[0].duration_list,
+              // 通话时段6个月
+              call_duration_detail6ms:newmsgData.mx_carrier.call_duration_detail[1].duration_list,
+              // 漫游地分析
+              roam_analysis:newmsgData.mx_carrier.roam_analysis,
+              // 漫游详单
+              roam_details:newmsgData.mx_carrier.roam_detail,
+              // 用户信息检测
+              user_info_check:newmsgData.mx_carrier.user_info_check[0],
+              // 用户出行
+              trip_infos:newmsgData.mx_carrier.trip_info,
             }
         },
         methods:{
