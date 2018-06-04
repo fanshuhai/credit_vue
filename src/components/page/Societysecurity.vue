@@ -3,7 +3,7 @@
     <div class="box">
             <div>
                 <h3 style="padding-left: 0px;font-size: 25px;text-align: center">
-                    社保报告样例
+                    社保报告
                 </h3>
                 <div style="text-align: right;font-size: 10px">
                     报告编号：639672c0-8689-22e7-84c5-00163e1d50ad
@@ -98,7 +98,7 @@
                 <h5 class="h5">2.1 保险摘要</h5>
                 <div class="tabbox">
                     <table>
-                        <thead>
+                       <!--  <thead>
                         <th>魔蝎变量</th>
                         <th>医疗保险</th>
                         <th>养老保险</th>
@@ -106,86 +106,48 @@
                         <th>生育保险</th>
                         <th>失业保险</th>
 
-                        </thead>
+                        </thead> -->
                         <tbody>
 
                         <tr>
                             <td>险种名称</td>
-                            <td v-for="item in society_details">
-                            {{item.insurance_name}}
-                        </td>
-                        </tr>
-                        <tr>
+                            <td>{{society_details.insurance_name}}</td>
                             <td>缴存单位名称</td>
-                            <td v-for="item in society_details">
-                            {{item.corporation_name}}
-                        </td>
+                            <td>{{society_details.corporation_name}}</td>
                         </tr>
                         <tr>
                             <td>累计缴纳金额(元)</td>
-                            <td v-for="item in society_details">
-                            {{item.amount_sum_2}}
-                        </td>
-                        </tr>
-                        <tr>
+                            <td>{{society_details.amount_sum_2}}</td>
                             <td>累计缴纳月份</td>
-                            <td v-for="item in society_details">
-                            {{item.month_cnt}}
-                        </td>
+                            <td>{{society_details.month_cnt}}</td>
                         </tr>
                         <tr>
                             <td>连续参保月数</td>
-                            <td v-for="item in society_details">
-                            {{item.month_cont}}
-                        </td>
-                        </tr>
-                        <tr>
+                            <td>{{society_details.month_cont}}</td>
                             <td>最近两年停缴月数</td>
-                            <td v-for="item in society_details">
-                            {{item.month_stop}}
-                        </td>
+                            <td>{{society_details.month_stop}}</td>
                         </tr>
                         <tr>
                             <td>最近两年停缴次数</td>
-                            <td v-for="item in society_details">
-                            {{item.stop_cnt}}
-                        </td>
-                        </tr>
-                        <tr>
+                            <td>{{society_details.stop_cnt}}</td>
                             <td>历史停缴月数</td>
-                            <td v-for="item in society_details">
-                            {{item.month_stop_all}}
-                        </td>
+                            <td>{{society_details.month_stop_all}}</td>
                         </tr>
                         <tr>
                             <td>历史停缴次数</td>
-                            <td v-for="item in society_details">
-                            {{item.stop_cnt_all}}
-                        </td>
-                        </tr>
-                        <tr>
+                            <td>{{society_details.stop_cnt_all}}</td>
                             <td>历史补缴次数</td>
-                            <td v-for="item in society_details">
-                            {{item.patch_cnt}}
-                       </td>
+                            <td>{{society_details.patch_cnt}}</td>
                         </tr>
                         <tr>
                             <td>6月社保缴纳不同单位数</td>
-                            <td v-for="item in society_details">
-                            {{item.corporation_name_cnt_6}}
-                       </td>
-                        </tr>
-                        <tr>
+                            <td>{{society_details.corporation_name_cnt_6}}</td>
                             <td>12月社保缴纳不同单位数</td>
-                            <td v-for="item in society_details">
-                            {{item.corporation_name_cnt_12}}
-                        </td>
+                            <td>{{society_details.corporation_name_cnt_12}}</td>
                         </tr>
                         <tr>
                             <td>24月社保缴纳不同单位数</td>
-                            <td v-for="item in society_details">
-                            {{item.corporation_name_cnt_24}}
-                        </td>
+                            <td>{{society_details.corporation_name_cnt_24}}</td>
                         </tr>
 
                         </tbody>
@@ -309,7 +271,7 @@
         data() {
             return { 
               basic_info:basic_info,
-              society_details:insurance_summary.society_detail,
+              society_details:insurance_summary.society_detail[0],
               medical_insurance_pay:insurance_bill.medical_insurance_pay,
               medical_consumption_basic:consumption_details.medical_consumption_basic,
               securities_report:consumption_details.medical_consumption_record.securities_report,
