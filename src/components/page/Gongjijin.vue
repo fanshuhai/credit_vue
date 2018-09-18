@@ -1,8 +1,8 @@
 <!--suppress ALL -->
 <template>
-  <div>
+  <div style="padding:0 0 20px 0;background:#fff;">
       <div class="box">
-        <div class="tabbable" name="TABLE" id="content">
+        <div v-if="cstatus===1" class="tabbable" name="TABLE" id="content">
             <div>
                 <h3 style="padding-left: 0px;font-size: 25px;text-align: center">
                     公积金报告
@@ -19,7 +19,7 @@
                     </h3>
                 </div>
 
-                            <div class="table" style="padding-left: 0px">
+                <div class="table" style="padding-left: 0px">
                     <h5 class="h5">1.1 用户基本信息</h5>
                     <div class="tabbox">
                         <table>
@@ -45,7 +45,7 @@
                                 <td>家庭地址：</td>
                                 <td>{{userinfo.home_address}}</td>
                                 <td>手机号码：</td>
-                                <td>{{userinfo.mobile}}</td>
+                                <td>{{fundMobile}}</td>
                             </tr>
                             <tr>
                                 <td>公积金地区：</td>
@@ -282,27 +282,27 @@
                 </div>
             </div>
         </div>
+
+        <div v-if="cstatus===2" class="nomseg">
+          <span>查询成功，暂无数据</span>
+        </div>
       </div>
   </div>
 </template>
 
 <script>
-    const msgData=localStorage.getItem('msgData');
-    const newmsgData=JSON.parse(msgData);
-    const user_info=newmsgData.mx_fund[0].user_basic_info;
-    const user_check=newmsgData.mx_fund[0].user_basic_info_check;
-    const fund_info=newmsgData.mx_fund[0].fund_basic_info;
-    const repay_info=newmsgData.mx_fund[0].repay_info;
-    const payment_info=newmsgData.mx_fund[0].payment_info;
-    console.log(user_check)
+
     export default {
         data() {
             return {
-                userinfo:user_info,
-                usercheck:user_check,
-                fundinfo:fund_info,
-                repayinfo:repay_info,
-                paymentinfo:payment_info,
+                userinfo:'',
+                usercheck:'',
+                fundinfo:'',
+                repayinfo:'',
+                paymentinfo:'',
+                cstatus:'',
+                // 手机号
+                fundMobile:'',
             }
         },
         methods:{
@@ -313,6 +313,32 @@
         computed: {
 
         },
+        mounted(){
+            const msgData=localStorage.getItem('msgData');
+            const newmsgData=JSON.parse(msgData);
+            if(typeof(newmsgData.mx_fund)!='undefined'){
+                const user_info=newmsgData.mx_fund[0].user_basic_info;
+                const user_check=newmsgData.mx_fund[0].user_basic_info_check;
+                const fund_info=newmsgData.mx_fund[0].fund_basic_info;
+                const repay_info=newmsgData.mx_fund[0].repay_info;
+                const payment_info=newmsgData.mx_fund[0].payment_info;
+                // console.log(user_check);
+                this.userinfo=user_info;
+                if(user_info.mobile=='null'){
+                    this.fundMobile='公积金未提供该数据';
+                }else{
+                   this.fundMobile=user_info.mobile; 
+                }
+                
+                this.usercheck=user_check;
+                this.fundinfo=fund_info;
+                this.repayinfo=repay_info;
+                this.paymentinfo=payment_info;
+                this.cstatus=1;
+            }else{
+                this.cstatus=2;
+            }
+        }
 
     }
 
@@ -393,16 +419,6 @@
         text-align: left;
         font-weight: 100;
         padding: 0;
-    }
-
-    .h5 {
-        width: 100%;
-        height: 30px;
-        margin: 0 auto;
-        border-bottom: none;
-        background: rgb(70, 140, 180);
-        line-height: 30px;
-
     }
 
     h3 {

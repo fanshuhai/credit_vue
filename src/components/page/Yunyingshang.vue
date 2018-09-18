@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="box">
+  <div style="padding:0 0 20px 0;background:#fff;">
+    <div v-if="cstatus===1" class="box">
             <div>
                 <h3 style="padding-left: 0px;font-size: 25px;text-align: center">
                     运营商报告
@@ -53,7 +53,7 @@
                             <td>入网时长</td>
                             <td>{{carriertitle.in_time}}个月</td>
                             <td>账户余额</td>
-                            <td>{{carriertitle.available_balance}}元</td>
+                            <td>{{carriertitle.available_balance/100}}元</td>
                         </tr>
                     </table>
                 </div>
@@ -67,39 +67,39 @@
                         <tr>
                             <td rowspan="9" width="150">用户查询信息</td>
                             <td >查询过该用户的相关企业数量</td>
-                            <td>{{user_info_check.check_search_info.searched_org_cnt}}</td>
+                            <td>{{user_info_check_datas.searched_org_cnt}}</td>
                         </tr>
                         <tr>
                             <td>查询过该用户的相关企业类型</td>
-                            <td>{{user_info_check.check_search_info.searched_org_type}}</td>
+                            <td>{{user_info_check_datas.searched_org_type}}</td>
                         </tr>
                         <tr>
                             <td>身份证组合过的其他姓名</td>
-                            <td>{{user_info_check.check_search_info.idcard_with_other_names}}</td>
+                            <td>{{user_info_check_datas.idcard_with_other_names}}</td>
                         </tr>
                         <tr>
                             <td>身份证组合过的其他电话</td>
-                            <td>{{user_info_check.check_search_info.idcard_with_other_phones}}</td>
+                            <td>{{user_info_check_datas.idcard_with_other_phones}}</td>
                         </tr>
                         <tr>
                             <td>电话号码组合过其他姓名</td>
-                            <td>{{user_info_check.check_search_info.phone_with_other_names}}</td>
+                            <td>{{user_info_check_datas.phone_with_other_names}}</td>
                         </tr>
                         <tr>
                             <td>电话号码组合过其他身份证</td>
-                            <td>{{user_info_check.check_search_info.phone_with_other_idcards}}</td>
+                            <td>{{user_info_check_datas.phone_with_other_idcards}}</td>
                         </tr>
                         <tr>
                             <td>电话号码注册过的相关企业数量</td>
-                            <td>{{user_info_check.check_search_info.register_org_cnt}}</td>
+                            <td>{{user_info_check_datas.register_org_cnt}}</td>
                         </tr>
                         <tr>
                             <td>电话号码注册过的相关企业类型</td>
-                            <td>{{user_info_check.check_search_info.register_org_type}}</td>
+                            <td>{{user_info_check_datas.register_org_type}}</td>
                         </tr>
                         <tr>
                             <td>电话号码出现过的公开信息网站</td>
-                            <td>{{user_info_check.check_search_info.arised_open_web}}</td>
+                            <td>{{user_info_check_datas.arised_open_web}}</td>
                         </tr>
 
                     </table>
@@ -238,7 +238,7 @@
                 </div>
             </div>
 
-             <div class="table" style="padding-left: 0px">
+            <div class="table" style="padding-left: 0px">
                 <span>朋友圈联系人数量</span>
                 <div class="tabbox">
                     <table>
@@ -478,9 +478,9 @@
                             <th>第一次通话时间</th>
                         </thead>
                         <tbody>
-
                             <tr v-for="call_duration_detail3m in call_duration_detail3ms">
                                 <td>{{call_duration_detail3m.time_step_zh}}</td>
+                                <td>{{call_duration_detail3m.item.total_cnt}}</td>
                                 <td>{{call_duration_detail3m.item.uniq_num_cnt}}</td>
                                 <td>{{call_duration_detail3m.item.total_time}}</td>
                                 <td>{{call_duration_detail3m.item.dial_cnt}}</td>
@@ -517,6 +517,7 @@
 
                             <tr v-for="call_duration_detail6m in call_duration_detail6ms">
                                 <td>{{call_duration_detail6m.time_step_zh}}</td>
+                                <td>{{call_duration_detail6m.item.total_cnt}}</td>
                                 <td>{{call_duration_detail6m.item.uniq_num_cnt}}</td>
                                 <td>{{call_duration_detail6m.item.total_time}}</td>
                                 <td>{{call_duration_detail6m.item.dial_cnt}}</td>
@@ -780,12 +781,12 @@
 
 
 
-             <div>
+            <div>
                 <h3 style="padding-left: 0px">
                     4.活跃程度
                 </h3>
             </div>
-             <div class="table" style="padding-left: 0px">
+            <div class="table" style="padding-left: 0px">
                 <h5 class="h5">4.1活跃分析摘要</h5>
                 <span>活跃识别</span>
                 <div class="tabbox">
@@ -814,7 +815,7 @@
                     </table>
                 </div>
             </div>
-             <div class="table" style="padding-left: 0px">
+            <div class="table" style="padding-left: 0px">
                 <h5 class="h5">4.2通话活跃度分析摘要</h5>
                 <span>通话活跃分析</span>
                 <div class="tabbox">
@@ -849,7 +850,7 @@
 
 
 
-             <div>
+            <div>
                 <h3 style="padding-left: 0px">
                     5.消费情况
                 </h3>
@@ -884,7 +885,7 @@
                 </div>
             </div>
 
-             <div class="table" style="padding-left: 0px">
+            <div class="table" style="padding-left: 0px">
                 <span>消费细类统计</span>
                 <div class="tabbox">
                     <table>
@@ -1007,331 +1008,65 @@
             </div>
 
     </div>
+
+    <div v-if="cstatus===2" class="nomseg">
+      <span>查询成功，暂无数据</span>
+    </div>
   </div>   
 </template>
 
 <script>
-    const msgData=localStorage.getItem('msgData');
-    const newmsgData=JSON.parse(msgData);
-    const carrier=newmsgData.mx_carrier;
-
-    const yunyingshang={}
-    for(let i=0;i<newmsgData.mx_carrier.report.length;i++){
-      if(newmsgData.mx_carrier.report[i].key=="source_name_zh" ){
-        yunyingshang.source_name_zh=newmsgData.mx_carrier.report[i].value;
-      }
-      if(newmsgData.mx_carrier.report[i].key=="task_id" ){
-        yunyingshang.task_id=newmsgData.mx_carrier.report[i].value;
-      }
-      if(newmsgData.mx_carrier.report[i].key=="data_gain_time" ){
-        yunyingshang.data_gain_time=newmsgData.mx_carrier.report[i].value;
-      }
-      if(newmsgData.mx_carrier.report[i].key=="update_time" ){
-        yunyingshang.update_time=newmsgData.mx_carrier.report[i].value;
-      }
-    }
-    for(let i=0;i<newmsgData.mx_carrier.user_basic.length;i++){
-      if(newmsgData.mx_carrier.user_basic[i].key=="name" ){
-        yunyingshang.name=newmsgData.mx_carrier.user_basic[i].value;
-      }
-      if(newmsgData.mx_carrier.user_basic[i].key=="id_card" ){
-        yunyingshang.id_card=newmsgData.mx_carrier.user_basic[i].value;
-      }
-      if(newmsgData.mx_carrier.user_basic[i].key=="gender" ){
-        yunyingshang.gender=newmsgData.mx_carrier.user_basic[i].value;
-      }
-      if(newmsgData.mx_carrier.user_basic[i].key=="age" ){
-        yunyingshang.age=newmsgData.mx_carrier.user_basic[i].value;
-      }
-      if(newmsgData.mx_carrier.user_basic[i].key=="constellation" ){
-        yunyingshang.constellation=newmsgData.mx_carrier.user_basic[i].value;
-      }
-      if(newmsgData.mx_carrier.user_basic[i].key=="native_place" ){
-        yunyingshang.native_place=newmsgData.mx_carrier.user_basic[i].value;
-      }
-    }
-    for(let i=0;i<newmsgData.mx_carrier.cell_phone.length;i++){
-      if(newmsgData.mx_carrier.cell_phone[i].key=="mobile" ){
-        yunyingshang.mobile=newmsgData.mx_carrier.cell_phone[i].value;
-      }
-      if(newmsgData.mx_carrier.cell_phone[i].key=="reg_time" ){
-        yunyingshang.reg_time=newmsgData.mx_carrier.cell_phone[i].value;
-      }
-      if(newmsgData.mx_carrier.cell_phone[i].key=="in_time" ){
-        yunyingshang.in_time=newmsgData.mx_carrier.cell_phone[i].value;
-      }
-      if(newmsgData.mx_carrier.cell_phone[i].key=="package_name" ){
-        yunyingshang.package_name=newmsgData.mx_carrier.cell_phone[i].value;
-      }
-      if(newmsgData.mx_carrier.cell_phone[i].key=="bill_certification_day" ){
-        yunyingshang.bill_certification_day=newmsgData.mx_carrier.cell_phone[i].value;
-      }
-      if(newmsgData.mx_carrier.cell_phone[i].key=="phone_attribution" ){
-        yunyingshang.phone_attribution=newmsgData.mx_carrier.cell_phone[i].value;
-      }
-      if(newmsgData.mx_carrier.cell_phone[i].key=="available_balance" ){
-        yunyingshang.available_balance=newmsgData.mx_carrier.cell_phone[i].value;
-      }
-      if(newmsgData.mx_carrier.cell_phone[i].key=="email" ){
-        yunyingshang.email=newmsgData.mx_carrier.cell_phone[i].value;
-      }
-      if(newmsgData.mx_carrier.cell_phone[i].key=="address" ){
-        yunyingshang.address=newmsgData.mx_carrier.cell_phone[i].value;
-      }
-    }
-    // console.log(yunyingshang);
-    const info_jioayan=[];
-    const basic_check_items_info=newmsgData.mx_carrier.basic_check_items;
-    for(let i=0;i<basic_check_items_info.length;i++){
-      
-      if(basic_check_items_info[i].check_item=='idcard_check'){
-        let infor={};
-        infor.check="身份证号码有效性";
-        infor.result=basic_check_items_info[i].result;
-
-        info_jioayan.push(infor);
-      }
-
-      if(basic_check_items_info[i].check_item=='email_check'){
-        let infor={};
-        infor.check="邮箱有效性";
-        infor.result=basic_check_items_info[i].result;
-
-        info_jioayan.push(infor);
-      }
-
-      if(basic_check_items_info[i].check_item=='address_check'){
-        let infor={};
-        infor.check="地址有效性";
-        infor.result=basic_check_items_info[i].result;
-
-        info_jioayan.push(infor);
-      }
-
-      if(basic_check_items_info[i].check_item=='call_data_check'){
-        let infor={};
-        infor.check="通话记录完整性";
-        infor.result=basic_check_items_info[i].result;
-
-        info_jioayan.push(infor);
-      }
-
-      if(basic_check_items_info[i].check_item=='idcard_match'){
-        let infor={};
-        infor.check="身份证号码是否与运营商数据匹配";
-        infor.result=basic_check_items_info[i].result;
-
-        info_jioayan.push(infor);
-      }
-
-      if(basic_check_items_info[i].check_item=='name_match'){
-        let infor={};
-        infor.check="姓名是否与运营商数据匹配";
-        infor.result=basic_check_items_info[i].result;
-
-        info_jioayan.push(infor);
-      }
-
-      if(basic_check_items_info[i].check_item=='is_name_and_idcard_in_court_black'){
-        let infor={};
-        infor.check="申请人姓名+身份证号码是否出现在法院黑名单";
-        infor.result=basic_check_items_info[i].result;
-
-        info_jioayan.push(infor);
-      }
-
-      if(basic_check_items_info[i].check_item=='is_name_and_idcard_in_finance_black'){
-        let infor={};
-        infor.check="申请人姓名+身份证号码是否出现在金融机构黑名单";
-        infor.result=basic_check_items_info[i].result;
-
-        info_jioayan.push(infor);
-      }
-
-      if(basic_check_items_info[i].check_item=='is_name_and_mobile_in_finance_black'){
-        let infor={};
-        infor.check="申请人姓名+手机号码是否出现在金融机构黑名单";
-        infor.result=basic_check_items_info[i].result;
-
-        info_jioayan.push(infor);
-      }
-
-      if(basic_check_items_info[i].check_item=='mobile_silence_3m'){
-        let infor={};
-        infor.check="号码沉默度(近3月)";
-        infor.result=basic_check_items_info[i].result;
-
-        info_jioayan.push(infor);
-      }
-
-      if(basic_check_items_info[i].check_item=='mobile_silence_6m'){
-        let infor={};
-        infor.check="号码沉默度(近6月)";
-        infor.result=basic_check_items_info[i].result;
-
-        info_jioayan.push(infor);
-      }
-
-      if(basic_check_items_info[i].check_item=='arrearage_risk_3m'){
-        let infor={};
-        infor.check="欠费风险度(近3月)";
-        infor.result=basic_check_items_info[i].result;
-
-        info_jioayan.push(infor);
-      }
-
-      if(basic_check_items_info[i].check_item=='arrearage_risk_6m'){
-        let infor={};
-        infor.check="欠费风险度(近6月)";
-        infor.result=basic_check_items_info[i].result;
-
-        info_jioayan.push(infor);
-      }
-
-      if(basic_check_items_info[i].check_item=='binding_risk'){
-        let infor={};
-        infor.check="亲情网风险度";
-        infor.result=basic_check_items_info[i].result;
-
-        info_jioayan.push(infor);
-      }
-    }
-    // console.log(info_jioayan)
-
-    //朋友圈联系人数量
-    const info_peoplenum=[];
-    const basic_check_info_peoplenum=newmsgData.mx_carrier.friend_circle.summary;
-    for(let i=0;i<basic_check_info_peoplenum.length;i++){
-      console.log(basic_check_info_peoplenum.length)
-      if(basic_check_info_peoplenum[i].key=='friend_num_3m'){
-        let infor={};
-        infor.check="近3月朋友联系数量";
-        infor.result=basic_check_info_peoplenum[i].value;
-
-        info_peoplenum.push(infor);
-      }
-
-      if(basic_check_info_peoplenum[i].key=='good_friend_num_3m'){
-        let infor={};
-        infor.check="近3月好朋友联系数量（联系10次以上）";
-        infor.result=basic_check_info_peoplenum[i].value;
-
-        info_peoplenum.push(infor);
-      }
-
-      if(basic_check_info_peoplenum[i].key=='friend_city_center_3m'){
-        let infor={};
-        infor.check="近3月朋友圈中心城市";
-        infor.result=basic_check_info_peoplenum[i].value;
-
-        info_peoplenum.push(infor);
-      }
-
-      if(basic_check_info_peoplenum[i].key=='is_city_match_friend_city_center_3m'){
-        let infor={};
-        infor.check="近3月朋友圈中心地是否与手机归属地一致";
-        infor.result=basic_check_info_peoplenum[i].value;
-
-        info_peoplenum.push(infor);
-      }
-
-      if(basic_check_info_peoplenum[i].key=='inter_peer_num_3m'){
-        let infor={};
-        infor.check="近3月互通电话号码数目";
-        infor.result=basic_check_info_peoplenum[i].value;
-
-        info_peoplenum.push(infor);
-      }
-
-      if(basic_check_info_peoplenum[i].key=='friend_num_6m'){
-        let infor={};
-        infor.check="近6月朋友联系数量";
-        infor.result=basic_check_info_peoplenum[i].value;
-
-        info_peoplenum.push(infor);
-      }
-
-      if(basic_check_info_peoplenum[i].key=='good_friend_num_6m'){
-        let infor={};
-        infor.check="近6月好朋友联系数量（联系10次以上）";
-        infor.result=basic_check_info_peoplenum[i].value;
-
-        info_peoplenum.push(infor);
-      }
-
-      if(basic_check_info_peoplenum[i].key=='friend_city_center_6m'){
-        let infor={};
-        infor.check="近6月朋友圈中心城市";
-        infor.result=basic_check_info_peoplenum[i].value;
-
-        info_peoplenum.push(infor);
-      }
-
-      if(basic_check_info_peoplenum[i].key=='is_city_match_friend_city_center_6m'){
-        let infor={};
-        infor.check="近6月朋友圈中心地是否与手机归属地一致";
-        infor.result=basic_check_info_peoplenum[i].value;
-
-        info_peoplenum.push(infor);
-      }
-
-      if(basic_check_info_peoplenum[i].key=='inter_peer_num_6m'){
-        let infor={};
-        infor.check="近6月互通电话号码数目";
-        infor.result=basic_check_info_peoplenum[i].value;
-
-        info_peoplenum.push(infor);
-      }
-    }
-    console.log(info_peoplenum)
     
     export default {
         data() {
             return { 
-              carriertitle:yunyingshang,
-              basic_check_items:info_jioayan,
+              carriertitle:'',
+              basic_check_items:'',
               // 行为检测
-              behavior_checks:carrier.behavior_check,
+              behavior_checks:'',
               //朋友圈联系人数量
-              info_peoplenums:info_peoplenum,
+              info_peoplenums:'',
               // 联系人top3 （3月）
-              peer_num_top_list3months:newmsgData.mx_carrier.friend_circle.peer_num_top_list[0].top_item,
+              peer_num_top_list3months:'',
                // 联系人top3 （6月）
-              peer_num_top_list6months:newmsgData.mx_carrier.friend_circle.peer_num_top_list[1].top_item,
+              peer_num_top_list6months:'',
               // 联系人号码归属地top3 （3月）
-              location_top_list3months:newmsgData.mx_carrier.friend_circle.location_top_list[0].top_item,
+              location_top_list3months:'',
               // 联系人号码归属地top3 （6月）
-              location_top_list6months:newmsgData.mx_carrier.friend_circle.location_top_list[1].top_item,
+              location_top_list6months:'',
               // 用户行为分析
-              cell_behaviors:newmsgData.mx_carrier.cell_behavior[0].behavior, 
+              cell_behaviors:'', 
 
               // 联系人区域汇总 （3月）
-              contact_region3months:newmsgData.mx_carrier.contact_region[0].region_list, 
+              contact_region3months:'', 
 
               // 联系人区域汇总 （6月）
-              contact_region6months:newmsgData.mx_carrier.contact_region[1].region_list,
+              contact_region6months:'',
               // 通话风险分析 （1月）
-              call_risk_analysis:newmsgData.mx_carrier.call_risk_analysis,
+              call_risk_analysis:'',
               // 活跃程度分析
-              active_degrees:newmsgData.mx_carrier.active_degree,
+              active_degrees:'',
               // 消费活跃程度分析
-              consumption_details:newmsgData.mx_carrier.consumption_detail,
+              consumption_details:'',
               // 通话活跃程度分析
-              call_time_details:newmsgData.mx_carrier.call_time_detail,
+              call_time_details:'',
               // 亲情号通话分析
-              call_family_details:newmsgData.mx_carrier.call_time_detail,
+              call_family_details:'',
               // 通话时段3个月
-              call_duration_detail3ms:newmsgData.mx_carrier.call_duration_detail[0].duration_list,
+              call_duration_detail3ms:'',
               // 通话时段6个月
-              call_duration_detail6ms:newmsgData.mx_carrier.call_duration_detail[1].duration_list,
+              call_duration_detail6ms:'',
               // 漫游地分析
-              roam_analysis:newmsgData.mx_carrier.roam_analysis,
+              roam_analysis:'',
               // 漫游详单
-              roam_details:newmsgData.mx_carrier.roam_detail,
+              roam_details:'',
               // 用户信息检测
-              user_info_check:newmsgData.mx_carrier.user_info_check[0],
+              user_info_check:'',
+              // 用户信息检测(联系人数据)
+              user_info_check_datas:'',
               // 用户出行
-              trip_infos:newmsgData.mx_carrier.trip_info,
+              trip_infos:'',
+              cstatus:'',
             }
         },
         methods:{
@@ -1342,6 +1077,376 @@
         computed: {
 
         },
+        mounted(){
+
+                const msgData=localStorage.getItem('msgData');
+                const newmsgData=JSON.parse(msgData);
+                const carrier=newmsgData.mx_carrier;
+                if(typeof(newmsgData.mx_carrier)!=='undefined'){
+                    const yunyingshang={}
+                    for(let i=0;i<newmsgData.mx_carrier.report.length;i++){
+                      if(newmsgData.mx_carrier.report[i].key=="source_name_zh" ){
+                        yunyingshang.source_name_zh=newmsgData.mx_carrier.report[i].value;
+                      }
+                      if(newmsgData.mx_carrier.report[i].key=="task_id" ){
+                        yunyingshang.task_id=newmsgData.mx_carrier.report[i].value;
+                      }
+                      if(newmsgData.mx_carrier.report[i].key=="data_gain_time" ){
+                        yunyingshang.data_gain_time=newmsgData.mx_carrier.report[i].value;
+                      }
+                      if(newmsgData.mx_carrier.report[i].key=="update_time" ){
+                        yunyingshang.update_time=newmsgData.mx_carrier.report[i].value;
+                      }
+                    }
+                    for(let i=0;i<newmsgData.mx_carrier.user_basic.length;i++){
+                      if(newmsgData.mx_carrier.user_basic[i].key=="name" ){
+                        yunyingshang.name=newmsgData.mx_carrier.user_basic[i].value;
+                      }
+                      if(newmsgData.mx_carrier.user_basic[i].key=="id_card" ){
+                        yunyingshang.id_card=newmsgData.mx_carrier.user_basic[i].value;
+                      }
+                      if(newmsgData.mx_carrier.user_basic[i].key=="gender" ){
+                        yunyingshang.gender=newmsgData.mx_carrier.user_basic[i].value;
+                      }
+                      if(newmsgData.mx_carrier.user_basic[i].key=="age" ){
+                        yunyingshang.age=newmsgData.mx_carrier.user_basic[i].value;
+                      }
+                      if(newmsgData.mx_carrier.user_basic[i].key=="constellation" ){
+                        yunyingshang.constellation=newmsgData.mx_carrier.user_basic[i].value;
+                      }
+                      if(newmsgData.mx_carrier.user_basic[i].key=="native_place" ){
+                        yunyingshang.native_place=newmsgData.mx_carrier.user_basic[i].value;
+                      }
+                    }
+                    for(let i=0;i<newmsgData.mx_carrier.cell_phone.length;i++){
+                      if(newmsgData.mx_carrier.cell_phone[i].key=="mobile" ){
+                        yunyingshang.mobile=newmsgData.mx_carrier.cell_phone[i].value;
+                      }
+                      if(newmsgData.mx_carrier.cell_phone[i].key=="reg_time" ){
+                        yunyingshang.reg_time=newmsgData.mx_carrier.cell_phone[i].value;
+                      }
+                      if(newmsgData.mx_carrier.cell_phone[i].key=="in_time" ){
+                        yunyingshang.in_time=newmsgData.mx_carrier.cell_phone[i].value;
+                      }
+                      if(newmsgData.mx_carrier.cell_phone[i].key=="package_name" ){
+                        yunyingshang.package_name=newmsgData.mx_carrier.cell_phone[i].value;
+                      }
+                      if(newmsgData.mx_carrier.cell_phone[i].key=="bill_certification_day" ){
+                        yunyingshang.bill_certification_day=newmsgData.mx_carrier.cell_phone[i].value;
+                      }
+                      if(newmsgData.mx_carrier.cell_phone[i].key=="phone_attribution" ){
+                        yunyingshang.phone_attribution=newmsgData.mx_carrier.cell_phone[i].value;
+                      }
+                      if(newmsgData.mx_carrier.cell_phone[i].key=="available_balance" ){
+                        yunyingshang.available_balance=newmsgData.mx_carrier.cell_phone[i].value;
+                      }
+                      if(newmsgData.mx_carrier.cell_phone[i].key=="email" ){
+                        yunyingshang.email=newmsgData.mx_carrier.cell_phone[i].value;
+                      }
+                      if(newmsgData.mx_carrier.cell_phone[i].key=="address" ){
+                        yunyingshang.address=newmsgData.mx_carrier.cell_phone[i].value;
+                      }
+                    }
+                    // console.log(yunyingshang);
+                    const info_jioayan=[];
+                    const basic_check_items_info=newmsgData.mx_carrier.basic_check_items;
+                    for(let i=0;i<basic_check_items_info.length;i++){
+                      
+                      if(basic_check_items_info[i].check_item=='idcard_check'){
+                        let infor={};
+                        infor.check="身份证号码有效性";
+                        infor.result=basic_check_items_info[i].result;
+
+                        info_jioayan.push(infor);
+                      }
+
+                      if(basic_check_items_info[i].check_item=='email_check'){
+                        let infor={};
+                        infor.check="邮箱有效性";
+                        infor.result=basic_check_items_info[i].result;
+
+                        info_jioayan.push(infor);
+                      }
+
+                      if(basic_check_items_info[i].check_item=='address_check'){
+                        let infor={};
+                        infor.check="地址有效性";
+                        infor.result=basic_check_items_info[i].result;
+
+                        info_jioayan.push(infor);
+                      }
+
+                      if(basic_check_items_info[i].check_item=='call_data_check'){
+                        let infor={};
+                        infor.check="通话记录完整性";
+                        infor.result=basic_check_items_info[i].result;
+
+                        info_jioayan.push(infor);
+                      }
+
+                      if(basic_check_items_info[i].check_item=='idcard_match'){
+                        let infor={};
+                        infor.check="身份证号码是否与运营商数据匹配";
+                        infor.result=basic_check_items_info[i].result;
+
+                        info_jioayan.push(infor);
+                      }
+
+                      if(basic_check_items_info[i].check_item=='name_match'){
+                        let infor={};
+                        infor.check="姓名是否与运营商数据匹配";
+                        infor.result=basic_check_items_info[i].result;
+
+                        info_jioayan.push(infor);
+                      }
+
+                      if(basic_check_items_info[i].check_item=='is_name_and_idcard_in_court_black'){
+                        let infor={};
+                        infor.check="申请人姓名+身份证号码是否出现在法院黑名单";
+                        infor.result=basic_check_items_info[i].result;
+
+                        info_jioayan.push(infor);
+                      }
+
+                      if(basic_check_items_info[i].check_item=='is_name_and_idcard_in_finance_black'){
+                        let infor={};
+                        infor.check="申请人姓名+身份证号码是否出现在金融机构黑名单";
+                        infor.result=basic_check_items_info[i].result;
+
+                        info_jioayan.push(infor);
+                      }
+
+                      if(basic_check_items_info[i].check_item=='is_name_and_mobile_in_finance_black'){
+                        let infor={};
+                        infor.check="申请人姓名+手机号码是否出现在金融机构黑名单";
+                        infor.result=basic_check_items_info[i].result;
+
+                        info_jioayan.push(infor);
+                      }
+
+                      if(basic_check_items_info[i].check_item=='mobile_silence_3m'){
+                        let infor={};
+                        infor.check="号码沉默度(近3月)";
+                        infor.result=basic_check_items_info[i].result;
+
+                        info_jioayan.push(infor);
+                      }
+
+                      if(basic_check_items_info[i].check_item=='mobile_silence_6m'){
+                        let infor={};
+                        infor.check="号码沉默度(近6月)";
+                        infor.result=basic_check_items_info[i].result;
+
+                        info_jioayan.push(infor);
+                      }
+
+                      if(basic_check_items_info[i].check_item=='arrearage_risk_3m'){
+                        let infor={};
+                        infor.check="欠费风险度(近3月)";
+                        infor.result=basic_check_items_info[i].result;
+
+                        info_jioayan.push(infor);
+                      }
+
+                      if(basic_check_items_info[i].check_item=='arrearage_risk_6m'){
+                        let infor={};
+                        infor.check="欠费风险度(近6月)";
+                        infor.result=basic_check_items_info[i].result;
+
+                        info_jioayan.push(infor);
+                      }
+
+                      if(basic_check_items_info[i].check_item=='binding_risk'){
+                        let infor={};
+                        infor.check="亲情网风险度";
+                        infor.result=basic_check_items_info[i].result;
+
+                        info_jioayan.push(infor);
+                      }
+                    }
+                    // console.log(info_jioayan)
+
+                    //朋友圈联系人数量
+                    const info_peoplenum=[];
+                    const basic_check_info_peoplenum=newmsgData.mx_carrier.friend_circle.summary;
+                    for(let i=0;i<basic_check_info_peoplenum.length;i++){
+                      console.log(basic_check_info_peoplenum.length)
+                      if(basic_check_info_peoplenum[i].key=='friend_num_3m'){
+                        let infor={};
+                        infor.check="近3月朋友联系数量";
+                        infor.result=basic_check_info_peoplenum[i].value;
+
+                        info_peoplenum.push(infor);
+                      }
+
+                      if(basic_check_info_peoplenum[i].key=='good_friend_num_3m'){
+                        let infor={};
+                        infor.check="近3月好朋友联系数量（联系10次以上）";
+                        infor.result=basic_check_info_peoplenum[i].value;
+
+                        info_peoplenum.push(infor);
+                      }
+
+                      if(basic_check_info_peoplenum[i].key=='friend_city_center_3m'){
+                        let infor={};
+                        infor.check="近3月朋友圈中心城市";
+                        infor.result=basic_check_info_peoplenum[i].value;
+
+                        info_peoplenum.push(infor);
+                      }
+
+                      if(basic_check_info_peoplenum[i].key=='is_city_match_friend_city_center_3m'){
+                        let infor={};
+                        infor.check="近3月朋友圈中心地是否与手机归属地一致";
+                        infor.result=basic_check_info_peoplenum[i].value;
+
+                        info_peoplenum.push(infor);
+                      }
+
+                      if(basic_check_info_peoplenum[i].key=='inter_peer_num_3m'){
+                        let infor={};
+                        infor.check="近3月互通电话号码数目";
+                        infor.result=basic_check_info_peoplenum[i].value;
+
+                        info_peoplenum.push(infor);
+                      }
+
+                      if(basic_check_info_peoplenum[i].key=='friend_num_6m'){
+                        let infor={};
+                        infor.check="近6月朋友联系数量";
+                        infor.result=basic_check_info_peoplenum[i].value;
+
+                        info_peoplenum.push(infor);
+                      }
+
+                      if(basic_check_info_peoplenum[i].key=='good_friend_num_6m'){
+                        let infor={};
+                        infor.check="近6月好朋友联系数量（联系10次以上）";
+                        infor.result=basic_check_info_peoplenum[i].value;
+
+                        info_peoplenum.push(infor);
+                      }
+
+                      if(basic_check_info_peoplenum[i].key=='friend_city_center_6m'){
+                        let infor={};
+                        infor.check="近6月朋友圈中心城市";
+                        infor.result=basic_check_info_peoplenum[i].value;
+
+                        info_peoplenum.push(infor);
+                      }
+
+                      if(basic_check_info_peoplenum[i].key=='is_city_match_friend_city_center_6m'){
+                        let infor={};
+                        infor.check="近6月朋友圈中心地是否与手机归属地一致";
+                        infor.result=basic_check_info_peoplenum[i].value;
+
+                        info_peoplenum.push(infor);
+                      }
+
+                      if(basic_check_info_peoplenum[i].key=='inter_peer_num_6m'){
+                        let infor={};
+                        infor.check="近6月互通电话号码数目";
+                        infor.result=basic_check_info_peoplenum[i].value;
+
+                        info_peoplenum.push(infor);
+                      }
+                    }
+                    // console.log(info_peoplenum);
+                    // 用户信息检测（联系人数据）
+                    const user_info_check_data={};
+                    user_info_check_data.searched_org_cnt=newmsgData.mx_carrier.user_info_check[0].check_search_info.searched_org_cnt;
+                    user_info_check_data.register_org_cnt=newmsgData.mx_carrier.user_info_check[0].check_search_info.register_org_cnt;
+
+                    if(newmsgData.mx_carrier.user_info_check[0].check_search_info.searched_org_type>0){
+                        user_info_check_data.searched_org_type=newmsgData.mx_carrier.user_info_check[0].check_search_info.searched_org_type;
+                    }else{
+                        user_info_check_data.searched_org_type='';
+                    }
+                    if(newmsgData.mx_carrier.user_info_check[0].check_search_info.idcard_with_other_names>0){
+                        user_info_check_data.idcard_with_other_names=newmsgData.mx_carrier.user_info_check[0].check_search_info.idcard_with_other_names;
+                    }else{
+                        user_info_check_data.idcard_with_other_names='';
+                    }
+                    if(newmsgData.mx_carrier.user_info_check[0].check_search_info.idcard_with_other_phones>0){
+                        user_info_check_data.idcard_with_other_phones=newmsgData.mx_carrier.user_info_check[0].check_search_info.idcard_with_other_phones;
+                    }else{
+                        user_info_check_data.idcard_with_other_phones='';
+                    }
+                    if(newmsgData.mx_carrier.user_info_check[0].check_search_info.phone_with_other_idcards>0){
+                        user_info_check_data.phone_with_other_idcards=newmsgData.mx_carrier.user_info_check[0].check_search_info.phone_with_other_idcards;
+                    }else{
+                        user_info_check_data.phone_with_other_idcards='';
+                    }
+                    if(newmsgData.mx_carrier.user_info_check[0].check_search_info.phone_with_other_names>0){
+                        user_info_check_data.phone_with_other_names=newmsgData.mx_carrier.user_info_check[0].check_search_info.phone_with_other_names;
+                    }else{
+                        user_info_check_data.phone_with_other_names='';
+                    }
+                    if(newmsgData.mx_carrier.user_info_check[0].check_search_info.register_org_type>0){
+                        user_info_check_data.register_org_type=newmsgData.mx_carrier.user_info_check[0].check_search_info.register_org_type;
+                    }else{
+                        user_info_check_data.register_org_type='';
+                    }
+                    if(newmsgData.mx_carrier.user_info_check[0].check_search_info.arised_open_web>0){
+                        user_info_check_data.arised_open_web=newmsgData.mx_carrier.user_info_check[0].check_search_info.arised_open_web;
+                    }else{
+                        user_info_check_data.arised_open_web='';
+                    }
+                    
+                    this.carriertitle=yunyingshang;
+                    this.basic_check_items=info_jioayan;
+                    // 行为检测
+                    this.behavior_checks=carrier.behavior_check;
+                    //朋友圈联系人数量
+                    this.info_peoplenums=info_peoplenum;
+                    // 联系人top3 （3月）
+                    this.peer_num_top_list3months=newmsgData.mx_carrier.friend_circle.peer_num_top_list[0].top_item;
+                     // 联系人top3 （6月）
+                    this.peer_num_top_list6months=newmsgData.mx_carrier.friend_circle.peer_num_top_list[1].top_item;
+                    // 联系人号码归属地top3 （3月）
+                    this.location_top_list3months=newmsgData.mx_carrier.friend_circle.location_top_list[0].top_item;
+                    // 联系人号码归属地top3 （6月）
+                    this.location_top_list6months=newmsgData.mx_carrier.friend_circle.location_top_list[1].top_item;
+                    // 用户行为分析
+                    this.cell_behaviors=newmsgData.mx_carrier.cell_behavior[0].behavior; 
+
+                    // 联系人区域汇总 （3月）
+                    this.contact_region3months=newmsgData.mx_carrier.contact_region[0].region_list; 
+
+                    // 联系人区域汇总 （6月）
+                    this.contact_region6months=newmsgData.mx_carrier.contact_region[1].region_list;
+                    // 通话风险分析 （1月）
+                    this.call_risk_analysis=newmsgData.mx_carrier.call_risk_analysis;
+                    // 活跃程度分析
+                    this.active_degrees=newmsgData.mx_carrier.active_degree;
+                    // 消费活跃程度分析
+                    this.consumption_details=newmsgData.mx_carrier.consumption_detail;
+                    // 通话活跃程度分析
+                    this.call_time_details=newmsgData.mx_carrier.call_time_detail;
+                    // 亲情号通话分析
+                    this.call_family_details=newmsgData.mx_carrier.call_time_detail;
+                    // 通话时段3个月
+                    this.call_duration_detail3ms=newmsgData.mx_carrier.call_duration_detail[0].duration_list;
+                    // 通话时段6个月
+                    this.call_duration_detail6ms=newmsgData.mx_carrier.call_duration_detail[1].duration_list;
+                    // 漫游地分析
+                    this.roam_analysis=newmsgData.mx_carrier.roam_analysis;
+                    // 漫游详单
+                    this.roam_details=newmsgData.mx_carrier.roam_detail;
+                    // 用户信息检测
+                    this.user_info_check=newmsgData.mx_carrier.user_info_check[0];
+                    console.log(this.user_info_check);
+                    //用户信息检测(联系人数据)
+                    this.user_info_check_datas=user_info_check_data;
+                    // 用户出行
+                    this.trip_infos=newmsgData.mx_carrier.trip_info;
+
+                    this.cstatus=1;
+
+                }else{
+                    this.cstatus=2;
+                }
+        }
 
     }
 
@@ -1421,16 +1526,6 @@
         text-align: left;
         font-weight: 100;
         padding: 0;
-    }
-
-    .h5 {
-        width: 100%;
-        height: 30px;
-        margin: 0 auto;
-        border-bottom: none;
-        background: rgb(70, 140, 180);
-        line-height: 30px;
-
     }
 
     h3 {

@@ -8,9 +8,9 @@
         <div class="sidebar header-center">
             <el-menu :default-active="activeIndex"  mode="horizontal"   text-color="#fff" active-text-color="#fff" router>
                 <el-menu-item index="moerCredit">摩尔征信</el-menu-item>
-                <el-menu-item index="2">业务追踪实时大屏</el-menu-item>
-                <el-menu-item index="3">智能评分卡</el-menu-item><!--
-                <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item> -->
+                <el-menu-item index=''  class="bigScreen"><a href="http://123.59.181.202:8080/" target="_blank">实时大屏</a></el-menu-item>
+                <!-- <el-menu-item index="3">智能评分卡</el-menu-item> -->
+                <!-- <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>  -->
                 <!-- <el-submenu index="2">
                     <template slot="title">我的工作台</template>
                     <el-menu-item index="2-1">选项1</el-menu-item>
@@ -44,7 +44,7 @@
                     <span class="btn-bell-badge" v-if="message"></span>
                 </div> -->
                 <!-- 用户头像 -->
-                <div class="user-avator"><img src="static/img/img.jpg"></div>
+                <div class="user-avator"><img src="static/img/img2.png"></div>
                 <!-- 用户名下拉菜单 -->
                 <el-dropdown class="user-name" trigger="click" @command="handleCommand">
                     <span class="el-dropdown-link">
@@ -57,6 +57,9 @@
                         <a href="https://github.com/lin-xin/vue-manage-system" target="_blank">
                             <el-dropdown-item>项目仓库</el-dropdown-item>
                         </a> -->
+                        <el-dropdown-item   command="pMessage">个人信息</el-dropdown-item>
+                        <el-dropdown-item   command="queryEnter">查询记录</el-dropdown-item>
+                        <el-dropdown-item   command="changePassword">修改密码</el-dropdown-item>
                         <el-dropdown-item divided  command="loginout">退出登录</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
@@ -69,16 +72,16 @@
     export default {
         data() {
             return {
-                collapse: false,
+                // collapse: false,
                 fullscreen: false,
-                name: 'linxin',
+                name: 'admin',
                 message: 2,
                 activeIndex:'moerCredit',
             }
         },
         computed:{
             username(){
-                let username = localStorage.getItem('ms_username');
+                let username = sessionStorage.getItem('centername');
                 return username ? username : this.name;
             }
         },
@@ -86,9 +89,38 @@
             // 用户名下拉菜单选择事件
             handleCommand(command) {
                 if(command == 'loginout'){
-                    localStorage.removeItem('ms_username')
+                    sessionStorage.removeItem('ms_username');
+                    
+                    this.$axios.defaults.withCredentials=true;
+                    this.$axios.get('http://123.59.181.202:8082/logout')
+                    .then(res=>{
+                      console.log(res.data);
+                      let data=res.data;
+                      if(data.status=='102'){
+                        this.$message({
+                            type:'success',
+                            message:data.message
+                        });
+                      };
+                    })
+                    .catch(error=>{
+                        // console.log(error.response);
+                        if(error.response.data.status=='401'){
+                           this.$message.error(data.message);
+                        }
+                    })
+
                     this.$router.push('/login');
+                }else if(command=='pMessage'){
+                    this.$router.push('/pMessage');
+
+                }else if(command=='queryEnter'){
+                    this.$router.push('/queryLoy');
+                    
+                }else if(command=='changePassword'){
+                    this.$router.push('/changePassword');
                 }
+
             },
             // 侧边栏折叠
             // collapseChage(){
@@ -133,6 +165,8 @@
         height: 70px;
         font-size: 22px;
         color: #fff;
+        background: #3c88f6;
+        z-index: 999;
     }
     /*.collapse-btn{
         float: left;
@@ -194,9 +228,9 @@
     }
     .user-avator img{
         display: block;
-        width:40px;
-        height:40px;
-        border-radius: 50%;
+        width:20px;
+        height:20px;
+        /*border-radius: 50%;*/
     }
     .el-dropdown-link{
         color: #fff;
@@ -212,15 +246,35 @@
     }
     .el-menu,.el-menu .el-menu-item,.template{
         height: 100%;
-        background:#242f42;
+        background:#3c88f6;
     }
     .el-menu--horizontal>.el-menu-item.is-active{
-        border-bottom: 6px solid #409EFF !important;
+        border-bottom: 0px solid #4b7bc1 !important;
+        background: #4b7bc1;
     }
     .el-menu .el-menu-item{
         font-size: 16px;
     }
-    .el-menu .el-menu-item:hover,.el-menu .el-menu-item:focus{
-        background: #999;
+    .el-menu .el-menu-item:hover,.el-menu .el-menu-item:focus,.el-menu .el-menu-item a:hover,.el-menu .el-menu-item a:focus{
+        background: #4b7bc1 !important;
+    }
+
+    .bigScreen a{
+        display: block;
+        height:100%;
+        position: relative;
+        left: -30%;
+        text-align: center;
+        width: 160%;
+
+    }
+    .bigScreen a:hover{
+        background: #4b7bc1;
+    }
+    @media screen and (max-width: 1500px){
+        .user-avator img{
+            width:15px;
+            height:15px;
+        }  
     }
 </style>

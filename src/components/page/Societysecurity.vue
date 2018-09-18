@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="box">
+  <div  style="padding:0 0 20px 0;background:#fff;">
+    <div v-if="cstatus===1" class="box">
             <div>
                 <h3 style="padding-left: 0px;font-size: 25px;text-align: center">
                     社保报告
@@ -253,28 +253,25 @@
             </div>
 
     </div>
+
+    <div v-if="cstatus===2" class="nomseg">
+      <span>查询成功，暂无数据</span>
+    </div>
   </div>   
 </template>
 
 <script>
-    const msgData=localStorage.getItem('msgData');
-    const newmsgData=JSON.parse(msgData);
-    const security=newmsgData.mx_security[0];
-
-    const basic_info=security.basic_info;
-    const insurance_summary=security.social_insurance_summary;
-    const insurance_bill=security.medical_insurance_bill;
-    const consumption_details=security.medical_consumption_details;
     
     
     export default {
         data() {
             return { 
-              basic_info:basic_info,
-              society_details:insurance_summary.society_detail[0],
-              medical_insurance_pay:insurance_bill.medical_insurance_pay,
-              medical_consumption_basic:consumption_details.medical_consumption_basic,
-              securities_report:consumption_details.medical_consumption_record.securities_report,
+              basic_info:'',
+              society_details:'',
+              medical_insurance_pay:'',
+              medical_consumption_basic:'',
+              securities_report:'',
+              cstatus:'',
             }
         },
         methods:{
@@ -285,6 +282,27 @@
         computed: {
 
         },
+        mounted(){
+            const msgData=localStorage.getItem('msgData');
+            const newmsgData=JSON.parse(msgData);
+            
+            if(typeof(newmsgData.mx_security)!=='undefined'){
+                const security=newmsgData.mx_security[0];
+                const basic_info=security.basic_info;
+                const insurance_summary=security.social_insurance_summary;
+                const insurance_bill=security.medical_insurance_bill;
+                const consumption_details=security.medical_consumption_details;
+
+                this.basic_info=basic_info,
+                this.society_details=insurance_summary.society_detail[0];
+                this.medical_insurance_pay=insurance_bill.medical_insurance_pay;
+                this.medical_consumption_basic=consumption_details.medical_consumption_basic;
+                this.securities_report=consumption_details.medical_consumption_record.securities_report;
+                this.cstatus=1;
+            }else{
+                this.cstatus=2;
+            }
+        }
 
     }
 
@@ -364,16 +382,6 @@
         text-align: left;
         font-weight: 100;
         padding: 0;
-    }
-
-    .h5 {
-        width: 100%;
-        height: 30px;
-        margin: 0 auto;
-        border-bottom: none;
-        background: rgb(70, 140, 180);
-        line-height: 30px;
-
     }
 
     h3 {

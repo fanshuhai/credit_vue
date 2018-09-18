@@ -22,9 +22,32 @@ export default new Router({
                     meta: { title: '征信查询' }
                 },
                 {
-                    path: '/queryResult',
-                    component: resolve => require(['../components/page/QueryResult.vue'], resolve),
-                    meta: { title: '查询结果' }
+                    path: '/personal',
+                    component: resolve => require(['../components/personalMessage/Personal.vue'], resolve),
+                    meta: { title: '信息管理' },
+                    children:[
+                        {
+                            path:'/pMessage',
+                            component:resolve=>require(['../components/personalMessage/PMessage.vue'],resolve),
+                            meta: { title: '个人信息' }
+                        },
+                        {
+                            path:'/queryLoy',
+                            component:resolve=>require(['../components/personalMessage/QueryLoy.vue'],resolve),
+                            meta: { title: '查询记录' }
+                        },
+                        {
+                            path:'/changePassword',
+                            component:resolve=>require(['../components/personalMessage/ChangePassword.vue'],resolve),
+                            meta: { title: '修改密码' }
+                        },
+                    ]
+                },
+                {
+                    // path: '/dashboard',
+                    path: '/moerCreditCompany',
+                    component: resolve => require(['../components/page/MoerCreditCompany.vue'], resolve),
+                    meta: { title: '征信查询' }
                 },
                 {
                     path: '/huifa',
@@ -36,6 +59,61 @@ export default new Router({
                     path:'/tongdun',
                     component:resolve => require(['../components/outsidenet/Tongdun.vue'], resolve),
                     meta: { title: '同盾科技-查询' },
+                },
+                {
+                    path:'/moxie',
+                    component:resolve => require(['../components/outsidenet/Moxie.vue'], resolve),
+                    meta: { title: '魔蝎科技-查询' },
+                },
+                {
+                    path:'/moxieFund',
+                    component:resolve => require(['../components/outsidenet/Moxie_fund.vue'], resolve),
+                    meta: { title: '魔蝎科技-公积金报告' },
+                },
+                {
+                    path:'/moxieSecurity',
+                    component:resolve => require(['../components/outsidenet/Moxie_security.vue'], resolve),
+                    meta: { title: '魔蝎科技-社保报告' },
+                },
+                {
+                    path:'/MoxieCarinsurance',
+                    component:resolve => require(['../components/outsidenet/Moxie_carinsurance.vue'], resolve),
+                    meta: { title: '魔蝎科技-车险报告' },
+                },
+                {
+                    path:'/moxieSecurity',
+                    component:resolve => require(['../components/outsidenet/Moxie_security.vue'], resolve),
+                    meta: { title: '魔蝎科技-车险报告' },
+                },
+                {
+                    path:'/moxieSecurity',
+                    component:resolve => require(['../components/outsidenet/Moxie_security.vue'], resolve),
+                    meta: { title: '魔蝎科技-车险报告' },
+                },
+                {
+                    path:'/moxieSecurity',
+                    component:resolve => require(['../components/outsidenet/Moxie_security.vue'], resolve),
+                    meta: { title: '魔蝎科技-车险报告' },
+                },
+                {
+                    path:'/moxieTaobao',
+                    component:resolve => require(['../components/outsidenet/Moxie_taobao.vue'], resolve),
+                    meta: { title: '魔蝎科技-淘宝报告' },
+                },
+                {
+                    path:'/moxieCarrier',
+                    component:resolve => require(['../components/outsidenet/Moxie_carrier.vue'], resolve),
+                    meta: { title: '魔蝎科技-运营商报告' },
+                },
+                {
+                    path:'/moxieCarrier',
+                    component:resolve => require(['../components/outsidenet/Moxie_carrier.vue'], resolve),
+                    meta: { title: '魔蝎科技-运营商报告' },
+                },
+                {
+                    path:'/moxieChsi',
+                    component:resolve => require(['../components/outsidenet/Moxie_chsi.vue'], resolve),
+                    meta: { title: '魔蝎科技-学历信息报告' },
                 },
                 {
                     path: '/threenQuery',
@@ -53,8 +131,8 @@ export default new Router({
                             meta: { title: '同盾科技结果-查询' },
                         },
                         {
-                            path:'/moxie',
-                            component:resolve => require(['../components/outsidenet/Moxie.vue'], resolve),
+                            path:'/moxieQuery',
+                            component:resolve => require(['../components/outsidenet/MoxieQuery.vue'], resolve),
                             meta: { title: '魔蝎科技结果-查询' },
                         },
                     ]
@@ -66,14 +144,29 @@ export default new Router({
                     meta: { title: '详细信息' },
                     children:[
                         {
+                            path: '/queryResult',
+                            component: resolve => require(['../components/page/QueryResult.vue'], resolve),
+                            meta: { title: '查询结果'}
+                        },
+                        {
                             path:'/perInfoBasic',
                             component:resolve => require(['../components/page/PerInfoBasic.vue'], resolve),
                             meta: { title: '个人信息-基本信息' },
                         },
                         {
+                            path:'/touzi',
+                            component:resolve => require(['../components/page/Touzi.vue'], resolve),
+                            meta: { title: '个人信息-投资' },
+                        },
+                        {
+                            path:'/renzhi',
+                            component:resolve => require(['../components/page/Renzhi.vue'], resolve),
+                            meta: { title: '个人信息-任职' },
+                        },
+                        {
                             path:'/xueli',
                             component:resolve => require(['../components/page/Xueli.vue'], resolve),
-                            meta: { title: '司法信息-法律案件详情' },
+                            meta: { title: '个人信息-学历' },
                         },
                         {
                             path:'/lawCasedetail',
@@ -177,10 +270,10 @@ export default new Router({
             path: '/403',
             component: resolve => require(['../components/page/403.vue'], resolve)
         },
-        {
-            path: '*',
-            redirect: '/404'
-        }
+        // {
+        //     path: '*',
+        //     redirect: '/404'
+        // }
     ],
    // mode:'history'
 })

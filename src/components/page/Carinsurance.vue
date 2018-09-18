@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="box">
+  <div style="padding:0 0 20px 0;background:#fff;">
+    <div v-if="cstatus===1" class="box">
             <div>
                 <h3 style="padding-left: 0px;font-size: 25px;text-align: center">
                     车险报告
@@ -188,27 +188,22 @@
                     </table>
                 </div>
             </div>
+    </div>
 
-
-
+    <div v-if="cstatus===2"  class="nomseg">
+      <span>查询成功，暂无数据</span>
     </div>
   </div>
 </template>
 
 <script>
-    const msgData=localStorage.getItem('msgData');
-    const newmsgData=JSON.parse(msgData);
-    const carinfo=newmsgData.mx_insurance[0];
-
-    const carinfo_basic=carinfo.insurance_one[0].insurancePolicyBaseInfo;
-    const carinfo_xianzhongs=carinfo.insurance_one[0].vehicleInsuranceDetailInfos;
-    const carinfo_jilu=carinfo.insurance_one[0].insuranceDamageInfos;
     export default {
         data() {
             return {
-              car_basic:carinfo_basic,
-              car_xianzhongs:carinfo_xianzhongs,
-              car_jilus:carinfo_jilu,
+              car_basic:'',
+              car_xianzhongs:'',
+              car_jilus:'',
+              cstatus:'',
             }
         },
         methods:{
@@ -219,6 +214,24 @@
         computed: {
 
         },
+        mounted(){
+            const msgData=localStorage.getItem('msgData');
+            const newmsgData=JSON.parse(msgData);
+            if(typeof(newmsgData.mx_insurance)!=='undefined'){
+               const carinfo=newmsgData.mx_insurance[0];
+               const carinfo_basic=carinfo.insurance_one[0].insurancePolicyBaseInfo;
+               const carinfo_xianzhongs=carinfo.insurance_one[0].vehicleInsuranceDetailInfos;
+               const carinfo_jilu=carinfo.insurance_one[0].insuranceDamageInfos; 
+
+               this.car_basic=carinfo_basic;
+               this.car_xianzhongs=carinfo_xianzhongs;
+               this.car_jilus=carinfo_jilu;
+               this.cstatus=1;
+            }else{
+                this.cstatus=2;
+            }
+            
+        }
 
     }
 
@@ -236,7 +249,7 @@
     }
 
     .box {
-        width: 100%;
+        width: 95%;
     }
 
     .table {
@@ -298,16 +311,6 @@
         text-align: left;
         font-weight: 100;
         padding: 0;
-    }
-
-    .h5 {
-        width: 100%;
-        height: 30px;
-        margin: 0 auto;
-        border-bottom: none;
-        background: rgb(70, 140, 180);
-        line-height: 30px;
-
     }
 
     h3 {

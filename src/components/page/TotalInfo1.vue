@@ -32,7 +32,7 @@
               </el-col>
               <el-col :span="2">
                 <div class="grid-content">
-                  <el-button @click='' type="success">查询</el-button>
+                  <el-button @click='' >查询</el-button>
                 </div>
               </el-col>
             </el-row>
@@ -82,21 +82,12 @@
                   label: '汇法网'
                 }, {
                   value: '选项3',
-                  label: '魔蝎'
-                }, {
-                  value: '选项4',
                   label: '同盾'
                 }, {
+                  value: '选项4',
+                  label: '魔蝎'
+                }, {
                   value: '选项5',
-                  label: '鹏元'
-                }, {
-                  value: '选项6',
-                  label: '国政通'
-                }, {
-                  value: '选项7',
-                  label: '商汤'
-                }, {
-                  value: '选项8',
                   label: '全部'
                 }
               ],
@@ -301,5 +292,14 @@
   }
   .sidebar > ul {
       height:100%;
+  }
+  .el-button{
+      background:#3c88f6;
+      height: 45px;
+      width: 100px;
+      border-radius:4px; 
+      color: #fff;
+      font-weight: bold;
+      font-size: 18px;
   }
 </style>

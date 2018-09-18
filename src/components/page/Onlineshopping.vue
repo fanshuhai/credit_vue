@@ -1,7 +1,7 @@
 <!--suppress ALL -->
 <template>
-  <div>
-    <div class="box">
+  <div  style="padding:0 0 20px 0;background:#fff;">
+    <div  v-if="cstatus===1" class="box">
             <div>
                 <h3 style="padding-left: 0px;font-size: 25px;text-align: center">
                     淘宝报告
@@ -79,7 +79,7 @@
                         </tr>
                         <tr>
                             <td>历史累计收益(元)</td>
-                            <td>{{totalssets.total_profit}}</td>、
+                            <td>{{totalssets.total_profit}}</td>
                         </tr>
                         <tr>
                             <td>花呗授信额度（元）</td>
@@ -377,54 +377,28 @@
             </div>
 
     </div>
+
+    <div v-if="cstatus===2" class="nomseg">
+      <span>查询成功，暂无数据</span>
+    </div>
   </div>
 </template>
 
 <script>
-    const msgData=localStorage.getItem('msgData');
-    const newmsgData=JSON.parse(msgData);
-    const mxTaobao=newmsgData.mx_taobao[0];
-
-    //1.基本信息
-    const basicInfo = mxTaobao.basic_info;
-    //2.财富信息
-    const wealthInfo = mxTaobao.wealth_info;
-    //3.地址分析
-    const addressAnalysis = mxTaobao.address_analysis;
-    //4.消费分析
-    const consumptionAnalysis = mxTaobao.consumption_analysis;
-
-    //1.1用户及账户基本信息
-    const userAndAccountBasicInfo = basicInfo.user_and_account_basic_info;
-
-    //2.1总资产
-    const totalssets = wealthInfo.totalssets;
-
-    //3.1基本点分析
-    const fundamentalPointAnalysis = addressAnalysis.fundamental_point_analysis;
-    //3.2常用地址
-    const commonlyUsedAddress = addressAnalysis.commonly_used_address;
-    //3.3收件详细地址
-    const recepiptDetails = addressAnalysis.receipt_details;
-
-    //4.1总体消费
-    const totalConsumption = consumptionAnalysis.total_consumption;
-    //4.2本人收货消费
-    const receivingConsumption = consumptionAnalysis.receiving_consumption;
-    //4.3特殊品消费
-    const specialConsumption = consumptionAnalysis.special_consumption;
 
     export default {
         data() {
             return {
-                userAndAccountBasicInfo:userAndAccountBasicInfo,
-                totalssets:totalssets,
-                fundamentalPointAnalysis:fundamentalPointAnalysis,
-                commonlyUsedAddress:commonlyUsedAddress,
-                recepiptDetails:recepiptDetails,
-                totalConsumption:totalConsumption,
-                receivingConsumption:receivingConsumption,
-                specialConsumption:specialConsumption
+                userAndAccountBasicInfo:'',
+                totalssets:'',
+                fundamentalPointAnalysis:'',
+                commonlyUsedAddress:'',
+                recepiptDetails:'',
+                totalConsumption:'',
+                receivingConsumption:'',
+                specialConsumption:'',
+                cstatus:'',
+
             }
         },
         methods:{
@@ -432,9 +406,60 @@
             this.$router.go(-1);
           },
         },
+        created(){
+           
+        },
         computed: {
 
         },
+        mounted(){
+
+                const msgData=localStorage.getItem('msgData');
+                const newmsgData=JSON.parse(msgData);
+                const mxTaobao={};
+                if(typeof(newmsgData.mx_taobao)!=='undefined'){
+                    //1.基本信息
+                    mxTaobao.basicInfo = newmsgData.mx_taobao[0].basic_info;
+                    //2.财富信息
+                    mxTaobao.wealthInfo = newmsgData.mx_taobao[0].wealth_info;
+                    //3.地址分析
+                    mxTaobao.addressAnalysis = newmsgData.mx_taobao[0].address_analysis;
+                    //4.消费分析
+                    mxTaobao.consumptionAnalysis = newmsgData.mx_taobao[0].consumption_analysis;
+
+                    //1.1用户及账户基本信息
+                    mxTaobao.userAndAccountBasicInfo = newmsgData.mx_taobao[0].basic_info.user_and_account_basic_info;
+                    this.userAndAccountBasicInfo=mxTaobao.userAndAccountBasicInfo;
+
+                    //2.1总资产
+                    mxTaobao.totalssets = newmsgData.mx_taobao[0].wealth_info.totalssets;
+                    this.totalssets=mxTaobao.totalssets;
+
+                    //3.1基本点分析
+                    mxTaobao.fundamentalPointAnalysis = newmsgData.mx_taobao[0].address_analysis.fundamental_point_analysis;
+                    this.fundamentalPointAnalysis=mxTaobao.fundamentalPointAnalysis;
+                    //3.2常用地址
+                    mxTaobao.commonlyUsedAddress = newmsgData.mx_taobao[0].address_analysis.commonly_used_address;
+                    this.commonlyUsedAddress=mxTaobao.commonlyUsedAddress;
+                    //3.3收件详细地址
+                    mxTaobao.recepiptDetails = newmsgData.mx_taobao[0].address_analysis.receipt_details;
+                    this.recepiptDetails=mxTaobao.recepiptDetails;
+
+                    //4.1总体消费
+                    mxTaobao.totalConsumption = newmsgData.mx_taobao[0].consumption_analysis.total_consumption;
+                    this.totalConsumption=mxTaobao.totalConsumption;
+                    //4.2本人收货消费
+                    mxTaobao.receivingConsumption = newmsgData.mx_taobao[0].consumption_analysis.receiving_consumption;
+                    this.receivingConsumption=mxTaobao.receivingConsumption;
+                    //4.3特殊品消费
+                    mxTaobao.specialConsumption = newmsgData.mx_taobao[0].consumption_analysis.special_consumption;
+                    this.specialConsumption=mxTaobao.specialConsumption;
+                    this.cstatus=1;
+                
+                }else{
+                    this.cstatus=2;
+                }
+        }
 
     }
 
@@ -453,6 +478,9 @@
 
     .box {
         width: 100%;
+        background: #fff;
+        width: 95%;
+
     }
 
     .table {
@@ -514,16 +542,6 @@
         text-align: left;
         font-weight: 100;
         padding: 0;
-    }
-
-    .h5 {
-        width: 100%;
-        height: 30px;
-        margin: 0 auto;
-        border-bottom: none;
-        background: rgb(70, 140, 180);
-        line-height: 30px;
-
     }
 
     h3 {

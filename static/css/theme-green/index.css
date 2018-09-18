@@ -305,7 +305,6 @@
 .el-icon-loading:before {
     content: "\e61e";
 }
-
 .el-icon-loading {
     -webkit-animation: rotating 2s linear infinite;
     animation: rotating 2s linear infinite;
@@ -317,7 +316,81 @@
 
 .el-icon--left {
     margin-right: 5px;
+}/*自定义*/
+/*首页*/
+.el-icon-homePage:before {
+    content:'';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 20px;
+      left: 12%;
+      background-image: url(../../../src/assets/img/sideImg/homePage.png); 
+      background-size: contain;
+      background-repeat: no-repeat;
 }
+/*审核报告*/
+.el-icon-overView:before {
+    content:'';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 20px;
+      left: 12%;
+      background-image: url(../../../src/assets/img/sideImg/overView.png); 
+      background-size: contain;
+      background-repeat: no-repeat;
+}
+/*个人信息*/
+.el-icon-personal:before {
+    content:'';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 20px;
+      left: 12%;
+      background-image: url(../../../src/assets/img/sideImg/personal.png); 
+      background-size: contain;
+      background-repeat: no-repeat;
+}
+/*司法信息*/
+.el-icon-judicial:before {
+    content:'';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 20px;
+      left: 12%;
+      background-image: url(../../../src/assets/img/sideImg/judicial.png); 
+      background-size: contain;
+      background-repeat: no-repeat;
+}
+/*反欺诈信息*/
+.el-icon-frand:before {
+    content:'';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 20px;
+      left: 12%;
+      background-image: url(../../../src/assets/img/sideImg/frand.png); 
+      background-size: contain;
+      background-repeat: no-repeat;
+}
+/*公共信息*/
+.el-icon-publicMsg:before {
+    content:'';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 20px;
+      left: 12%;
+      background-image: url(../../../src/assets/img/sideImg/publicMsg.png); 
+      background-size: contain;
+      background-repeat: no-repeat;
+}
+
+
 
 @-webkit-keyframes rotating {
     0% {
@@ -1216,7 +1289,8 @@
 }
 
 .el-menu-item.is-active {
-    color: #00D1B2;
+    /*color: #00D1B2;*/
+    color:#3c88f6;
 }
 
 .el-menu-item.is-active i {
@@ -8279,7 +8353,7 @@
 }
 @media screen and (max-width: 1400px) {
     .el-input--small{
-		height: 40px !important;
+		height: 30px !important;
     }
 }
 
@@ -12643,4 +12717,13 @@
     -ms-flex-negative: 0;
     flex-shrink: 0;
 }
-
+.changePassword .el-input--small .el-input__inner {
+    height: 40px ;
+    line-height: 40px ;
+    border: 1px solid #3c88f6;
+    color: #6b6b6b;
+    border-radius:0; 
+}
+.changePassword .el-form-item--small .el-form-item__error{
+    top:45px;
+}

@@ -1,63 +1,45 @@
 <template>
-  <div>
-    <div class="header_info">3条失信信息，涉及金额123123元</div>
-    <div class="case_info">
-      <div class="case_info_header">失信信息一</div>
-      <div class="case_detail">
-        <div class="case_detail_left">案号：</div>
-        <div class="case_detail_right">北京市海淀人民法院</div>
-      </div>
-      <div class="case_detail">
-        <div class="case_detail_left">执行法院：</div>
-        <div class="case_detail_right">2015年海民（商）初字第01572号</div>
-      </div>
-      <div class="case_detail">
-        <div class="case_detail_left">省份：</div>
-        <div class="case_detail_right">2018456</div>
-      </div>
-      <div class="case_detail">
-        <div class="case_detail_left">生效法律文书确定的义务：</div>
-        <div class="case_detail_right">3241京23412341</div>
-      </div>
+  <div style="box-sizing:border-box;">
+    <div v-if="cstatus===1">
+      <div class="header_info">{{h_info}}条失信信息</div>
+      <div v-for="(case_info,index) in case_infos" class="case_info">
+            <div class="case_info_header">失信信息{{index+1}}条</div>
+            <div class="case_detail">
+              <div class="case_detail_left">案号：</div>
+              <div class="case_detail_right">{{case_info.casenum}}</div>
+            </div>
+            <div class="case_detail">
+              <div class="case_detail_left">执行法院：</div>
+              <div class="case_detail_right">{{case_info.court}}</div>
+            </div>
+            <div class="case_detail">
+              <div class="case_detail_left">省份：</div>
+              <div class="case_detail_right">{{case_info.sx_sf}}</div>
+            </div>
+            <div class="case_detail">
+              <div class="case_detail_left">生效法律文书确定的义务：</div>
+              <div class="case_detail_right">{{case_info.sx_jt}}</div>
+            </div>
 
-      <div class="case_detail">
-        <div class="case_detail_left">被执行人的履行情况：</div>
-        <div class="case_detail_right">北京市海淀人民法院</div>
-      </div>
+            <div class="case_detail">
+              <div class="case_detail_left">被执行人的履行情况：</div>
+              <div class="case_detail_right">{{case_info.content}}</div>
+            </div>
 
-      <div class="case_detail">
-        <div class="case_detail_left">发布时间：</div>
-        <div class="case_detail_right">北京北京市海淀人民法院北京市海淀人民法院北京市海淀人民人民法院北京市海淀人民人民法院北京市海淀人民人民法院北京市海淀人民人民法院北京市海淀人民北京市海淀人民法院北京市海淀人民法院北京市海淀人民人民法院北京市海淀人民人民法院北京市海淀人民人民法院北京市海淀人民人民法</div>
+            <div class="case_detail">
+              <div class="case_detail_left">发布时间：</div>
+              <div class="case_detail_right">{{case_info.sx_fb}}</div>
+            </div>
+
+            <div class="case_detail">
+              <div class="case_detail_left">具体情形：</div>
+              <div class="case_detail_right">{{case_info.sx_jt}}</div>
+            </div>
       </div>
     </div>
-    <div class="case_info">
-      <div class="case_info_header">失信信息二</div>
-      <div class="case_detail">
-        <div class="case_detail_left">案号：</div>
-        <div class="case_detail_right">北京市海淀人民法院</div>
-      </div>
-      <div class="case_detail">
-        <div class="case_detail_left">执行法院：</div>
-        <div class="case_detail_right">2015年海民（商）初字第01572号</div>
-      </div>
-      <div class="case_detail">
-        <div class="case_detail_left">省份：</div>
-        <div class="case_detail_right">2018456</div>
-      </div>
-      <div class="case_detail">
-        <div class="case_detail_left">生效法律文书确定的义务：</div>
-        <div class="case_detail_right">3241京23412341</div>
-      </div>
 
-      <div class="case_detail">
-        <div class="case_detail_left">被执行人的履行情况：</div>
-        <div class="case_detail_right">北京市海淀人民法院</div>
-      </div>
-
-      <div class="case_detail">
-        <div class="case_detail_left">发布时间：</div>
-        <div class="case_detail_right">北京北京市海淀人民法院北京市海淀人民法院北京市海淀人民人民法院北京市海淀人民人民法院北京市海淀人民人民法院北京市海淀人民人民法院北京市海淀人民北京市海淀人民法院北京市海淀人民法院北京市海淀人民人民法院北京市海淀人民人民法院北京市海淀人民人民法院北京市海淀人民人民法</div>
-      </div>
+    <div v-if="cstatus===2" class="datanull">
+      <span>查询成功，暂无数据</span>
     </div>
   </div>   
 </template>
@@ -66,7 +48,9 @@
     export default {
         data() {
             return { 
-             
+             h_info:'',
+             case_infos:'',
+             cstatus:'',
             }
         },
         methods:{
@@ -74,9 +58,34 @@
             this.$router.go(-1);
           },
         },
+        created(){
+            
+        },
         computed: {
 
         },
+        mounted(){
+            const msgData=localStorage.getItem('msgData');
+            const newmsgData=JSON.parse(msgData);
+            // const shixin_items_t=newmsgData.judicial.fxcontent.shixin;
+            
+            const shixin_items_t={};
+            if(typeof(newmsgData.judicial)==='undefined'){
+              this.cstatus=2;
+            }else{
+              if(newmsgData.judicial.message=='成功获取相关风险数据！'){
+                  shixin_items_t.length=newmsgData.judicial.fxcontent.shixin.length;
+                  shixin_items_t.content=newmsgData.judicial.fxcontent.shixin;
+
+                  this.h_info=shixin_items_t.length;
+                  this.case_infos=shixin_items_t.content;
+                  this.cstatus=1;
+              }else{
+                this.cstatus=2;
+              }
+            }
+            console.log(shixin_items_t)
+        }
 
     }
 
@@ -89,7 +98,9 @@
       background: #fff;
       line-height: 36px;
       padding-left: 20px;
-      margin-bottom: 10px; 
+      margin-bottom: 10px;
+      box-sizing: border-box; 
+      -webkit-box-sizing:border-box;
     }
     .case_info{
       height: auto;
@@ -120,13 +131,20 @@
       font-weight: bold;
       display: inline-block;
       vertical-align: top;
+      padding-left: 10px;
     }
     .case_detail_left{
       width: 20%;
       height: auto;
     }
     .case_detail_right{
-      width: 70%;
+      width: 75%;
       height: auto;
     }
+  .datanull{
+    height: 160px;
+    line-height: 160px;
+    font-size: 20px;
+    text-align: center;
+  }
 </style>

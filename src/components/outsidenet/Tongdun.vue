@@ -3,11 +3,11 @@
       <div class="huifa_header">
         当前位置：<span @click="goBack">首页</span>>>同盾科技（第三方数据查询）
       </div>
-      <div class="huifa_main">
+      <div class="huifa_main changePassword">
           <div style="width:60%;">
             <el-form :model='ruleForm' :rules='rules' ref='ruleForm'>
                 <div style="margin-bottom:10px;text-align:center;">
-                   <span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</span>
+                   <span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</span>
                     <el-form-item style="width:70%;display:inline-block;"  prop='name'>
                       <el-input placeholder="请输入内容" v-model="ruleForm.name" clearable></el-input>
                     </el-form-item>
@@ -24,8 +24,8 @@
                        <el-input style='height:40px' placeholder="请输入内容" v-model="ruleForm.phone" clearable></el-input>
                     </el-form-item>
               </div>
-              <div style="text-align:center">
-                <el-button @click="TQueryResult" plain>查询</el-button>
+              <div class="wrapper_button">
+                <el-button @click="TQueryResult('ruleForm')">查询</el-button>
               </div>
             </el-form>
           </div>
@@ -89,36 +89,48 @@
           goBack(){
             this.$router.push('/moerCredit');
           },
-          TQueryResult(){  
-            // this.$refs[formName].validate((valid)=>{
-            //   if(valid){
-            //     this.$axios.get('http://10.1.2.113:9990/api/v1/search',{
-            //       params:{
-            //         name:this.ruleForm.name,
-            //         cardId:this.ruleForm.cardId,
-            //         phone:this.ruleForm.phone,
-            //       }
-            //     })
-            //     .then(res=>{
-            //       console.log(res.data);
-            //       if(res.data===''||res.data===null||res.data==='{}'){
-            //         this.$message('暂无信息');
-            //       }else{
-            //         let msgData=res.data;
-            //         msgData=JSON.stringify(msgData);
-            //         localStorage.setItem("msgData",msgData);
+          TQueryResult(formName){  
+            this.$refs[formName].validate((valid)=>{
+              if(valid){
+                this.$axios.defaults.withCredentials=true;
+                this.$axios.get('http://123.59.181.202:9990/api/v1/tdsearch',{
+                  params:{
+                    account_name:this.ruleForm.name,
+                    id_number:this.ruleForm.cardId,
+                    account_mobile:this.ruleForm.phone,
+                  }
+                })
+                .then(res=>{
+                  console.log(res.data);
+                  if(res.data===''||res.data===null||res.data==='{}'){
+                    this.$message('登录超时，请重新登录');
+                    this.$router.push('/login');
+                  }else{
+                    // let msgData=res.data;
+                    // msgData=JSON.stringify(msgData);
+                    // localStorage.setItem("msgData",msgData);
+                    let inquireMessage={};
+                    inquireMessage.name=this.ruleForm.name;
+                    inquireMessage.cardId=this.ruleForm.cardId;
+                    inquireMessage.phone=this.ruleForm.phone;
+                    inquireMessage=JSON.stringify(inquireMessage);
+                    localStorage.setItem("InquireMsg",inquireMessage);
+                    localStorage.setItem("InstitutionalChoice",'选项3');
+                    let tdmsgData=JSON.stringify(res.data);
+                    localStorage.setItem("newTdMsg",tdmsgData);
+                    this.$router.push('/tongdunQuery');
 
-            //         this.$router.push('/queryResult');
+                  }
 
-            //       }
-            //     })
-            //     .catch(error=>{
-            //       alert('暂无服务');
-            //         console.log(error);
-            //     })
-            //   }
-            // });
-            this.$router.push('/tongdunQuery')
+                
+                })
+                .catch(error=>{
+                  alert('暂无服务');
+                    console.log(error);
+                })
+              }
+            });
+            // this.$router.push('/tongdunQuery')
           }
         },
         computed: {
@@ -155,7 +167,7 @@
     width: 40%;
     height: 400px;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%,-50%);
     display: flex;
@@ -163,23 +175,32 @@
     align-items: center;
   }
   .el-button{
-      background:#00D1B2;
+      background:#3c88f6;
       height: 45px;
-      width: 120px;
-      border-radius:10px; 
+      width: 330px;
+      border-radius:4px; 
       color: #fff;
       font-weight: bold;
       font-size: 18px;
-      letter-spacing: 4px;
+      letter-spacing: 40px;
+      padding-left: 40px;
   }
-  .el-button:hover{
-      background:#00D1B2;
-      height: 45px;
-      width: 120px;
-      border-radius:10px; 
-      color: #fff;
-      font-weight: bold;
-      font-size: 18px;
-      letter-spacing: 4px;
+  .wrapper_button{
+    text-align:right;
+    padding-right:20px;
+  }
+  @media screen and (max-width: 1500px){
+
+    .el-button{
+        height: 45px;
+        width: 240px;
+        border-radius:4px; 
+        font-size: 18px;
+        letter-spacing: 40px;
+        padding-left: 40px;
+    }
+    .wrapper_button{
+      padding-right:10px;
+    }
   }
 </style>

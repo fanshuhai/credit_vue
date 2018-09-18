@@ -1,110 +1,80 @@
 <template>
   <div>
+
     <div class="header_info">学历信息</div>
-    <div class="case_info">
-      <div class="case_info_header">本科学历信息</div>
+    <div v-if="cstatus===1" v-for="chsi in chsis" class="case_info">
+      <div class="case_info_header">{{chsi.edu_level}}学历信息</div>
       <div class="case_detail">
         <div class="case_detail_left">姓名：</div>
-        <div class="case_detail_right">{{chsi.studentInfo_list[0].real_name}}</div>
+        <div class="case_detail_right">{{chsi.real_name}}</div>
       </div>
 
       <div class="case_detail">
         <div class="case_detail_left">性别：</div>
-        <div class="case_detail_right">{{chsi.studentInfo_list[0].sex}}</div>
-      </div>
-
-      <div class="case_detail">
-        <div class="case_detail_left">民族：</div>
-        <div class="case_detail_right">{{chsi.studentInfo_list[0].nation}}</div>
-      </div>
-
-      <div class="case_detail">
-        <div class="case_detail_left">出身日期：</div>
-        <div class="case_detail_right">{{chsi.studentInfo_list[0].birth_date}}</div>
-      </div>
-
-      <div class="case_detail">
-        <div class="case_detail_left">身份证号：</div>
-        <div class="case_detail_right">{{chsi.studentInfo_list[0].id_card}}</div>
-      </div>
-
-      <div class="case_detail">
-        <div class="case_detail_left">学号：</div>
-        <div class="case_detail_right">{{chsi.studentInfo_list[0].student_id}}</div>
-      </div>
-
-      <div class="case_detail">
-        <div class="case_detail_left">院校名称：</div>
-        <div class="case_detail_right">{{chsi.studentInfo_list[0].school_name}}</div>
-      </div>
-
-      <div class="case_detail"  style="height:auto;">
-        <div class="case_detail_left">分校：</div>
-        <div class="case_detail_right" style="height:auto;">{{chsi.studentInfo_list[0].branch_school}}</div>
-      </div>
-
-      <div class="case_detail">
-        <div class="case_detail_left">系：</div>
-        <div class="case_detail_right">{{chsi.studentInfo_list[0].department}}</div>
-      </div>
-
-      <div class="case_detail">
-        <div class="case_detail_left">专业：</div>
-        <div class="case_detail_right">{{chsi.studentInfo_list[0].specialty}}</div>
-      </div>
-
-      <div class="case_detail">
-        <div class="case_detail_left">班级：</div>
-        <div class="case_detail_right">{{chsi.studentInfo_list[0].class_name}}</div>
-      </div>
-
-       <div class="case_detail">
-        <div class="case_detail_left">学历层次：</div>
-        <div class="case_detail_right">{{chsi.studentInfo_list[0].level}}</div>
-      </div>
-
-       <div class="case_detail">
-        <div class="case_detail_left">学历类别：</div>
-        <div class="case_detail_right">{{chsi.studentInfo_list[0].edu_type}}</div>
-      </div>
-
-       <div class="case_detail">
-        <div class="case_detail_left">学习形式：</div>
-        <div class="case_detail_right">{{chsi.studentInfo_list[0].edu_form}}</div>
+        <div class="case_detail_right">{{chsi.sex}}</div>
       </div>
 
       <div class="case_detail">
         <div class="case_detail_left">入学时间：</div>
-        <div class="case_detail_right">{{chsi.studentInfo_list[0].enrollment_time}}</div>
+        <div class="case_detail_right">{{chsi.enrollment_time}}</div>
+      </div>
+
+      <div class="case_detail">
+        <div class="case_detail_left">毕业时间：</div>
+        <div class="case_detail_right">{{chsi.graduate_time}}</div>
       </div>
 
        <div class="case_detail">
-        <div class="case_detail_left">学籍状态：</div>
-        <div class="case_detail_right">{{chsi.studentInfo_list[0].status}}</div>
+        <div class="case_detail_left">学历类别：</div>
+        <div class="case_detail_right">{{chsi.edu_type}}</div>
       </div>
 
        <div class="case_detail">
-        <div class="case_detail_left">离校时间：</div>
-        <div class="case_detail_right">{{chsi.studentInfo_list[0].leave_school_time}}</div>
+        <div class="case_detail_left">学历层次：</div>
+        <div class="case_detail_right">{{chsi.edu_level}}</div>
+      </div>
+
+       <div class="case_detail">
+        <div class="case_detail_left">毕业学校：</div>
+        <div class="case_detail_right">{{chsi.graduate_school}}</div>
+      </div>
+
+       <div class="case_detail">
+        <div class="case_detail_left">毕业结论：</div>
+        <div class="case_detail_right">{{chsi.graduate}}</div>
+      </div>
+
+       <div class="case_detail">
+        <div class="case_detail_left">专业：</div>
+        <div class="case_detail_right">{{chsi.specialty}}</div>
+      </div>
+
+       <div class="case_detail">
+        <div class="case_detail_left">学习形式：</div>
+        <div class="case_detail_right">{{chsi.edu_form}}</div>
       </div>
 
        <div class="case_detail">
         <div class="case_detail_left">证书编号：</div>
-        <div class="case_detail_right">{{chsi.education_list[0].certificate_no}}</div>
+        <div class="case_detail_right">{{chsi.certificate_no}}</div>
       </div>
     </div>
-  </div>   
+
+    <div v-if="cstatus===2" class="nomseg">
+      <span>查询成功，暂无数据</span>
+    </div>
+
+  </div>
+
+ 
 </template>
 
 <script>
-    const msgData=localStorage.getItem('msgData');
-    const newmsgData=JSON.parse(msgData);
-    const xueli=newmsgData.mx_chsi[0];
-    console.log(xueli);
     export default {
         data() {
             return { 
-              chsi:xueli,
+              chsis:'',
+              cstatus:'',
             }
         },
         methods:{
@@ -112,9 +82,26 @@
             this.$router.go(-1);
           },
         },
+        created(){
+            
+        },
         computed: {
 
         },
+        mounted(){
+          const msgData=localStorage.getItem('msgData');
+          const newmsgData=JSON.parse(msgData);
+          // const xueli=newmsgData.mx_chsi[0].education_list[0];
+          // console.log(xueli);
+          const xueli={};
+          if(typeof(newmsgData.mx_chsi)==='undefined'){
+            this.cstatus=2;
+          }else{
+            xueli.mx_chsi=newmsgData.mx_chsi[0].education_list;
+            this.chsis=xueli.mx_chsi;
+            this.cstatus=1;
+          }
+        }
 
     }
 
@@ -162,11 +149,11 @@
       vertical-align: top;
     }
     .case_detail_left{
-      width: 8%;
+      width: 13%;
       padding-left: 10px;
     }
     .case_detail_right{
-      width: 88%;
+      width: 85%;
       height: auto;
     }
 </style>
