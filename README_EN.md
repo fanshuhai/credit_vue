@@ -1,4 +1,4 @@
-# manage-system #
+<!-- # manage-system #
 The web management system solution based on Vue2 and Element-UI。[live demo](http://blog.gdfengshuo.com/example/work/)
 
 ## Donation
@@ -190,4 +190,4 @@ Finally,enter 'src/components/common/Sidebar.vue' and find el-menu Tags,delete '
 
 ### Green theme ###
 
-![Image text](https://github.com/lin-xin/manage-system/raw/master/screenshots/wms2.png)
+![Image text](https://github.com/lin-xin/manage-system/raw/master/screenshots/wms2.png) -->
