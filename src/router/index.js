@@ -7,7 +7,7 @@ export default new Router({
     routes: [
         {
             path: '/',
-            redirect:'/moerCredit'
+            redirect:'/moerCreditPersonal'
             // redirect: '/dashboard'
         },
         {
@@ -16,10 +16,67 @@ export default new Router({
             meta: { title: '自述文件' },
             children:[
                 {
-                    // path: '/dashboard',
                     path: '/moerCredit',
                     component: resolve => require(['../components/page/MoerCredit.vue'], resolve),
-                    meta: { title: '征信查询' }
+                    meta: { title: '征信查询' },
+                    children:[
+                        {
+                            path: '/moerCreditPersonal',
+                            component: resolve => require(['../components/personalTotalBasic/MoerCreditPersonal.vue'], resolve),
+                            meta: { title: '个人征信报告' }
+                        },
+                        // 个人信息核查-身份核查
+                        {
+                            path: '/idVerification',
+                            component: resolve => require(['../components/personalIfoVe/idVerification/IdVerification.vue'], resolve),
+                            meta: { title: '身份核查' }
+                        },
+                        // 个人信息核查-个人账户核查 _ start   hedi 2018.10.12
+                        {
+                            path:'/bankCardCheck',
+                            component:resolve => require(['../components/personalAccountChecked/bankCardCheck.vue'], resolve),
+                            meta: { title: '银行卡核查' },
+                        },
+                        {
+                            path:'/unionpayPortrait',
+                            component:resolve => require(['../components/personalAccountChecked/unionpayPortrait.vue'], resolve),
+                            meta: { title: '银联消费画像' },
+                        },
+                        {
+                            path:'/bankCardValidation',
+                            component:resolve => require(['../components/personalAccountChecked/bankCardValidation.vue'], resolve),
+                            meta: { title: '银行卡有效性验证' },
+                        },
+                        //-end
+                        //个人信用反欺诈-多头借贷全量核查（zhu）
+                        {
+                            path:'/perUnionPayVerification',
+                            component:resolve => require(['../components/page/personalCreditFraud/perUnionPayVerification.vue'], resolve),
+                            meta: { title: '个人银联账单验证' },
+                        },
+		                {
+		                    path:'/headLendFull',
+		                    component:resolve => require(['../components/page/personalCreditFraud/headLendFull.vue'], resolve),
+		                    meta: { title: '多头借贷全量核查' },
+		                },
+		                {
+		                    path:'/headLendInformation',
+		                    component:resolve => require(['../components/page/personalCreditFraud/headLendInformation.vue'], resolve),
+		                    meta: { title: '多头借贷信息核查' },
+		                },
+		                {
+		                    path:'/headLendOverdue',
+		                    component:resolve => require(['../components/page/personalCreditFraud/headLendOverdue.vue'], resolve),
+		                    meta: { title: '多头借贷逾期核查' },
+		                },
+                        // 计时计费表
+                        {
+                            path:'/billing',
+                            component:resolve => require(['../components/billingOverview/Billing.vue'], resolve),
+                            meta: { title: '计时计费表' },
+                        }
+                        
+                    ]
                 },
                 {
                     path: '/personal',
@@ -44,7 +101,6 @@ export default new Router({
                     ]
                 },
                 {
-                    // path: '/dashboard',
                     path: '/moerCreditCompany',
                     component: resolve => require(['../components/page/MoerCreditCompany.vue'], resolve),
                     meta: { title: '征信查询' }
@@ -140,77 +196,77 @@ export default new Router({
                 },
                 {
                     path: '/totalInfo',
-                    component: resolve => require(['../components/page/TotalInfo.vue'], resolve),
+                    component: resolve => require(['../components/personalTotalBasic/TotalInfo.vue'], resolve),
                     meta: { title: '详细信息' },
                     children:[
                         {
                             path: '/queryResult',
-                            component: resolve => require(['../components/page/QueryResult.vue'], resolve),
+                            component: resolve => require(['../components/personalTotalBasic/QueryResult.vue'], resolve),
                             meta: { title: '查询结果'}
                         },
                         {
                             path:'/perInfoBasic',
-                            component:resolve => require(['../components/page/PerInfoBasic.vue'], resolve),
+                            component:resolve => require(['../components/personalTotalBasic/PerInfoBasic.vue'], resolve),
                             meta: { title: '个人信息-基本信息' },
                         },
                         {
                             path:'/touzi',
-                            component:resolve => require(['../components/page/Touzi.vue'], resolve),
+                            component:resolve => require(['../components/personalTotalBasic/Touzi.vue'], resolve),
                             meta: { title: '个人信息-投资' },
                         },
                         {
                             path:'/renzhi',
-                            component:resolve => require(['../components/page/Renzhi.vue'], resolve),
+                            component:resolve => require(['../components/personalTotalBasic/Renzhi.vue'], resolve),
                             meta: { title: '个人信息-任职' },
                         },
                         {
                             path:'/xueli',
-                            component:resolve => require(['../components/page/Xueli.vue'], resolve),
+                            component:resolve => require(['../components/personalTotalBasic/Xueli.vue'], resolve),
                             meta: { title: '个人信息-学历' },
                         },
                         {
                             path:'/lawCasedetail',
-                            component:resolve => require(['../components/page/LawCasedetail.vue'], resolve),
+                            component:resolve => require(['../components/personalTotalBasic/LawCasedetail.vue'], resolve),
                             meta: { title: '司法信息-法律案件详情' },
                         },
                         {
                             path:'/breach_Blacklist',
-                            component:resolve => require(['../components/page/Breach_Blacklist.vue'], resolve),
+                            component:resolve => require(['../components/personalTotalBasic/Breach_Blacklist.vue'], resolve),
                             meta: { title: '反欺诈信息-失信黑名单' },
                         },
                         {
                             path:'/netcredit_Blacklist',
-                            component:resolve => require(['../components/page/Netcredit_Blacklist.vue'], resolve),
+                            component:resolve => require(['../components/personalTotalBasic/Netcredit_Blacklist.vue'], resolve),
                             meta: { title: '反欺诈信息-网贷黑名单' },
                         },
                         {
                             path:'/highrisk_list',
-                            component:resolve => require(['../components/page/Highrisk_list.vue'], resolve),
+                            component:resolve => require(['../components/personalTotalBasic/Highrisk_list.vue'], resolve),
                             meta: { title: '反欺诈信息-高风险名单' },
                         },
                         {
                             path:'/gongjijin',
-                            component:resolve => require(['../components/page/Gongjijin.vue'], resolve),
+                            component:resolve => require(['../components/personalTotalBasic/Gongjijin.vue'], resolve),
                             meta: { title: '公共信息-公积金' },
                         },
                         {
                             path:'/onlineshopping',
-                            component:resolve => require(['../components/page/Onlineshopping.vue'], resolve),
+                            component:resolve => require(['../components/personalTotalBasic/Onlineshopping.vue'], resolve),
                             meta: { title: '公共信息-网购消费' },
                         },
                         {
                             path:'/yunyingshang',
-                            component:resolve => require(['../components/page/Yunyingshang.vue'], resolve),
+                            component:resolve => require(['../components/personalTotalBasic/Yunyingshang.vue'], resolve),
                             meta: { title: '公共信息-运营商' },
                         },
                         {
                             path:'/societysecurity',
-                            component:resolve => require(['../components/page/Societysecurity.vue'], resolve),
+                            component:resolve => require(['../components/personalTotalBasic/Societysecurity.vue'], resolve),
                             meta: { title: '公共信息-社保' },
                         },
                         {
                             path:'/carinsurance',
-                            component:resolve => require(['../components/page/Carinsurance.vue'], resolve),
+                            component:resolve => require(['../components/personalTotalBasic/Carinsurance.vue'], resolve),
                             meta: { title: '公共信息-车险' },
                         },
                     ]

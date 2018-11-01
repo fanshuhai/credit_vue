@@ -2,7 +2,7 @@
     <div class="wrapper">
         <v-head></v-head>
         <!-- <v-sidebar></v-sidebar> -->
-        <div class="content-box" >
+        <div class="content-box content_scroll" >
             <!-- <v-tags></v-tags> -->
             <div class="content">
                 <transition name="move" mode="out-in">
@@ -69,5 +69,8 @@
     left: 0px;
     padding: 0;
     margin: 0;
+}
+.content_scroll{
+  overflow-y: inherit;
 }
 </style>                                     

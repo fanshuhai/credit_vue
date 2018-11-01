@@ -7,8 +7,8 @@
         <div class="logo"></div>
         <div class="sidebar header-center">
             <el-menu :default-active="activeIndex"  mode="horizontal"   text-color="#fff" active-text-color="#fff" router>
-                <el-menu-item index="moerCredit">摩尔征信</el-menu-item>
-                <el-menu-item index=''  class="bigScreen"><a href="http://123.59.181.202:8080/" target="_blank">实时大屏</a></el-menu-item>
+                <el-menu-item index="moerCreditPersonal">摩尔征信</el-menu-item>
+                <!-- <el-menu-item index=''  class="bigScreen"><a href="123.59.181.202:9001/realtimeofcarloan/bigscreen" target="_blank">实时大屏</a></el-menu-item> -->
                 <!-- <el-menu-item index="3">智能评分卡</el-menu-item> -->
                 <!-- <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>  -->
                 <!-- <el-submenu index="2">
@@ -48,7 +48,7 @@
                 <!-- 用户名下拉菜单 -->
                 <el-dropdown class="user-name" trigger="click" @command="handleCommand">
                     <span class="el-dropdown-link">
-                        {{username}} <i class="el-icon-caret-bottom"></i>
+                        {{username}}，欢迎您！<i class="el-icon-caret-bottom"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
                        <!--  <a href="http://blog.gdfengshuo.com/about/" target="_blank">
@@ -76,7 +76,7 @@
                 fullscreen: false,
                 name: 'admin',
                 message: 2,
-                activeIndex:'moerCredit',
+                activeIndex:'moerCreditPersonal',
             }
         },
         computed:{
@@ -92,7 +92,7 @@
                     sessionStorage.removeItem('ms_username');
                     
                     this.$axios.defaults.withCredentials=true;
-                    this.$axios.get('http://123.59.181.202:8082/logout')
+                    this.$axios.get('http://123.59.181.202:8071/logout')
                     .then(res=>{
                       console.log(res.data);
                       let data=res.data;

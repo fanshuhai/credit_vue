@@ -17,3 +17,50 @@
     line-height: 30px;
 
 }
+
+/*zhuyawen*/
+.bankCardcheckPage,.contentFull{
+   box-sizing: border-box;
+   height: 100%;
+}
+
+/*hedi*/
+.bankCardcheckPage{
+    background: #fff;
+    width: 100%;
+    padding-top: 2%;
+}
+.createSearch{
+    border: 1px solid #ccc;
+    width: 90%;
+    margin-left: 5%;
+    height: auto;
+    padding-bottom: 10px;
+}
+.searchResult{
+    border: 1px solid #ccc;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 3%;
+    min-height: 50%;
+}
+
+
+.queryResult_table .cell {
+  text-align: center;
+}
+.boxShadow{
+  box-shadow:1px 1px 6px 5px #e3e3e2;
+  border-radius: 5px;
+}
+
+
+.systemColor{
+  background:#3c88f6;
+}
+
+.newCheck_form .el-form-item--small .el-form-item__error{
+  top:6px;
+  left: 75px;
+}
+

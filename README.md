@@ -1,4 +1,4 @@
-# manage-system #
+<!-- # manage-system #
 基于Vue.js 2.x系列 + Element UI 的后台管理系统解决方案。[线上地址](http://blog.gdfengshuo.com/example/work/)
 
 [English document](https://github.com/lin-xin/manage-system/blob/master/README_EN.md)
@@ -199,4 +199,4 @@ import 'element-ui/lib/theme-default/index.css';    // 默认主题
 
 ### 浅绿色皮肤 ###
 
-![Image text](https://github.com/lin-xin/manage-system/raw/master/screenshots/wms2.png)
+![Image text](https://github.com/lin-xin/manage-system/raw/master/screenshots/wms2.png) -->

@@ -1291,6 +1291,8 @@
 .el-menu-item.is-active {
     /*color: #00D1B2;*/
     color:#3c88f6;
+    background: #d2e3fd;
+    border-right: 5px solid #0b8efe;
 }
 
 .el-menu-item.is-active i {
@@ -12727,3 +12729,6 @@
 .changePassword .el-form-item--small .el-form-item__error{
     top:45px;
 }
+
+
+

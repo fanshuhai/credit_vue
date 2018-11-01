@@ -56,7 +56,7 @@
                             <td>入网时长</td>
                             <td>{{carriertitle.in_time}}个月</td>
                             <td>账户余额</td>
-                            <td>{{carriertitle.available_balance}}元</td>
+                            <td>{{carriertitle.available_balance/100}}元</td>
                         </tr>
                     </table>
                 </div>
