@@ -101,7 +101,7 @@
                      </el-row>
                    </div>
                </el-main>
-               <el-footer>
+              <!--  <el-footer>
                     <div class="footer_contain">
                      <div class="footer_title contain-center">
                        <p>第三方数据合作查询</p>
@@ -116,7 +116,7 @@
                        </el-row>
                      </div>
                    </div>
-               </el-footer>
+               </el-footer> -->
            </el-container>
         </el-container> 
     </div>
@@ -124,6 +124,7 @@
 
 <script>
     // import vSidebar from '../common/Sidebar_moerCredit.vue';
+    import bus from '../common/bus'
     export default {
         data() {
           let validataName=(rule,value,callback)=>{
@@ -158,6 +159,7 @@
             }
           };
           return { 
+            totalMessage:'',
             radio:'1',
             ruleForm:{
               name:'',
@@ -184,15 +186,15 @@
             //vHead, vSidebar, vTags
         },
         methods:{
-          huifa() {
-              this.$router.push('/huifa');
-          },
-          tongdun() {
-              this.$router.push('/tongdun');
-          },
-          moxieinfo(){
-              this.$router.push('/moxie');
-          },
+          // huifa() {
+          //     this.$router.push('/huifa');
+          // },
+          // tongdun() {
+          //     this.$router.push('/tongdun');
+          // },
+          // moxieinfo(){
+          //     this.$router.push('/moxie');
+          // },
           QueryResult(formName){  
             this.$refs[formName].validate((valid)=>{
               let ruleName=$.trim(this.ruleForm.name);
@@ -200,7 +202,7 @@
               let rulePhone=$.trim(this.ruleForm.phone);
               if(valid){
                 this.$axios.defaults.withCredentials=true;
-                this.$axios.get('http://123.59.181.202:9990/api/v1/search',{
+                this.$axios.get(this.HOST+'/api/v1/search',{
                   params:{
                     name:ruleName,
                     cardId:ruleCardId,
@@ -217,7 +219,6 @@
                   }else{
                     let msgData=res.data;
                     localStorage.clear();
-                    
                     let inquireMessage={};
                     inquireMessage.name=this.ruleForm.name;
                     inquireMessage.cardId=this.ruleForm.cardId;
@@ -234,6 +235,11 @@
                     localStorage.setItem('phone',this.ruleForm.phone);
 
                     // this.$router.replace('/queryResult');
+                    // 
+                    this.totalMessage=res.data;
+                    // 兄弟组件传信息
+                    bus.$emit('cMessage',this.totalMessage)
+
                     this.$router.push('/queryResult');
 
                   } 

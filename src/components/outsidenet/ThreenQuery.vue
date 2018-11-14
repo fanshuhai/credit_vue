@@ -160,7 +160,7 @@
                 let rulePhone=$.trim(this.ruleForm.phone);
                 if(this.elementvalue=="选项1"){
                     this.$axios.defaults.withCredentials=true;
-                    this.$axios.get('http://123.59.181.202:9990/api/v1/search',{
+                    this.$axios.get(this.HOST+'/api/v1/search',{
                       params:{
                         name:ruleName,
                         cardId:ruleCardId,
@@ -187,7 +187,7 @@
                     })
                 }else if(this.elementvalue=="选项2"){
                     this.$axios.defaults.withCredentials=true;
-                    this.$axios.get('http://123.59.181.202:9990/api/v1/hfw/search',{
+                    this.$axios.get(this.HOST+'/api/v1/hfw/search',{
                       params:{
                         name:ruleName,
                         cardId:ruleCardId,
@@ -218,7 +218,7 @@
                     })
                 }else if(this.elementvalue=="选项3"){
                     this.$axios.defaults.withCredentials=true;
-                    this.$axios.get('http://123.59.181.202:9990/api/v1/tdsearch',{
+                    this.$axios.get(this.HOST+'/api/v1/tdsearch',{
                       params:{
                           account_name:ruleName,
                           id_number:ruleCardId,
@@ -257,7 +257,7 @@
                     }
                 }else if( this.elementvalue=="选项5"){
                     this.$axios.defaults.withCredentials=true;
-                    this.$axios.get('http://123.59.181.202:9990/api/v1/multiple/search',{
+                    this.$axios.get(this.HOST+'/api/v1/multiple/search',{
                       params:{
                           account_name:ruleName,
                           id_number:ruleCardId,

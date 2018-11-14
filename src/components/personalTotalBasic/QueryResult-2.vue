@@ -417,13 +417,9 @@
 </template>
 
 <script>
-    import bus from '../common/bus'
     export default {
         data() {
             return { 
-                totalMessage:'',
-
-                total_msg:'',
                 currentime:'',
                 score:0,
                 // 基础信息
@@ -482,12 +478,12 @@
           },
           // 导出报告
           reportOut(){
-            this.urlReport=this.HOST+"/api/v1/download?account_name="+localStorage.getItem('name')+"&id_number="+localStorage.getItem('cardId')+"&account_mobile="+localStorage.getItem('phone');
+            this.urlReport="http://123.59.181.202:9990/api/v1/download?account_name="+localStorage.getItem('name')+"&id_number="+localStorage.getItem('cardId')+"&account_mobile="+localStorage.getItem('phone');
           },
           // 魔蝎报告接口
           moxieReport(){
             this.$axios.defaults.withCredentials=true;
-            this.$axios.get(this.HOST+'/api/v1/moxieReportNum',{
+            this.$axios.get('http://123.59.181.202:9990/api/v1/moxieReportNum',{
               params:{
                 account_name:localStorage.getItem('name'),
                 id_number:localStorage.getItem('cardId'),
@@ -502,7 +498,7 @@
               }else if(res.data===''||res.data===null||res.data==='{}'){
                 this.$message('暂无信息');
               }else{
-                // console.log(res.data);
+                console.log(res.data);
                 //公积金
                 if(res.data.mx_fund==0){
                   this.reportStatus_1=2;
@@ -546,131 +542,6 @@
               // console.log('22222'+error);
               //   console.log('111111'+error.response);
             })
-          },
-          // 征信报告信息
-          creditReportMessage(res_data){
-            // 获取身份验证
-            this.sensetime_twofactor=res_data.sensetime_twofactor;
-            this.acedata_userValidation=res_data.acedata_userValidation;
-            //基础信息
-            this.total_msg=res_data.basicInfo;
-            // 归属地数据
-            const belongto={};
-            if(typeof(res_data.tongdun)==='undefined'){
-                belongto.id_card_address='查询成功，暂无数据。';
-                belongto.phone_attribution='查询成功，暂无数据。';
-
-            }else{
-                belongto.id_card_address=res_data.tongdun.result_desc.INFOANALYSIS.address_detect.id_card_address;
-                belongto.phone_attribution=res_data.tongdun.result_desc.INFOANALYSIS.address_detect.mobile_address;
-            }
-            this.belongtos=belongto;
-            // 失信执行人  法律案件详情
-            const shixinp={};
-            if(typeof(res_data.judicial)==='undefined' || res_data.judicial.message=='请提供正确身份证！[异常输入]' || res_data.judicial.message=='此人无相关风险数据！'){
-              shixinp.blacklist='';
-              shixinp.zhixing='';
-            }else{
-              shixinp.blacklist=res_data.judicial.fxcontent.shixin;
-              shixinp.zhixing=res_data.judicial.fxcontent.zhixing;
-            }
-            this.shixins=shixinp.blacklist;
-            this.zhixings=shixinp.zhixing;
-            if(Object.keys(this.shixins).length>0){
-              this.sstatus=1;
-            }else{
-              this.sstatus=2;
-            };
-            // console.log(this.shixins);
-            if(Object.keys(this.zhixings).length>0){
-              this.zstatus=1;
-            }else{
-              this.zstatus=2;
-            };
-            //多头借贷
-            const headersloan={};
-            if(typeof(res_data.tongdun)==='undefined'){
-
-            }else{
-                  let loan=res_data.tongdun.result_desc.ANTIFRAUD.risk_items;
-                  //console.log(loan)
-                  for(let i=0;i<loan.length;i++){
-                      if(loan[i].risk_name.indexOf('3个月内申请人在多个平台申请借款')>'-1'){
-                        headersloan.association_partner_count=loan[i].risk_detail.association_partner_count;
-                        headersloan.association_partner_details=loan[i].risk_detail.association_partner_details;
-                      }
-                  }
-            }
-            this.headersloans=headersloan;
-            console.log(headersloan)
-            if(Object.keys(this.headersloans).length>0){
-              this.hstatus=1;
-            }else{
-              this.hstatus=2;
-            }
-            
-            //风险反欺诈
-            const risk_fraud=[];
-            if(typeof(res_data.tongdun)==='undefined'){
-
-            }else{
-                const risk_items_t=res_data.tongdun.result_desc.ANTIFRAUD.risk_items;
-                //console.log(risk_items_t.length)
-                let risk_items_d=[];
-                for (let i=0;i<risk_items_t.length;i++){
-                  let obj_l={};
-                  if(typeof(risk_items_t[i].risk_detail)!=='undefined'){
-                    if(typeof(risk_items_t[i].risk_detail.description)!=='undefined' && typeof(risk_items_t[i].risk_detail.hit_type_displayname)!=='undefined' && typeof(risk_items_t[i].risk_detail.black_list_details)!=='undefined'){
-                      obj_l.risk_name=risk_items_t[i].risk_name;
-                      if(typeof(risk_items_t[i].risk_detail.description)==='undefined'){
-                        obj_l.description='暂无信息';
-                      }else{
-                        obj_l.description=risk_items_t[i].risk_detail.description;
-                      }
-                      if(typeof(risk_items_t[i].risk_detail.hit_type_displayname)==='undefined'){
-                        obj_l.hit_type_displayname='暂无信息';
-                      }else{
-                        obj_l.hit_type_displayname=risk_items_t[i].risk_detail.hit_type_displayname;
-                      }
-                      if(typeof(risk_items_t[i].risk_detail.black_list_details)==='undefined'){
-                        obj_l.type='暂无信息';
-                      }else{
-                        obj_l.type=risk_items_t[i].risk_detail.black_list_details[0].fraudTypeDisplayName;
-                      }
-                      
-                    }
-                  }
-                  risk_items_d.push(obj_l);
-                }
-                for(let i=0;i<risk_items_d.length;i++){
-                    if(Object.keys(risk_items_d[i]).length>0){
-                      risk_fraud.push(risk_items_d[i])
-                    }
-                }
-            }
-            this.risk_frauds=risk_fraud;
-            if(Object.keys(this.risk_frauds).length>0){
-              this.rstatus=1;
-            }else{
-              this.rstatus=2;
-            }
-            // 任职信息  投资信息
-            const gscontent={};
-            if(typeof(res_data.industry)==='undefined' || res_data.industry.message=='请提供正确身份证！[异常输入]' || res_data.industry.message=='此人无相关工商数据！'){
-                gscontent.renzhi_now='';
-                gscontent.touzi_now='';
-            }else{
-                gscontent.renzhi_now=res_data.industry.gscontent.renzhi_now;
-                gscontent.touzi_now=res_data.industry.gscontent.touzi_now;
-            }
-            //console.log(gscontent.renzhi_now)
-            this.renzhi_nows=gscontent.renzhi_now;
-            this.touzi_nows=gscontent.touzi_now;
-            if(Object.keys(this.renzhi_nows).length>0){
-              this.tstatus=1;
-            }else{
-              this.tstatus=2;
-            }
           }
 
         },
@@ -693,20 +564,146 @@
           d=d<10?('0'+d):d;
           let currentime1=y+'年'+m+'月'+d+'日';
           // 获取当前时间
+          // debugger;
+          // console.log(typeof(this.currentime))
+          // console.log(typeof(currentime1))
           this.currentime = currentime1;
-
+            // alert(this.currentime)
           const msgData=localStorage.getItem('msgData');
-          this.totalMessage=JSON.parse(msgData);
-          this.creditReportMessage(this.totalMessage)
+          const newmsgData=JSON.parse(msgData);
+          console.log(newmsgData)
+          // 获取身份验证
+          this.sensetime_twofactor=newmsgData.sensetime_twofactor;
+          this.acedata_userValidation=newmsgData.acedata_userValidation;
+          //console.log(newmsgData);
+          //基础信息
+          this.total_msg=newmsgData.basicInfo;
+           // console.log(newmsgData.basicInfo)
+           // console.log(this.total_msg.name)
+          // 归属地数据
+          const belongto={};
+          if(typeof(newmsgData.tongdun)==='undefined'){
+              belongto.id_card_address='查询成功，暂无数据。';
+              belongto.phone_attribution='查询成功，暂无数据。';
+
+          }else{
+              belongto.id_card_address=newmsgData.tongdun.result_desc.INFOANALYSIS.address_detect.id_card_address;
+              belongto.phone_attribution=newmsgData.tongdun.result_desc.INFOANALYSIS.address_detect.mobile_address;
+          }
+         // console.log(belongto);
+          this.belongtos=belongto;
+          //失信执行人  法律案件详情
+          const shixinp={};
+          if(typeof(newmsgData.judicial)==='undefined' || newmsgData.judicial.message=='请提供正确身份证！[异常输入]' || newmsgData.judicial.message=='此人无相关风险数据！'){
+            shixinp.blacklist='';
+            shixinp.zhixing='';
+          }else{
+            shixinp.blacklist=newmsgData.judicial.fxcontent.shixin;
+            shixinp.zhixing=newmsgData.judicial.fxcontent.zhixing;
+          }
+          this.shixins=shixinp.blacklist;
+          this.zhixings=shixinp.zhixing;
+          // console.log(newmsgData)
+          // console.log(Object.keys(this.shixins).length);
+          if(Object.keys(this.shixins).length>0){
+            this.sstatus=1;
+          }else{
+            this.sstatus=2;
+          };
+          // console.log(this.shixins);
+          if(Object.keys(this.zhixings).length>0){
+            this.zstatus=1;
+          }else{
+            this.zstatus=2;
+          };
+          //多头借贷
+          const headersloan={};
+          if(typeof(newmsgData.tongdun)==='undefined'){
+
+          }else{
+                let loan=newmsgData.tongdun.result_desc.ANTIFRAUD.risk_items;
+                //console.log(loan)
+                for(let i=0;i<loan.length;i++){
+                    if(loan[i].risk_name.indexOf('3个月内申请人在多个平台申请借款')>'-1'){
+                      headersloan.association_partner_count=loan[i].risk_detail.association_partner_count;
+                      headersloan.association_partner_details=loan[i].risk_detail.association_partner_details;
+                    }
+                }
+                // console.log(headersloan);
+          }
+          this.headersloans=headersloan;
+          console.log(headersloan)
+          if(Object.keys(this.headersloans).length>0){
+            this.hstatus=1;
+          }else{
+            this.hstatus=2;
+          }
+          
+          //风险反欺诈
+          const risk_fraud=[];
+          if(typeof(newmsgData.tongdun)==='undefined'){
+
+          }else{
+              const risk_items_t=newmsgData.tongdun.result_desc.ANTIFRAUD.risk_items;
+              //console.log(risk_items_t.length)
+              let risk_items_d=[];
+              for (let i=0;i<risk_items_t.length;i++){
+                let obj_l={};
+                if(typeof(risk_items_t[i].risk_detail)!=='undefined'){
+                  if(typeof(risk_items_t[i].risk_detail.description)!=='undefined' && typeof(risk_items_t[i].risk_detail.hit_type_displayname)!=='undefined' && typeof(risk_items_t[i].risk_detail.black_list_details)!=='undefined'){
+                    obj_l.risk_name=risk_items_t[i].risk_name;
+                    if(typeof(risk_items_t[i].risk_detail.description)==='undefined'){
+                      obj_l.description='暂无信息';
+                    }else{
+                      obj_l.description=risk_items_t[i].risk_detail.description;
+                    }
+                    if(typeof(risk_items_t[i].risk_detail.hit_type_displayname)==='undefined'){
+                      obj_l.hit_type_displayname='暂无信息';
+                    }else{
+                      obj_l.hit_type_displayname=risk_items_t[i].risk_detail.hit_type_displayname;
+                    }
+                    if(typeof(risk_items_t[i].risk_detail.black_list_details)==='undefined'){
+                      obj_l.type='暂无信息';
+                    }else{
+                      obj_l.type=risk_items_t[i].risk_detail.black_list_details[0].fraudTypeDisplayName;
+                    }
+                    
+                  }
+                }
+                risk_items_d.push(obj_l);
+              }
+              for(let i=0;i<risk_items_d.length;i++){
+                  if(Object.keys(risk_items_d[i]).length>0){
+                    risk_fraud.push(risk_items_d[i])
+                  }
+              }
+              //console.log(risk_fraud);
+          }
+          this.risk_frauds=risk_fraud;
+          if(Object.keys(this.risk_frauds).length>0){
+            this.rstatus=1;
+          }else{
+            this.rstatus=2;
+          }
+          // 任职信息  投资信息
+          const gscontent={};
+          if(typeof(newmsgData.industry)==='undefined' || newmsgData.industry.message=='请提供正确身份证！[异常输入]' || newmsgData.industry.message=='此人无相关工商数据！'){
+              gscontent.renzhi_now='';
+              gscontent.touzi_now='';
+          }else{
+              gscontent.renzhi_now=newmsgData.industry.gscontent.renzhi_now;
+              gscontent.touzi_now=newmsgData.industry.gscontent.touzi_now;
+          }
+          //console.log(gscontent.renzhi_now)
+          this.renzhi_nows=gscontent.renzhi_now;
+          this.touzi_nows=gscontent.touzi_now;
+          if(Object.keys(this.renzhi_nows).length>0){
+            this.tstatus=1;
+          }else{
+            this.tstatus=2;
+          }
         },
         created(){
-            bus.$on('cMessage',msg=>{
-              console.log(msg)
-              this.totalMessage=msg;
-              let msgData=JSON.stringify(msg);
-              localStorage.setItem("msgData",msgData);
-              this.creditReportMessage(msg)
-            })
             //魔蝎报告接口
             this.moxieReport();
         },

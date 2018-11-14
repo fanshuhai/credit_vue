@@ -1,7 +1,6 @@
 <template>
     <div class="totalInfo">
       <el-container class="content_main">
-
           <el-aside class="sideMenu" width="205px">
               <el-menu class="sidebar-el-menu" :default-active="onRoutes" 
                 unique-opened router>
@@ -80,9 +79,8 @@
 </template>
 
 <script>
-
+    import bus from '../common/bus'
     export default {
-        
         data() {
             let validataName=(rule,value,callback)=>{
               if(value===''){
@@ -137,16 +135,18 @@
                 {
                   value: '选项1',
                   label: '摩尔征信'
-                }, {
-                  value: '选项2',
-                  label: '汇法网'
-                }, {
-                  value: '选项3',
-                  label: '同盾'
-                }, {
-                  value: '选项4',
-                  label: '魔蝎'
-                }, {
+                },
+                //  {
+                //   value: '选项2',
+                //   label: '汇法网'
+                // }, {
+                //   value: '选项3',
+                //   label: '同盾'
+                // }, {
+                //   value: '选项4',
+                //   label: '魔蝎'
+                // },
+                 {
                   value: '选项5',
                   label: '全部'
                 }
@@ -280,6 +280,7 @@
                       ]
                   }
               ],
+              totalMessage:'',
               // activeIndex:'',
 
             }
@@ -318,7 +319,7 @@
                 let rulePhone=$.trim(this.ruleForm.phone);
                 if(this.elementvalue=="选项1"){
                     this.$axios.defaults.withCredentials=true;
-                    this.$axios.get('http://123.59.181.202:9990/api/v1/search',{
+                    this.$axios.get(this.HOST+'/api/v1/search',{
                       params:{
                         name:ruleName,
                         cardId:ruleCardId,
@@ -337,24 +338,32 @@
                         msgData=JSON.stringify(msgData);
                         
                         localStorage.setItem("msgData",msgData);
+                        this.totalMessage=res.data;
+                        // 传递给兄弟组件
+                        bus.$emit('cMessage',this.totalMessage)
                         //结束加载
                         loading.close();
-                        if(this.$route.path=='/queryResult'){
-                          // 刷新当前页面
-                          window.location.reload();
-                        }else{
+                        if(this.$router.path!='/queryResult'){
                           this.$router.push('/queryResult');
                         }
+                        // if(this.$route.path=='/queryResult'){
+                        //   // 刷新当前页面
+                        //   window.location.reload();
+                        // }else{
+                        //   this.$router.push('/queryResult');
+                        // }
                         
                       } 
                     })
                     .catch(error=>{
-                      // alert('暂无服务');
+                        //结束加载
+                        loading.close();
+                        this.$message.error('网络异常');
                         console.log(error);
                     })
                 }else if(this.elementvalue=="选项2"){
                     this.$axios.defaults.withCredentials=true;
-                    this.$axios.get('http://123.59.181.202:9990/api/v1/hfw/search',{
+                    this.$axios.get(this.HOST+'/api/v1/hfw/search',{
                       params:{
                         name:ruleName,
                         cardId:ruleCardId,
@@ -377,12 +386,14 @@
                       } 
                     })
                     .catch(error=>{
-                      // alert('暂无服务');
+                        //结束加载
+                        loading.close();
+                        this.$message.error('网络异常');
                         console.log(error.response);
                     })
                 }else if(this.elementvalue=="选项3"){
                     this.$axios.defaults.withCredentials=true;
-                    this.$axios.get('http://123.59.181.202:9990/api/v1/tdsearch',{
+                    this.$axios.get(this.HOST+'/api/v1/tdsearch',{
                       params:{
                           account_name:ruleName,
                           id_number:ruleCardId,
@@ -405,7 +416,9 @@
                       } 
                     })
                     .catch(error=>{
-                      // alert('暂无服务');
+                        //结束加载
+                        loading.close();
+                        this.$message.error('网络异常');
                         console.log(error.response);
                     })
                 }else if(this.elementvalue=="选项4"){
@@ -414,7 +427,7 @@
                     this.$router.push('/moxieQuery'); 
                 }else if( this.elementvalue=="选项5"){
                     this.$axios.defaults.withCredentials=true;
-                    this.$axios.get('http://123.59.181.202:9990/api/v1/multiple/search',{
+                    this.$axios.get(this.HOST+'/api/v1/multiple/search',{
                       params:{
                           account_name:ruleName,
                           id_number:ruleCardId,
@@ -432,18 +445,26 @@
                         let msgData=res.data;
                         msgData=JSON.stringify(msgData);
                         localStorage.setItem("msgData",msgData);
+                        this.totalMessage=res.data;
+                        // 传递给兄弟组件
+                        bus.$emit('cMessage',this.totalMessage)
                         //结束加载
                         loading.close();
-                        if(this.$route.path=='/queryResult'){
-                          // 刷新当前页面
-                          window.location.reload();
-                        }else{
+                        if(this.$router.path!='/queryResult'){
                           this.$router.push('/queryResult');
                         }
+                        // if(this.$route.path=='/queryResult'){
+                        //   // 刷新当前页面
+                        //   window.location.reload();
+                        // }else{
+                        //   this.$router.push('/queryResult');
+                        // }
                       } 
                     })
                     .catch(error=>{
-                      // alert('暂无服务');
+                        //结束加载
+                        loading.close();
+                        this.$message.error('网络异常');
                         console.log(error.response);
                     })
                 }

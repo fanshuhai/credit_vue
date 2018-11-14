@@ -223,7 +223,7 @@
           QueryResult(formName){  
             this.$refs[formName].validate((valid)=>{
               if(valid){
-                this.$axios.get('http://10.1.2.32:9990/api/v1/search',{
+                this.$axios.get(this.HOST+'/api/v1/search',{
                   params:{
                     name:this.ruleForm.name,
                     cardId:this.ruleForm.cardId,

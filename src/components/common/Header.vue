@@ -92,7 +92,7 @@
                     sessionStorage.removeItem('ms_username');
                     
                     this.$axios.defaults.withCredentials=true;
-                    this.$axios.get('http://123.59.181.202:8071/logout')
+                    this.$axios.get(this.HOSTLogin+'/logout')
                     .then(res=>{
                       console.log(res.data);
                       let data=res.data;

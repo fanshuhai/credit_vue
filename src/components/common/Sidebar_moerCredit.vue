@@ -12,12 +12,12 @@
                     </template>
                     <template v-for="item2 in item1.subs">
                     <!-- 判断三级菜单有子节点 -->
-                        <template v-if="item2.subsChild">
+                        <template v-if="item2.subs">
                             <el-submenu :index="item2.index" :key="item2.index">
                                 <template slot="title">
                                       <i :class="item2.icon"></i><span slot="title">{{ item2.title }}</span>
                                 </template>
-                                <el-menu-item v-for="item3 in item2.subsChild" :index="item3.index" :key="item3.index">
+                                <el-menu-item v-for="item3 in item2.subs" :index="item3.index" :key="item3.index">
                                   <i :class="item3.icon"></i><span slot="title">{{ item3.title }}</span>
                                 </el-menu-item>
                             </el-submenu>
@@ -62,12 +62,6 @@
                         //         },
                         // ]
                     },
-                    // {
-                    //     icon: 'el-icon-overView',
-                    //     index: '2',
-                    //     title: '企业征信报告',
-                       
-                    // },
                     {
                         icon: 'el-icon-personal',
                         index: '3',
@@ -76,7 +70,7 @@
                             {
                                 index: '3-1',
                                 title: '身份核查',
-                                subsChild: [
+                                subs: [
                                     {
                                         index: 'idVerification',
                                         title: '身份核查'
@@ -88,7 +82,7 @@
                             {
                                 index: '3-2',
                                 title: '个人账户核查',
-                                subsChild: [
+                                subs: [
                                     {
                                         index: 'bankCardCheck',
                                         title: '银行卡核查'
@@ -108,7 +102,7 @@
                             //   personalCreditFraud
                                 index: '3-3',
                                 title: '个人信用反欺诈',
-                                subsChild: [
+                                subs: [
                                     {
                                         index: 'perUnionPayVerification',
                                         title: '个人银联账单验证'
@@ -129,30 +123,6 @@
                             },
                         ]
                     },
-                    // {
-                    //     icon: 'el-icon-judicial',
-                    //     index: '4',
-                    //     title: '客户授权数据报告',
-                    //     subs: [
-                    //             {
-                    //                 icon: 'el-icon-basicLine',
-                    //                 index: 'LetterList',
-                    //                 title: '信审名单'
-                    //             }
-                    //     ]
-                    // },
-                    // {
-                    //     icon: 'el-icon-frand',
-                    //     index: '5',
-                    //     title: '企业信息核查',
-                    //     subs: [
-                    //             {
-                    //                 icon: 'el-icon-basicLine',
-                    //                 index: 'variableLibrary',
-                    //                 title: '变量库'
-                    //             }
-                    //     ]
-                    // },
                     {
                         icon: 'el-icon-frand',
                         index: '6',
@@ -193,7 +163,11 @@
             // bus.$on('collapse', msg => {
             //     this.collapse = msg;
             // })
-            
+            if(sessionStorage.getItem('sideData')){
+                let sideData=sessionStorage.getItem('sideData');
+                let sideRoute=JSON.parse(sideData);
+                this.items=sideRoute.subs;
+            }
         },
         mounted(){
 

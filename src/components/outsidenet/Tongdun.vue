@@ -93,7 +93,7 @@
             this.$refs[formName].validate((valid)=>{
               if(valid){
                 this.$axios.defaults.withCredentials=true;
-                this.$axios.get('http://123.59.181.202:9990/api/v1/tdsearch',{
+                this.$axios.get(this.HOST+'/api/v1/tdsearch',{
                   params:{
                     account_name:this.ruleForm.name,
                     id_number:this.ruleForm.cardId,
