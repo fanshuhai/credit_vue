@@ -732,7 +732,7 @@
     text-align: center;
     padding-top:20px;
     font-size: 28px;
-    color: #3c88f6;
+    color: #30af90;
     font-weight: 600;
     letter-spacing: 5px;
 
@@ -790,7 +790,7 @@
   .prostyle_title .border_style{
     padding:0 0 0 25px;
     margin-right: 10px;
-    border-right: 8px solid #3c88f6;
+    border-right: 8px solid #30af90;
   }
   .prostyle_main{
     padding-top: 20px;
@@ -872,7 +872,7 @@
     text-align:right;
   }
   .el-button{
-    background:#3c88f6;
+    background:#30af90;
     height: 45px;
     text-align: center;
     width: 200px;
@@ -923,7 +923,7 @@
     text-align: center;
   }
   .authorization td:nth-child(3){
-    color: #3c88f6;
+    color: #30af90;
     cursor: pointer;
   }
 </style>

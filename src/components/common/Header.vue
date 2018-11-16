@@ -7,7 +7,7 @@
         <div class="logo"></div>
         <div class="sidebar header-center">
             <el-menu :default-active="activeIndex"  mode="horizontal"   text-color="#fff" active-text-color="#fff" router>
-                <el-menu-item index="moerCreditPersonal">摩尔征信</el-menu-item>
+                <el-menu-item class="intelligenceRisk" index="moerCreditPersonal">摩尔征信</el-menu-item>
                 <!-- <el-menu-item index=''  class="bigScreen"><a href="123.59.181.202:9001/realtimeofcarloan/bigscreen" target="_blank">实时大屏</a></el-menu-item> -->
                 <!-- <el-menu-item index="3">智能评分卡</el-menu-item> -->
                 <!-- <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>  -->
@@ -44,11 +44,11 @@
                     <span class="btn-bell-badge" v-if="message"></span>
                 </div> -->
                 <!-- 用户头像 -->
-                <div class="user-avator"><img src="static/img/img2.png"></div>
+                <div class="user-avator"><img src="static/img/me.png"></div>
                 <!-- 用户名下拉菜单 -->
                 <el-dropdown class="user-name" trigger="click" @command="handleCommand">
                     <span class="el-dropdown-link">
-                        {{username}}，欢迎您！<i class="el-icon-caret-bottom"></i>
+                        {{username}}，欢迎您！ <i class="el-icon-caret-bottom"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
                        <!--  <a href="http://blog.gdfengshuo.com/about/" target="_blank">
@@ -162,23 +162,23 @@
         position: relative;
         box-sizing: border-box;
         width: 100%;
-        height: 70px;
+        height: 60px;
         font-size: 22px;
         color: #fff;
-        background: #3c88f6;
+        background: #fff;
         z-index: 999;
     }
     /*.collapse-btn{
         float: left;
         padding: 0 21px;
         cursor: pointer;
-        line-height: 70px;
+        line-height: 60px;
     }*/
     .header .logo{
         float: left;
         width:250px;
-        height: 70px;
-        line-height: 70px;
+        height: 60px;
+        line-height: 60px;
         background-image:url(../../assets/img/logo.png);
         background-size:50% 50%;
         background-repeat: no-repeat;
@@ -191,7 +191,7 @@
     }
     .header-user-con{
         display: flex;
-        height: 70px;
+        height: 60px;
         align-items: center;
     }
     .btn-fullscreen{
@@ -215,7 +215,7 @@
         height: 8px;
         border-radius: 4px;
         background: #f56c6c;
-        color: #fff;
+        color: #f0f0f0;
     }
     .btn-bell .el-icon-bell{
         color: #fff;
@@ -228,12 +228,13 @@
     }
     .user-avator img{
         display: block;
-        width:20px;
-        height:20px;
+        width:30px;
+        height:30px;
         /*border-radius: 50%;*/
     }
     .el-dropdown-link{
-        color: #fff;
+        color: #606266;
+        font-weight: bold;
         cursor: pointer;
     }
     .el-dropdown-menu__item{
@@ -241,22 +242,26 @@
     }
     .header-center{
         float: left;
-        height: 70px;
+        height: 60px;
         width: 60%;
     }
     .el-menu,.el-menu .el-menu-item,.template{
         height: 100%;
-        background:#3c88f6;
+        background:#fff;
+    }
+    .el-menu--horizontal{
+        border:0;
     }
     .el-menu--horizontal>.el-menu-item.is-active{
-        border-bottom: 0px solid #4b7bc1 !important;
-        background: #4b7bc1;
+        /*border-bottom: 0px solid #4b7bc1 !important;
+        background: #4b7bc1;*/
     }
     .el-menu .el-menu-item{
         font-size: 16px;
+        font-weight: bold;
     }
     .el-menu .el-menu-item:hover,.el-menu .el-menu-item:focus,.el-menu .el-menu-item a:hover,.el-menu .el-menu-item a:focus{
-        background: #4b7bc1 !important;
+        /*background: #4b7bc1 !important;*/
     }
 
     .bigScreen a{
@@ -269,7 +274,11 @@
 
     }
     .bigScreen a:hover{
-        background: #4b7bc1;
+        color: #30af90;
+    }
+    .intelligenceRisk{
+        color: #30af90 !important;
+        border-bottom: 2px solid #30af90 !important;
     }
     @media screen and (max-width: 1500px){
         .user-avator img{

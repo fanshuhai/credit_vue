@@ -31,7 +31,7 @@
                        ></el-date-picker>
                     </el-col>
                     <el-col :span="5">
-                      <el-button @click="recordQuery">查询</el-button>
+                      <el-button class="themeG_b" @click="recordQuery">查询</el-button>
                     </el-col>
                   </el-row>
                </div>
@@ -404,7 +404,6 @@
         padding-left: 0%;
     }
     .el-button{
-      background:#3c88f6;
       height: 36px;
       text-align: center;
       width: 120px;

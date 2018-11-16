@@ -2,21 +2,21 @@
     <div class="totalInfo">
       <el-container class="content_main">
           <el-aside class="sideMenu" width="205px">
-              <el-menu class="sidebar-el-menu" :default-active="onRoutes" 
+              <el-menu class="sidebar-el-menu themeG_b" :default-active="onRoutes" 
                 unique-opened router>
                   <template v-for="item in items">
                       <template v-if="item.subs">
-                          <el-submenu :index="item.index" :key="item.index">
+                          <el-submenu class="themeG_b" :index="item.index" :key="item.index">
                               <template slot="title">
                                   <i :class="item.icon"></i><span slot="title">{{ item.title }}</span>
                               </template>
-                              <el-menu-item v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index">
+                              <el-menu-item class="themeG_b" v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index">
                                   {{ subItem.title }}
                               </el-menu-item>
                           </el-submenu>
                       </template>
                       <template v-else>
-                          <el-menu-item :index="item.index" :key="item.index">
+                          <el-menu-item class="themeG_b" :index="item.index" :key="item.index">
                               <i :class="item.icon"></i><span slot="title">{{ item.title }}</span>
                           </el-menu-item>
                       </template>
@@ -62,7 +62,7 @@
                         </el-col>
                         <el-col :span="2">
                           <div class="grid-content">
-                            <el-button @click="querySelect('ruleForm')" type="success">查询</el-button>
+                            <el-button class="themeG_b" @click="querySelect('ruleForm')" type="success">查询</el-button>
                           </div>
                         </el-col>
                       </el-form>
@@ -246,7 +246,7 @@
                   {
                       icon: 'el-icon-publicMsg',
                       index: '5',
-                      title: '公共信息',
+                      title: '授权数据',
                       subs: [
                           {
                               index: 'onlineshopping',
@@ -590,7 +590,6 @@
       display: inline-block;
   }
   .el-button{
-      background:#3c88f6;
       height: 30px;
       width: 100px;
       border-radius:4px; 
@@ -601,10 +600,10 @@
   /*.el-aside{
     float: left;
   }*/
-  .main_right{
+ .main_right{
     /*float:right;
     width: 90%;*/
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
     height: 92.5vh;
   }
   .sideMenu{

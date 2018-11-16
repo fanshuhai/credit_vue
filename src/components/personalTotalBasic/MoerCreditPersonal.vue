@@ -332,7 +332,7 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        margin: 10px 10px 20px 0;
+        margin: 0px 10px 10px 0;
     }
     .el-main{
         flex:1.5;
@@ -360,7 +360,7 @@
     .header_title{
       height:50%;
       font-size: 45px;
-      color: #3c88f6;
+      color: #30af90;
       position: relative;
     }
     .header_title p:before,.header_title p:after{
@@ -376,7 +376,7 @@
     }
     .header_title p:before{
         background-image: url(../../assets/img/tb1.png); 
-        left: 39%;
+        left: 39.5%;
     }
     .header_title p:after{
         background-image: url(../../assets/img/tb2.png); 
@@ -400,7 +400,7 @@
       letter-spacing: 2px;
     }
     .header_input .el-button{
-      background:#3c88f6;
+      background:#30af90;
       height: 36px;
       text-align: center;
       width: 180px;
@@ -503,7 +503,7 @@
       background-repeat: no-repeat;
       cursor: pointer;
       background-position: center;
-      border-right: 1px solid #3c88f6;
+      border-right: 1px solid #30af90;
     }
 
     .footer_thirdP2{
@@ -512,7 +512,7 @@
       background-repeat: no-repeat;
       cursor: pointer;
       background-position: center;
-      border-right: 1px solid #3c88f6;
+      border-right: 1px solid #30af90;
     }
 
     .footer_thirdP3{
@@ -521,7 +521,7 @@
       background-repeat: no-repeat;
       cursor: pointer;
       background-position: center;
-      border-right: 1px solid #3c88f6;
+      border-right: 1px solid #30af90;
     }
     .footer_thirdP4{
       background-image: url(../../assets/img/about_logo.png);
@@ -529,7 +529,7 @@
       background-repeat: no-repeat;
       cursor: pointer;
       background-position: center;
-      border-right: 1px solid #3c88f6;
+      border-right: 1px solid #30af90;
     }
     .footer_thirdP5{
       background-image: url(../../assets/img/logo1.png);
@@ -604,7 +604,7 @@
         left: 30px;
     }
     .active,.active2{
-        border-right: 5px solid #3c88f6;
+        border-right: 5px solid #30af90;
         background: #d2e3fd;
     }
 

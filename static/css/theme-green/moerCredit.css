@@ -56,11 +56,66 @@
 
 
 .systemColor{
-  background:#3c88f6;
+  background:#30af90;
 }
 
 .newCheck_form .el-form-item--small .el-form-item__error{
   top:6px;
   left: 75px;
 }
+
+.titleStyle{
+  text-align: center;
+  font-weight: bold;
+}
+.contentStyle{
+  text-indent: 36px;
+}
+
+.agrermentDialog .el-dialog__body {
+    padding: 5px 10px 20px 20px;
+}
+
+
+/*green  theme*/
+.themeG_b{
+	background: #30af90;
+}
+.themeG_c{
+	color: #30af90;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

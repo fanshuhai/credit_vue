@@ -172,7 +172,7 @@
     align-items: center;
   }
   .el-button{
-      background:#3c88f6;
+      background:#30af90;
       height: 45px;
       width: 330px;
       border-radius:4px; 

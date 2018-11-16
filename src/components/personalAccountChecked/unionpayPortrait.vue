@@ -289,7 +289,7 @@
             font-size: 14px
         }
         .buttonPrimary{
-            background: #3c88f6;
-            border-color: #3c88f6;
+            background: #30af90;
+            border-color: #30af90;
         }*/
     </style>

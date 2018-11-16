@@ -8,24 +8,24 @@
     background: #f2f2f2;
 }
 .plugins-tips a{
-    color: #00d1b2;
+    color: #30af90;
 }
 .el-upload--text em {
-    color: #00d1b2;
+    color: #30af90;
 }
 .pure-button{
-    background: #00d1b2;
+    background: #30af90;
 }
 .pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
-    background-color: #00d1b2 !important;
-    border-color: #00d1b2 !important;
+    background-color: #30af90 !important;
+    border-color: #30af90 !important;
 }
 .tags-li.active {
-    border: 1px solid #00d1b2;
-    background-color: #00d1b2;
+    border: 1px solid #30af90;
+    background-color: #30af90;
 }
 .collapse-btn:hover{
-    background: #00d1b2;
+    background: #30af90;
 }
 
 

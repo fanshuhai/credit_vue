@@ -1,30 +1,30 @@
 <template>
     <div class="sidebar">
-        <el-menu class="sidebar-el-menu" :default-active="onRoutes"  
+        <el-menu class="sidebar-el-menu themeG_b" :default-active="onRoutes"  
           unique-opened  router>
             <template v-for="item1 in items">
             <!-- 判断一级菜单有子节点 -->
-                <template v-if="item1.subs">
-                  <el-submenu :index="item1.index" :key="item1.index">
+                <template v-if="item1.subs.length>0">
+                  <el-submenu class="themeG_b" :index="item1.index" :key="item1.index">
                 <!-- 判断二级菜单有子节点 -->
                     <template slot="title">
                           <i :class="item1.icon"></i><span slot="title">{{ item1.title }}</span>
                     </template>
                     <template v-for="item2 in item1.subs">
                     <!-- 判断三级菜单有子节点 -->
-                        <template v-if="item2.subs">
-                            <el-submenu :index="item2.index" :key="item2.index">
+                        <template v-if="item2.subs.length>0">
+                            <el-submenu class="themeG_b" :index="item2.index" :key="item2.index">
                                 <template slot="title">
                                       <i :class="item2.icon"></i><span slot="title">{{ item2.title }}</span>
                                 </template>
-                                <el-menu-item v-for="item3 in item2.subs" :index="item3.index" :key="item3.index">
+                                <el-menu-item class="themeG_b" v-for="item3 in item2.subs" :index="item3.index" :key="item3.index">
                                   <i :class="item3.icon"></i><span slot="title">{{ item3.title }}</span>
                                 </el-menu-item>
                             </el-submenu>
                         </template>
 
                         <template v-else>
-                          <el-menu-item :index="item2.index" :key="item2.index">
+                          <el-menu-item class="themeG_b" :index="item2.index" :key="item2.index">
                               <i :class="item2.icon"></i><span slot="title">{{ item2.title }}</span>
                           </el-menu-item>
                         </template>
@@ -188,13 +188,11 @@
     }
     .sidebar-el-menu:not(.el-menu--collapse){
         width: 206px;
-        padding-top: 10px;
     }
     .el-menu-item.is-active{
-        /* color: #3c88f6; */
-        color: #0b8efe;
-        background: #d2e3fd;
-        border-right: 5px solid #0b8efe;
+        color: #fff;
+        background: #8bd7c4;
+        /*border-right: 5px solid #0b8efe;*/
     }
     .sidebar > ul {
         height:100%;

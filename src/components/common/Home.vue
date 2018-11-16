@@ -62,6 +62,9 @@
     }
 </script>
 <style scoped>
+.wrapper{
+	background: #eee;
+}
 .content{
     padding:0 0 0 0px;
 }

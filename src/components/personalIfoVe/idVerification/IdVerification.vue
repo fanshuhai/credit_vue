@@ -25,7 +25,7 @@
                         </el-col>
                         <el-col :span="6">
                             <el-form-item>
-                                <el-button type="primary" @click="onSubmit_nameId('form')" style="background: #3c88f6">提交</el-button>
+                                <el-button type="primary" @click="onSubmit_nameId('form')">提交</el-button>
                             </el-form-item>
                         </el-col>
                     </el-row>
@@ -44,7 +44,7 @@
                         </el-col>
                         <el-col :span="6">
                             <el-form-item>
-                                <el-button type="primary" @click="onSubmit_namePhone('form')" style="background: #3c88f6">提交</el-button>
+                                <el-button type="primary" @click="onSubmit_namePhone('form')">提交</el-button>
                             </el-form-item>
                         </el-col>
                     </el-row>

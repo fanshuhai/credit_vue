@@ -26,7 +26,7 @@
                         </el-col>
                         <el-col :span="6">
                             <el-form-item >
-                                <el-button type="primary" @click="onSubmit_nameBankcard('form')" style="background: #3c88f6;border-color: #3c88f6">提交</el-button>
+                                <el-button type="primary" @click="onSubmit_nameBankcard('form')">提交</el-button>
                             </el-form-item>
                         </el-col>
                     </el-row>
@@ -45,7 +45,7 @@
                         </el-col>
                         <el-col :span="6">
                             <el-form-item>
-                                <el-button type="primary" @click="onSubmit_phoneBankcard('form')" style="background: #3c88f6;border-color: #3c88f6">提交</el-button>
+                                <el-button type="primary" @click="onSubmit_phoneBankcard('form')">提交</el-button>
                             </el-form-item>
                         </el-col>
                     </el-row>
@@ -64,7 +64,7 @@
                         </el-col>
                         <el-col :span="6">
                             <el-form-item>
-                                <el-button type="primary" @click="onSubmit_cardBankcard('form')" style="background: #3c88f6;border-color: #3c88f6">提交</el-button>
+                                <el-button type="primary" @click="onSubmit_cardBankcard('form')">提交</el-button>
                             </el-form-item>
                         </el-col>
                     </el-row>

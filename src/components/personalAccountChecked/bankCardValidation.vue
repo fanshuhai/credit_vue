@@ -17,7 +17,7 @@
                         </el-col>
                         <el-col :span="6">
                             <el-form-item>
-                                <el-button type="primary" @click="onSubmit('form')" style="background: #3c88f6">提交</el-button>
+                                <el-button type="primary" @click="onSubmit('form')">提交</el-button>
                             </el-form-item>
                         </el-col>
                     </el-row>

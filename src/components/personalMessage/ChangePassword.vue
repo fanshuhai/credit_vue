@@ -22,7 +22,7 @@
                     </el-form-item>
               </div>
               <div style="text-align:right">
-                <el-button @click="submitForm('ruleForm')" >提交</el-button>
+                <el-button class="themeG_b" @click="submitForm('ruleForm')" >提交</el-button>
               </div>
             </el-form>
           </div>
@@ -160,7 +160,6 @@
     align-items: center;
   }
   .el-button{
-      background:#3c88f6;
       height: 45px;
       width: 330px;
       border-radius:4px; 

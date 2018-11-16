@@ -70,7 +70,7 @@
 </script>
 <style scoped>
     .wrapper{
-        margin:10px 10px 0 0;
+        margin:0px 10px 0 0;
         height: auto;
         background: #fff;
     }
