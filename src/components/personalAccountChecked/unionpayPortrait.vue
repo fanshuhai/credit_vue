@@ -29,7 +29,7 @@
                     <span style="margin-left: 30px">查询结果样例</span>
                 </div> 
                 <template>
-                    <div class="el-table_content">
+                    <div class="el-table_content selfTable">
                        <!--  <el-table
                           :table-data="tableData" 
                           :span-method="arraySpanMethod"
@@ -226,27 +226,26 @@
             text-align: center;
         }
 
-        table{
+        /*table{
             width: 100%;
-            border: 1px solid #e6f0fe;
+            border: 1px solid #dcdfe6;
         }
         tr{
-           border: 1px solid #e6f0fe; 
-        }
-        th{
+           border: 1px solid #dcdfe6; 
+        }*/
+        /*th{
             height: 40px;
             text-align: center;
             line-height: 40px;
-            background: #e6f0fe;
             font-size: 16px;
-        }
+        }*/
         td{
             min-height: 30px;
             line-height: 30px;
             width: 6%;
             font-size: 12px;
             text-align: center;
-            border:1px solid #e6f0fe; 
+            /*border:1px solid #dcdfe6;*/ 
             overflow:hidden;
             word-wrap:break-word;
             word-break: break-all;
@@ -260,9 +259,8 @@
         .noData td{
             min-height: 50px;
             line-height: 50px;
-            font-size: 16px;
             text-align: center;
-            border:1px solid #e6f0fe; 
+            border-top:1px solid #dcdfe6; 
             overflow:hidden;
             word-wrap:break-word;
             word-break: break-all;

@@ -9,32 +9,23 @@
                       </div>
                       <div class="header_input">
                         <el-row :gutter="30" type="flex" justify="center">
-                          <el-form :model='ruleForm' :rules='rules' ref='ruleForm' style="width:100%;">
+                          <el-form :model='ruleForm' :rules='rules' :inline="true"  ref='ruleForm' style="width:100%;">
                             <el-col :span="7">
-                              <div class="name_style" >
-                                <span>姓&nbsp;&nbsp;&nbsp;名：</span>
-                                <el-form-item  prop='name'>
-                                  <el-input placeholder="请输入内容" v-model="ruleForm.name" clearable></el-input>
+                                <el-form-item label="姓                                      名："  prop="name">
+                                    <el-input placeholder="请输入内容" v-model="ruleForm.name" clearable></el-input>
                                 </el-form-item>
-                              </div>
                             </el-col>
                             <el-col :span="7">
-                              <div class="" style="padding-left:20px;">
-                                <span>身份证号：</span>
-                                <el-form-item  prop='cardId'>
+                                <el-form-item label="身份证号：" prop='cardId'>
                                   <el-input class="cardId_style" placeholder="请输入内容" v-model="ruleForm.cardId" clearable></el-input>
                                 </el-form-item>
-                              </div>
                             </el-col>
-                            <el-col :span="6">
-                              <div class="">
-                                <span>手机号码：</span>
-                                <el-form-item  prop='phone'>
+                            <el-col :span="7">
+                                <el-form-item label="手机号码："  prop='phone'>
                                  <el-input placeholder="请输入内容" v-model="ruleForm.phone" clearable></el-input>
                                 </el-form-item>
-                              </div>
                             </el-col>
-                            <el-col :span="4">
+                            <el-col :span="3">
                               <div class=""  >
                                 <el-button @click="QueryResult('ruleForm')" >查询</el-button>
                               </div>
@@ -51,46 +42,50 @@
                       <el-col :span="4">
                         <div class="grid-content">
                           <ul>
-                            <li>个人信息</li>
-                            <li>基本信息</li>
-                            <li>任职信息</li>
-                            <li>投资信息</li>
+                            <li>身份验证</li>
+                            <li>身份证核查</li>
+                            <li>手机号核查</li>
+                            <li>肖像核查</li>
+                            <li>OCR服务</li>
                           </ul>
                         </div>
                       </el-col>
                       <el-col :span="5">
                         <div class="grid-content">
                             <ul>
-                              <li>信贷信息</li>
-                              <li>多头借贷</li>
-                            </ul>
-                        </div>
-                      </el-col>
-                      <el-col :span="5">
-                        <div class="grid-content">
-                            <ul>
+                              <li>个人信用反欺诈</li>
                               <li>司法信息</li>
-                              <li>裁判文书</li>
-                              <li>执行信息</li>
-                              <li>失信信息</li>
+                              <li>多头借贷</li>
+                              <li>手机号检测</li>
+                              <li>身份证号检测</li>
                             </ul>
                         </div>
                       </el-col>
                       <el-col :span="5">
                         <div class="grid-content">
                             <ul>
-                              <li>风险信息</li>
-                              <li>身份证号检测</li>
-                              <li>手机号检测</li>
+                              <li>个人账户核查</li>
+                              <li>银联账单验证</li>
+                              <li>银联消费画像</li>
+                            </ul>
+                        </div>
+                      </el-col>
+                      <el-col :span="5">
+                        <div class="grid-content">
+                            <ul>
+                              <li>资产信息</li>
+                              <li>个人工商投资</li>
+                              <li>车辆信息</li>
+                              <li>房产信息</li>
                             </ul>
                         </div>
                       </el-col>
                       <el-col :span="5">
                          <div class="grid-content ">
                             <ul>
-                              <li>辅助型授权数据</li>
-                              <li>运营商</li>
+                              <li>授权数据</li>
                               <li>网购消费</li>
+                              <li>运营商</li>
                               <li>社保</li>
                               <li>公积金</li>
                               <li>学历</li>
@@ -388,7 +383,7 @@
     }
     .header_input{
       height: 40%;
-      padding:20px 180px;
+      padding:20px 120px;
       margin-top: 20px;
       box-sizing:border-box;
     }
@@ -422,6 +417,9 @@
       line-height: 350%;
       font-size: 22px;
       color: #666;
+    }
+    .el-form-item__label{
+    	background: red;
     }
     .main_contain_title:before,.main_contain_title:after{
         content:''; 

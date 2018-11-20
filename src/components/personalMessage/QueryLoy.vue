@@ -63,7 +63,7 @@
                       </el-col>
                   </el-row>
                </div>
-               <div class="queryLoyR">
+               <div class="queryLoyR selfTable">
                    <table cellspacing="0" cellpadding="0" >
                        <thead>
                            <tr>
@@ -77,10 +77,10 @@
                        </thead>
                        <tbody>
                            <tr v-for='query in querys'>
-                               <!-- <td>{{query.channel}}</td> -->
+                               <!-- <td>{{query.channelCode}}</td> -->
                                <td>{{query.queryDate}}</td>
                                <td>{{query.customerName}}</td>
-                               <td>{{query.channel}}</td>
+                               <td>{{query.channelCode}}</td>
                                <td>{{query.thirdRes}}</td>
                                <td>{{query.cost}}</td>
                            </tr>
@@ -415,28 +415,6 @@
     }
     .el-date-editor.el-input, .el-date-editor.el-input__inner{
         width: 160px;
-    }
-    table{
-        width: 100%;
-        border: 1px solid #e6f0fe;
-    }
-    tr{
-       border: 1px solid #e6f0fe; 
-    }
-    th{
-        height: 40px;
-        text-align: center;
-        width: 16%;
-        line-height: 40px;
-        background: #e6f0fe;
-        font-size: 16px;
-    }
-    td{
-        min-height: 40px;
-        line-height: 40px;
-        font-size: 12px;
-        text-align: center;
-        border-top:1px solid #e6f0fe; 
     }
     .el-pagination{
         text-align: center;

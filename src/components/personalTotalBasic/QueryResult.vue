@@ -705,9 +705,30 @@
               this.totalMessage=msg;
               let msgData=JSON.stringify(msg);
               localStorage.setItem("msgData",msgData);
-              this.creditReportMessage(msg)
+              this.creditReportMessage(msg);
+              // 更新 报告url
+              this.urlReport=this.HOST+"/api/v1/download?account_name="+localStorage.getItem('name')+"&id_number="+localStorage.getItem('cardId')+"&account_mobile="+localStorage.getItem('phone');
+            });
+            bus.$on('moxieReport',msg=>{
+            	if(msg==1){
+	              //魔蝎报告接口
+	              this.moxieReport();
+            	}else{
+	                //公积金
+	                  this.reportStatus_1=2;
+	                //车险
+	                  this.reportStatus_2=2;
+	                //社保
+	                  this.reportStatus_3=2;
+	                //淘宝
+	                  this.reportStatus_4=2;
+	                //运营商
+	                  this.reportStatus_5=2;
+	                //学信
+	                  this.reportStatus_6=2;
+	            }
             })
-            //魔蝎报告接口
+            //魔蝎报告接口 (不能删 在 由首页进入查询摩尔征信魔蝎接口)
             this.moxieReport();
         },
     }

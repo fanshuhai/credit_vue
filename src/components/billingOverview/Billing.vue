@@ -34,7 +34,7 @@
 				:header-row-class-name="tableRowClassName">
 				<el-table-column label="姓名" prop="name"></el-table-column>
 				<el-table-column label="邮箱" prop="email"></el-table-column>
-				<el-table-column label="查询类目" prop="channel"></el-table-column>
+				<el-table-column label="查询类目" prop="channelCode"></el-table-column>
 				<el-table-column label="查询费用" prop="cost"></el-table-column>
 				<el-table-column label="查询时间" prop="queryDate"></el-table-column>
 				<el-table-column label="数据源" prop="datasource"></el-table-column>

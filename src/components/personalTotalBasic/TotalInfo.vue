@@ -341,6 +341,7 @@
                         this.totalMessage=res.data;
                         // 传递给兄弟组件
                         bus.$emit('cMessage',this.totalMessage)
+                        bus.$emit('moxieReport','1')
                         //结束加载
                         loading.close();
                         if(this.$router.path!='/queryResult'){

@@ -18,9 +18,9 @@ Vue.use(QRCode);;
 // axios.defaults.headers.common['Authorization']=AUTH_TOKEN;
 // axios.defaults.headers.post['Content-Type']='application/x-www-form-urlencoded';
 // 登录接口
-// Vue.prototype.HOSTLogin='http://123.59.181.202:8071';
+   Vue.prototype.HOSTLogin='http://123.59.181.202:8071';
 // 测试登录接口
-Vue.prototype.HOSTLogin='http://10.3.1.227:8071';
+//Vue.prototype.HOSTLogin='http://10.3.1.227:8071';
 
 
 // Vue.prototype.HOST1='http://10.1.2.125:9990';
@@ -29,22 +29,22 @@ Vue.prototype.HOSTLogin='http://10.3.1.227:8071';
 // // yuanjie
 // Vue.prototype.HOST3='http://10.1.2.32:9990';
 //接口ip和端口
-// Vue.prototype.HOST='http://123.59.181.202:9990';
-// // 小马哥
-// Vue.prototype.HOST1='http://123.59.181.202:9990';
-// // xueting
-// Vue.prototype.HOST2='http://123.59.181.202:9990';
-// // yuanjie
-// Vue.prototype.HOST3='http://123.59.181.202:9990';
+   Vue.prototype.HOST='http://123.59.181.202:9990';
+   // 小马哥
+   Vue.prototype.HOST1='http://123.59.181.202:9990';
+   // xueting
+   Vue.prototype.HOST2='http://123.59.181.202:9990';
+   // yuanjie
+   Vue.prototype.HOST3='http://123.59.181.202:9990';
 
 
 // 测试  接口ip和端口
-Vue.prototype.HOST='http://10.3.1.227:9990';
-Vue.prototype.HOST1='http://10.3.1.227:9990';
-// xueting
-Vue.prototype.HOST2='http://10.3.1.227:9990';
-// yuanjie
-Vue.prototype.HOST3='http://10.3.1.227:9990';
+//Vue.prototype.HOST='http://10.3.1.227:9990';
+//Vue.prototype.HOST1='http://10.3.1.227:9990';
+//// xueting
+//Vue.prototype.HOST2='http://10.3.1.227:9990';
+//// yuanjie
+//Vue.prototype.HOST3='http://10.3.1.227:9990';
 
 //使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {

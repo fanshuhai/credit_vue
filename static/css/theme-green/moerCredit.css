@@ -85,6 +85,37 @@
 	color: #30af90;
 }
 
+/*自制表格*/
+.selfTable table{
+    width: 100%;
+    border: 1px solid #dcdfe6;
+    color: #909399;
+}
+.selfTable tr{
+   border: 1px solid #dcdfe6; 
+}
+ .selfTable th{
+    height: 40px;
+    text-align: center;
+    width: 16%;
+    line-height: 40px;
+    border-right: 1px solid #ebeef5;
+    /*background: #dcdfe6;*/
+    font-size: 14px;
+}
+.selfTable td{
+    min-height: 40px;
+    line-height: 40px;
+    font-size: 12px;
+    text-align: center;
+    border-right: 1px solid #dcdfe6;
+    border-top:1px solid #dcdfe6; 
+}
+
+.header_input .el-form-item__label{
+	font-size: 18px;
+}
+
 
 
 
