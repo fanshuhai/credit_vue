@@ -59,7 +59,7 @@
   background:#30af90;
 }
 
-.newCheck_form .el-form-item--small .el-form-item__error{
+.check_error .el-form-item__error{
   top:6px;
   left: 75px;
 }
@@ -114,10 +114,92 @@
 
 .header_input .el-form-item__label{
 	font-size: 18px;
+	
+}
+.queryOrg .el-form-item__content{
+	width: 150px;
 }
 
+@media screen and  (max-width: 1500px){
+/*moerCreditPersonal--start*/
+  .header_input .el-form-item__label {
+	    font-size: 12px  !important;
+	}
+  
+/*moerCreditPersonal--end*/
 
+/*login--start*/
+	.ms-cont2{
+	    font-size: 14px !important;
+	}
+/*login--end*/
+}
+/*1366*/
+@media screen and (min-width: 1300px) and (max-width: 1400px){
+/*moerCreditPersonal--start*/
+  /*.header_input .el-form-item__label {
+	    font-size: 12px  !important;
+	}*/
+  
+/*moerCreditPersonal--end*/
 
+/*login--start*/
+	/*.ms-cont2{
+	    font-size: 14px !important;
+	}*/
+/*login--end*/
+
+/*totalinfo--start*/
+	.queryOrg .el-form-item__content{
+		width: 120px;
+	}
+	.id-1366 .el-form-item__content{
+		width: 180px;
+	}
+/*totalinfo--end*/
+}
+
+/*1440*/
+@media screen and (min-width: 1410px) and (max-width: 1540px){
+/*moerCreditPersonal--start*/
+  /*.header_input .el-form-item__label {
+	    font-size: 12px  !important;
+	}*/
+/*moerCreditPersonal--end*/
+
+/*login--start*/
+	/*.ms-cont2{
+	    font-size: 14px !important;
+	}*/
+/*login--end*/
+	
+
+}
+
+/*1600*/
+@media screen and (min-width: 1550px) and (max-width: 1650px){
+/*moerCreditPersonal--start*/
+  .header_input{
+	  padding:20px 6% !important;
+	}
+	.header_title p:before{
+	    left: 37.5% !important;
+	}
+	.header_title p:after{
+	    left:57% !important;
+	}
+	.main_contain_title:after {
+	    left: 61% !important;
+	}
+/*moerCreditPersonal--end*/
+
+/*login--start*/
+	.ms-cont2{
+	    font-size: 16px !important;
+	}
+/*login--end*/
+
+}
 
 
 

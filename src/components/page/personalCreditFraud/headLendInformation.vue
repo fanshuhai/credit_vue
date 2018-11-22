@@ -4,7 +4,7 @@
 			<p class="newCheck-content">多头借贷信息查询</p>
 			<div class="newCheck_form">
 				<el-form :inline="true" :model="newQuery" ref="newQuery" :rules="rules">
-					<el-form-item label="查询类型：" prop="type">
+					<el-form-item class='check_error' label="查询类型：" prop="type">
 						<el-checkbox label="全选" v-model="checkAll" :indeterminate="isIndeterminate" @change="handleCheckAll"></el-checkbox>
 						<el-checkbox-group v-model="newQuery.type" @change="handleCheckedTypeChange">							
 							<el-checkbox v-for="(item,index) in typeOption" :label="item.value" :key="item.value">{{item.label}}</el-checkbox>							

@@ -2,7 +2,7 @@
         <div class="bankCardcheckPage">
             <div class="createSearch">
                 <el-form :model="form" :rules="rules"  ref="form" label-width="100px" :label-position="labelPosition">
-                    <div style="height: 3em;border-bottom: 1px solid #ccc;line-height: 3em;"><span style="margin-left: 30px">新建查询</span></div>
+                    <div style="height: 3em;border-bottom: 1px solid #ccc;line-height: 3em;"><span style="margin-left: 30px">银联消费画像查询</span></div>
                     <div style="margin-top:40px">
                         <el-row :gutter="15">
                             <el-col :span="6">
@@ -26,7 +26,7 @@
             </div>
             <div class="searchResult">
                 <div style="height: 3em;line-height: 3em;">
-                    <span style="margin-left: 30px">查询结果样例</span>
+                    <span style="margin-left: 30px">银联消费画像查询结果</span>
                 </div> 
                 <template>
                     <div class="el-table_content selfTable">

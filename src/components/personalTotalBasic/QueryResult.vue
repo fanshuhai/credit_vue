@@ -866,6 +866,9 @@
   /*.p_content table tr td:nth-child(even){
     color:#f3b122;
   }*/
+  .guishudi{
+    width: 100%;
+  }
   .guishudi table{
     width: 80%;
   }

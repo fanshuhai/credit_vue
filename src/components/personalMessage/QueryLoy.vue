@@ -8,34 +8,34 @@
            </el-header>
            <el-main>
                <div class="picktime">
-                  <el-row :gutter="30" class="detail_detail">
-                    <el-col :span="5" :offset="2">
+                  <el-row :gutter="20" class="detail_detail" display="flex" align="middle" justify="center">
+                    <el-col :span="7" >
                       <span>查询类目：</span>
                       <el-select v-model="queryClass" placeholder="查询">
                         <el-option v-for="(item,index) in queryClasses"
                          :label="item.value" :value="item.key" :key="index"></el-option>
                       </el-select>
                     </el-col>
-                    <el-col :span="5">
+                    <el-col :span="6">
                        <span>开始时间：</span>
                        <el-date-picker
                             v-model="value1" type="date"
                             placeholder="选择日期"
                        ></el-date-picker>
                     </el-col>
-                    <el-col :span="5">
+                    <el-col :span="6">
                       <span>结束时间：</span>
                        <el-date-picker
                             v-model="value2" type="date"
                             placeholder="选择日期"
                        ></el-date-picker>
                     </el-col>
-                    <el-col :span="5">
+                    <el-col :span="4">
                       <el-button class="themeG_b" @click="recordQuery">查询</el-button>
                     </el-col>
                   </el-row>
                </div>
-               <div class="picktime picktime_center" >
+               <!--<div class="picktime picktime_center" >
                   <el-row :gutter="50">
                       <el-col :span="6" :offset="3">
                         <div  class="event_detail boxShadow">
@@ -62,7 +62,7 @@
                         </div>
                       </el-col>
                   </el-row>
-               </div>
+               </div>-->
                <div class="queryLoyR selfTable">
                    <table cellspacing="0" cellpadding="0" >
                        <thead>
@@ -340,7 +340,7 @@
       padding-bottom: 40px;
     }
     .wrapper{
-        margin:10px 10px 0 0;
+        margin:0px 10px 0 0;
         height: auto;
     }
     .el-header{
@@ -386,6 +386,7 @@
     .picktime{
         width: 100%;
         min-height: 70px;
+        line-height: 70px;
         font-family: SourceHanSansCN-Regular;
         color: #333;
     }
@@ -419,16 +420,23 @@
     .el-pagination{
         text-align: center;
     }
+    .el-col{
+    	text-align: center;
+    }
     @media screen and (max-width: 1500px){
       .block{
         padding-left: 11%;
       }
       .el-main{
         padding: 0 20px;
+        min-height: 630px;
       }
     }
 
     @media screen and (max-width: 1400px){
+      .el-main{
+        min-height: 530px;
+      }
       .block {
           padding-left: 8%;
       }

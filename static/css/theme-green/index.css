@@ -25,10 +25,16 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
+/*阿里图标
+[class*=" el-icon-lx"],[class^=el-icon-lx] {
+    font-family: lx-iconfont !important;
+}
+.el-icon-lx-people:before{
+	content: "\e736";
+}
 .el-icon-info:before {
     content: "\e61a";
-}
+}*/
 
 .el-icon-error:before {
     content: "\e62c";

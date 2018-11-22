@@ -17,10 +17,14 @@
                     <div class="loginContent1">用户登录</div>
                     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="demo-ruleForm">
                         <el-form-item prop="username">
-                            <el-input class="login-msg" v-model="ruleForm.username" placeholder="账号"></el-input>
+                            <el-input class="login-msg" v-model="ruleForm.username" placeholder="账号">
+                            	<!--<el-button slot='prepend' icon="el-icon-people"></el-button>-->
+                            </el-input>
                         </el-form-item>
                         <el-form-item prop="password">
-                            <el-input  class="login-msg" type="password" placeholder="密码" v-model="ruleForm.password" @keyup.enter.native="submitForm('ruleForm')"></el-input>
+                            <el-input  class="login-msg" type="password" placeholder="密码" v-model="ruleForm.password" @keyup.enter.native="submitForm('ruleForm')">
+                            	<!--<el-button slot='prepend' icon='el-icon-lx-people'></el-button>-->
+                            </el-input>
                         </el-form-item>
                     </el-form>
                    <!--  <el-input  v-model="ruleForm.username" placeholder="账号"></el-input>
@@ -434,7 +438,15 @@
                                             }
                                         })
                                     }
-                                }
+                                };
+                                //输入框数据
+                                const inputData={
+                                	name:[],
+                                	id:[],
+                                	phone:[],
+                                	bankCard:[]
+                                };
+                                sessionStorage.setItem('inputData',JSON.stringify(inputData))
                                 this.$router.push('/');
                               };
                               if(data==='' || data===null || data==='{}'){
@@ -771,9 +783,7 @@
         }
         
        
-        .ms-cont2{
-            font-size: 1rem;
-        }
+        
     }
     @media screen and (max-width: 1500px){
         .login-wrap{

@@ -12,7 +12,9 @@
                           <el-form :model='ruleForm' :rules='rules' :inline="true"  ref='ruleForm' style="width:100%;">
                             <el-col :span="7">
                                 <el-form-item label="姓                                      名："  prop="name">
-                                    <el-input placeholder="请输入内容" v-model="ruleForm.name" clearable></el-input>
+                                    <el-input placeholder="请输入内容" v-model="ruleForm.name" clearable>
+                                    	
+                                    </el-input>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="7">
@@ -261,6 +263,9 @@
         computed: {
 
         },
+        mounted(){
+        	console.log(sessionStorage.getItem('inputData'));
+        }
 
     }
 
@@ -383,7 +388,7 @@
     }
     .header_input{
       height: 40%;
-      padding:20px 120px;
+      padding:20px 10%;
       margin-top: 20px;
       box-sizing:border-box;
     }
@@ -607,10 +612,9 @@
     }
 
     @media screen and (max-width: 1500px){
-
         .header_input{
           height: 40%;
-          padding:20px 0px;
+          padding:20px 4%;
           margin-top: 20px;
           box-sizing:border-box;
         }
@@ -697,10 +701,10 @@
 
         }
         .main_contain_title:after{
-            left: 61%;
+            left: 63%;
         }
         .main_contain_title:before{
-            left: 44%;
+            left: 45%;
         }
         .footer_title p:after{ 
             left: 61.3%;

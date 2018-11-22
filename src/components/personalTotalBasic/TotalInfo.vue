@@ -25,45 +25,45 @@
           </el-aside>
           <el-container class="main_right">
               <el-header>
-                <el-row :gutter="20">
-                      <el-col :span="5">
-                        <div class="grid-content query_orgn">
-                            <span>选择查询机构：</span>
-                            <el-select v-model="elementvalue" placeholder="请选择">
-                              <el-option v-for="(item,index) in options" :key="index" :label="item.label" :value="item.value">
-                              </el-option>
-                            </el-select>
-                        </div>
+                <el-row :gutter="15" type="flex" justify="center">
+                	<el-form :model='ruleForm' :rules='rules' ref='ruleForm' :inline='true' style="width:100%;">
+                      <el-col :span="6" class='queryOrg'>
+                        <!--<div class="grid-content query_orgn">-->
+                            <!--<span>选择查询机构</span>-->
+                            <el-form-item label="选择查询机构">
+	                            <el-select label="选择查询机构" v-model="elementvalue" placeholder="请选择">
+	                              <el-option v-for="(item,index) in options" :key="index" :label="item.label" :value="item.value">
+	                              </el-option>
+	                            </el-select>
+                            </el-form-item>
+                        <!--</div>-->
                       </el-col>
-                      <el-form :model='ruleForm' :rules='rules' ref='ruleForm' style="width:100%;">
-                        <el-col :span="4">
-                          <div class="grid-content query_name">
-                            <span>姓名：</span>
-                            <el-form-item  prop='name'>
+                      
+                        <el-col :span="5" class='queryOrg'>
+                          <!--<div class="grid-content query_name">-->
+                            <el-form-item label="姓名" prop='name'>
                               <el-input placeholder="请输入姓名" v-model="ruleForm.name" clearable></el-input>
                             </el-form-item>
-                          </div>
+                          <!--</div>-->
                         </el-col>
-                        <el-col :span="7">
-                          <div class="grid-content query_cardid">
-                            <span>身份证号：</span>
-                            <el-form-item  prop='cardId'>
+                        <el-col :span="6" class="id-1366">
+                          <!--<div class="grid-content query_cardid">-->
+                            <el-form-item label="身份证号" prop='cardId'>
                               <el-input placeholder="请输入身份证号码" v-model="ruleForm.cardId" clearable></el-input>
                             </el-form-item>
-                          </div>
+                          <!--</div>-->
                         </el-col>
-                        <el-col :span="6">
-                          <div class="grid-content query_phone">
-                            <span>手机号码：</span>
-                            <el-form-item  prop='phone'>
+                        <el-col :span="5" class='queryOrg'>
+                          <!--<div class="grid-content query_phone">-->
+                            <el-form-item label="手机号码" prop='phone'>
                               <el-input placeholder="请输入手机号码" v-model="ruleForm.phone" clearable></el-input>
                             </el-form-item>
-                          </div>
+                          <!--</div>-->
                         </el-col>
-                        <el-col :span="2">
-                          <div class="grid-content">
+                        <el-col :span="1">
+                          <!--<div class="grid-content">-->
                             <el-button class="themeG_b" @click="querySelect('ruleForm')" type="success">查询</el-button>
-                          </div>
+                          <!--</div>-->
                         </el-col>
                       </el-form>
                 </el-row>
@@ -529,6 +529,7 @@
   }
   .el-col {
     border-radius: 4px;
+    text-align:center;
   }
   .grid-content {
     min-height: 36px;
@@ -579,7 +580,7 @@
   .sidebar > ul {
       height:100%;
   }
-  .query_orgn .el-select{
+  /*.query_orgn .el-select{
           width: 160px;
   }
   .query_name .el-form-item{
@@ -589,7 +590,7 @@
   .query_cardid .el-form-item,.query_phone .el-form-item{
       width: 240px;
       display: inline-block;
-  }
+  }*/
   .el-button{
       height: 30px;
       width: 100px;
@@ -610,9 +611,9 @@
   .sideMenu{
     float:left;
   }
-  @media screen and (min-width: 1900px){
+  @media screen and (min-width:1900px){
     .el-header .el-row {
-        padding: 15px 100px;
+        padding: 15px 50px;
     }
     .query_cardid span{
         padding-left: 30px;
@@ -621,8 +622,8 @@
         padding-left: 10px;
     }
   }
-  @media screen and (max-width: 1500px){
-      .query_orgn .el-select{
+  @media screen and (max-width:1500px){
+      /*.query_orgn .el-select{
           width: 110px;
       }
       .query_name .el-form-item{
@@ -643,15 +644,17 @@
       .el-button{
         position: relative;
         right: 30px;
-      }
+      }*/
   }
   @media screen and (max-width: 1400px){
      .el-container{
         font-size: 13px;
      }
      .totalInfo{
-        width: 1342px;
         min-width: 1342px;
+     }
+     .el-button{
+     	width: 80px;
      }
 
   }
