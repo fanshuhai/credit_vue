@@ -319,11 +319,7 @@
                 let rulePhone=$.trim(this.ruleForm.phone);
                 if(this.elementvalue=="选项1"){
                     this.$axios.defaults.withCredentials=true;
-<<<<<<< HEAD
                     this.$axios.get(this.HOST+'/api/v3/search',{
-=======
-                    this.$axios.get(this.HOST+'/api/v1/search',{
->>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
                       params:{
                         name:ruleName,
                         cardId:ruleCardId,
@@ -341,15 +337,10 @@
                         let msgData=res.data;
                         msgData=JSON.stringify(msgData);
                         
-<<<<<<< HEAD
-                        
+  
                         this.totalMessage=res.data;
                         this.totalMessage.queryWay='local';
                         localStorage.setItem("msgData",JSON.stringify(this.totalMessage));
-=======
-                        localStorage.setItem("msgData",msgData);
-                        this.totalMessage=res.data;
->>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
                         // 传递给兄弟组件
                         bus.$emit('cMessage',this.totalMessage)
                         bus.$emit('moxieReport','1')
@@ -439,11 +430,7 @@
                     this.$router.push('/moxieQuery'); 
                 }else if( this.elementvalue=="选项5"){
                     this.$axios.defaults.withCredentials=true;
-<<<<<<< HEAD
                     this.$axios.get(this.HOST3+'/api/v2/multiple/search',{
-=======
-                    this.$axios.get(this.HOST+'/api/v1/multiple/search',{
->>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
                       params:{
                           account_name:ruleName,
                           id_number:ruleCardId,
@@ -460,18 +447,11 @@
                       }else{
                         let msgData=res.data;
                         msgData=JSON.stringify(msgData);
-<<<<<<< HEAD
                         this.totalMessage=res.data;
                         this.totalMessage.queryWay='tPart';
                         // 传递给兄弟组件
                         bus.$emit('cMessage',this.totalMessage);
                         localStorage.setItem("msgData",JSON.stringify(this.totalMessage));
-=======
-                        localStorage.setItem("msgData",msgData);
-                        this.totalMessage=res.data;
-                        // 传递给兄弟组件
-                        bus.$emit('cMessage',this.totalMessage)
->>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
                         //结束加载
                         loading.close();
                         if(this.$router.path!='/queryResult'){

@@ -478,11 +478,8 @@
           },
           // 导出报告
           reportOut(){
-<<<<<<< HEAD
             this.urlReport="http://123.59.181.202:9990/api/v2/download?account_name="+localStorage.getItem('name')+"&id_number="+localStorage.getItem('cardId')+"&account_mobile="+localStorage.getItem('phone');
-=======
-            this.urlReport="http://123.59.181.202:9990/api/v1/download?account_name="+localStorage.getItem('name')+"&id_number="+localStorage.getItem('cardId')+"&account_mobile="+localStorage.getItem('phone');
->>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
+
           },
           // 魔蝎报告接口
           moxieReport(){

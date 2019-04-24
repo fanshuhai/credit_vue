@@ -64,13 +64,9 @@
   top:6px;
   left: 100px;
 }
-
-<<<<<<< HEAD
 .check_error1 .el-form-item__error{
   display: none;
 }
-=======
->>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
 .titleStyle{
   text-align: center;
   font-weight: bold;
@@ -126,8 +122,6 @@
 .queryOrg .el-form-item__content{
 	width: 150px;
 }
-
-<<<<<<< HEAD
 .selectCheck .el-checkbox{
 		margin-left: 30px;
 	}
@@ -155,8 +149,6 @@
 .entReportDe .el-loading-spinner {
     top: 250px;
 }
-=======
->>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
 @media screen and  (max-width: 1500px){
 /*moerCreditPersonal--start*/
   .header_input .el-form-item__label {
@@ -190,11 +182,7 @@
 	.queryOrg .el-form-item__content{
 		width: 120px;
 	}
-<<<<<<< HEAD
 	.per-1366 .el-form-item__content,.id-1366 .el-form-item__content{
-=======
-	.id-1366 .el-form-item__content{
->>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
 		width: 180px;
 	}
 /*totalinfo--end*/
@@ -213,17 +201,12 @@
 	    font-size: 14px !important;
 	}*/
 /*login--end*/
-<<<<<<< HEAD
 	.per-1366 .el-form-item__content{
 		width: 180px;
 	}
 	.enterReporting .el-checkbox {
     margin-left: 50px;
   }
-=======
-	
-
->>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
 }
 
 /*1600*/
@@ -233,17 +216,10 @@
 	  padding:20px 6% !important;
 	}
 	.header_title p:before{
-<<<<<<< HEAD
 	    left: 34.5% !important;
 	}
 	.header_title p:after{
 	    left:60% !important;
-=======
-	    left: 37.5% !important;
-	}
-	.header_title p:after{
-	    left:57% !important;
->>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
 	}
 	.main_contain_title:after {
 	    left: 61% !important;

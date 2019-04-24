@@ -121,12 +121,9 @@
 
 <script>
     // import vSidebar from '../common/Sidebar_moerCredit.vue';
-<<<<<<< HEAD
     import {validataName} from '../common/http.js';
     import {validataCardId} from '../common/http.js';
     import {validataPhone} from '../common/http.js';
-=======
->>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
     import bus from '../common/bus'
     export default {
         data() {
@@ -198,11 +195,7 @@
               let rulePhone=$.trim(this.ruleForm.phone);
               if(valid){
                 this.$axios.defaults.withCredentials=true;
-<<<<<<< HEAD
                 this.$axios.get(this.HOST3+'/api/v3/search',{
-=======
-                this.$axios.get(this.HOST+'/api/v1/search',{
->>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
                   params:{
                     name:ruleName,
                     cardId:ruleCardId,
@@ -237,11 +230,8 @@
                     // this.$router.replace('/queryResult');
                     // 
                     this.totalMessage=res.data;
-<<<<<<< HEAD
                     this.totalMessage.queryWay='local';
                     localStorage.setItem("msgData",JSON.stringify(this.totalMessage));
-=======
->>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
                     // 兄弟组件传信息
                     bus.$emit('cMessage',this.totalMessage)
 
@@ -383,12 +373,8 @@
         position: absolute;
     }
     .header_title p:before{
-        background-image: url(../../assets/img/tb1.png); 
-<<<<<<< HEAD
+        background-image: url(../../assets/img/tb1.png);
         left: 37.5%;
-=======
-        left: 39.5%;
->>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
     }
     .header_title p:after{
         background-image: url(../../assets/img/tb2.png); 
