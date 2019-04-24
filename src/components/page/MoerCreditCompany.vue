@@ -223,7 +223,11 @@
           QueryResult(formName){  
             this.$refs[formName].validate((valid)=>{
               if(valid){
+<<<<<<< HEAD
                 this.$axios.get(this.HOST+'/api/v2/search',{
+=======
+                this.$axios.get(this.HOST+'/api/v1/search',{
+>>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
                   params:{
                     name:this.ruleForm.name,
                     cardId:this.ruleForm.cardId,

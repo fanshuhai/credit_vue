@@ -25,6 +25,7 @@ Vue.use(htmlToPdf);
 Vue.prototype.HOSTLogin='http://123.59.181.210:8071';
 
 // 小马哥
+
 // Vue.prototype.HOST1='http://10.1.2.125:9990';
 // // xueting
 // Vue.prototype.HOST2='http://10.1.2.63:9990';
@@ -44,6 +45,7 @@ Vue.prototype.HOSTLogin='http://123.59.181.210:8071';
 // Vue.prototype.HOST2='http://724.moerlong.com/moercredit-api';
 // Vue.prototype.HOST3='http://724.moerlong.com/moercredit-api';
 
+
 // 测试  接口ip和端口
 Vue.prototype.HOST='http://123.59.181.210:9990';
 Vue.prototype.HOST1='http://123.59.181.210:9990';
@@ -51,6 +53,7 @@ Vue.prototype.HOST1='http://123.59.181.210:9990';
 Vue.prototype.HOST2='http://123.59.181.210:9990';
 // yuanjie
 Vue.prototype.HOST3='http://123.59.181.210:9990'; 
+
 
 //使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {
