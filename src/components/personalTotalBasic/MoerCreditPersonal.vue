@@ -5,36 +5,29 @@
                <el-header>
                    <div class="header_contain">
                       <div class="header_title contain-center">
-                        <p>征信查询</p>
+                        <p>个人征信查询</p>
                       </div>
                       <div class="header_input">
                         <el-row :gutter="30" type="flex" justify="center">
-                          <el-form :model='ruleForm' :rules='rules' ref='ruleForm' style="width:100%;">
+                          <el-form :model='ruleForm' :rules='rules' :inline="true"  ref='ruleForm' style="width:100%;">
                             <el-col :span="7">
-                              <div class="name_style" >
-                                <span>姓&nbsp;&nbsp;&nbsp;名：</span>
-                                <el-form-item  prop='name'>
-                                  <el-input placeholder="请输入内容" v-model="ruleForm.name" clearable></el-input>
+                                <el-form-item label="姓                                      名："  prop="name">
+                                    <el-input placeholder="请输入内容" v-model="ruleForm.name" clearable>
+                                    	
+                                    </el-input>
                                 </el-form-item>
-                              </div>
                             </el-col>
                             <el-col :span="7">
-                              <div class="" style="padding-left:20px;">
-                                <span>身份证号：</span>
-                                <el-form-item  prop='cardId'>
+                                <el-form-item label="身份证号：" prop='cardId'>
                                   <el-input class="cardId_style" placeholder="请输入内容" v-model="ruleForm.cardId" clearable></el-input>
                                 </el-form-item>
-                              </div>
                             </el-col>
-                            <el-col :span="6">
-                              <div class="">
-                                <span>手机号码：</span>
-                                <el-form-item  prop='phone'>
+                            <el-col :span="7">
+                                <el-form-item label="手机号码："  prop='phone'>
                                  <el-input placeholder="请输入内容" v-model="ruleForm.phone" clearable></el-input>
                                 </el-form-item>
-                              </div>
                             </el-col>
-                            <el-col :span="4">
+                            <el-col :span="3">
                               <div class=""  >
                                 <el-button @click="QueryResult('ruleForm')" >查询</el-button>
                               </div>
@@ -51,46 +44,50 @@
                       <el-col :span="4">
                         <div class="grid-content">
                           <ul>
-                            <li>个人信息</li>
-                            <li>基本信息</li>
-                            <li>任职信息</li>
-                            <li>投资信息</li>
+                            <li>身份验证</li>
+                            <li>身份证核查</li>
+                            <li>手机号核查</li>
+                            <li>肖像核查</li>
+                            <li>OCR服务</li>
                           </ul>
                         </div>
                       </el-col>
                       <el-col :span="5">
                         <div class="grid-content">
                             <ul>
-                              <li>信贷信息</li>
-                              <li>多头借贷</li>
-                            </ul>
-                        </div>
-                      </el-col>
-                      <el-col :span="5">
-                        <div class="grid-content">
-                            <ul>
+                              <li>个人信用反欺诈</li>
                               <li>司法信息</li>
-                              <li>裁判文书</li>
-                              <li>执行信息</li>
-                              <li>失信信息</li>
+                              <li>多头借贷</li>
+                              <li>手机号检测</li>
+                              <li>身份证号检测</li>
                             </ul>
                         </div>
                       </el-col>
                       <el-col :span="5">
                         <div class="grid-content">
                             <ul>
-                              <li>风险信息</li>
-                              <li>身份证号检测</li>
-                              <li>手机号检测</li>
+                              <li>个人账户核查</li>
+                              <li>银联账单验证</li>
+                              <li>银联消费画像</li>
+                            </ul>
+                        </div>
+                      </el-col>
+                      <el-col :span="5">
+                        <div class="grid-content">
+                            <ul>
+                              <li>资产信息</li>
+                              <li>个人工商投资</li>
+                              <li>车辆信息</li>
+                              <li>房产信息</li>
                             </ul>
                         </div>
                       </el-col>
                       <el-col :span="5">
                          <div class="grid-content ">
                             <ul>
-                              <li>辅助型授权数据</li>
-                              <li>运营商</li>
+                              <li>授权数据</li>
                               <li>网购消费</li>
+                              <li>运营商</li>
                               <li>社保</li>
                               <li>公积金</li>
                               <li>学历</li>
@@ -101,7 +98,7 @@
                      </el-row>
                    </div>
                </el-main>
-               <el-footer>
+              <!--  <el-footer>
                     <div class="footer_contain">
                      <div class="footer_title contain-center">
                        <p>第三方数据合作查询</p>
@@ -116,7 +113,7 @@
                        </el-row>
                      </div>
                    </div>
-               </el-footer>
+               </el-footer> -->
            </el-container>
         </el-container> 
     </div>
@@ -124,40 +121,38 @@
 
 <script>
     // import vSidebar from '../common/Sidebar_moerCredit.vue';
+    import {validataName} from '../common/http.js';
+    import {validataCardId} from '../common/http.js';
+    import {validataPhone} from '../common/http.js';
+    import bus from '../common/bus'
     export default {
         data() {
-          let validataName=(rule,value,callback)=>{
-            if(value===''){
-              callback(new Error('请输入姓名'));
-            }else{
-              callback();
-            }
-          };
 
-          let validataCardId=(rule,value,callback)=>{
-            let regId=/(^\d{15}$)|(d{18}$)|(^\d{17}(\d|X|x)$)/;
-            let cardIdValue=$.trim(value);
-            if(value===''){
-              callback(new Error('请输入身份证号码'))
-            }else if(regId.test(cardIdValue)===false){
-              callback(new Error('身份证号码不正确'));
-            }else{
-              callback();
-            }
-          };
-
-          let validataPhone=(rule,value,callback)=>{
-            let regPhone=/^1[0-9]{10}$/;
-            let phoneValue=$.trim(value);
-            if(value===''){
-              callback(new Error('请输入手机号码'))
-            }else if(regPhone.test(phoneValue)===false){
-              callback(new Error('手机号码不正确'))
-            }else{
-              callback();
-            }
-          };
+//        let validataCardId=(rule,value,callback)=>{
+//          let regId=/(^\d{15}$)|(d{18}$)|(^\d{17}(\d|X|x)$)/;
+//          let cardIdValue=$.trim(value);
+//          if(value===''){
+//            callback(new Error('请输入身份证号码'))
+//          }else if(regId.test(cardIdValue)===false){
+//            callback(new Error('身份证号码不正确'));
+//          }else{
+//            callback();
+//          }
+//        };
+//
+//        let validataPhone=(rule,value,callback)=>{
+//          let regPhone=/^1[0-9]{10}$/;
+//          let phoneValue=$.trim(value);
+//          if(value===''){
+//            callback(new Error('请输入手机号码'))
+//          }else if(regPhone.test(phoneValue)===false){
+//            callback(new Error('手机号码不正确'))
+//          }else{
+//            callback();
+//          }
+//        };
           return { 
+            totalMessage:'',
             radio:'1',
             ruleForm:{
               name:'',
@@ -184,15 +179,15 @@
             //vHead, vSidebar, vTags
         },
         methods:{
-          huifa() {
-              this.$router.push('/huifa');
-          },
-          tongdun() {
-              this.$router.push('/tongdun');
-          },
-          moxieinfo(){
-              this.$router.push('/moxie');
-          },
+          // huifa() {
+          //     this.$router.push('/huifa');
+          // },
+          // tongdun() {
+          //     this.$router.push('/tongdun');
+          // },
+          // moxieinfo(){
+          //     this.$router.push('/moxie');
+          // },
           QueryResult(formName){  
             this.$refs[formName].validate((valid)=>{
               let ruleName=$.trim(this.ruleForm.name);
@@ -200,7 +195,7 @@
               let rulePhone=$.trim(this.ruleForm.phone);
               if(valid){
                 this.$axios.defaults.withCredentials=true;
-                this.$axios.get('http://123.59.181.202:9990/api/v1/search',{
+                this.$axios.get(this.HOST3+'/api/v3/search',{
                   params:{
                     name:ruleName,
                     cardId:ruleCardId,
@@ -208,7 +203,7 @@
                   },
                 })
                 .then(res=>{
-                  console.log(res.data);
+                  // console.log(res.data);
                   if(res.data==='登录超时'){
                         this.$message('登录超时，请重新登录');
                         this.$router.push('/login');
@@ -217,7 +212,6 @@
                   }else{
                     let msgData=res.data;
                     localStorage.clear();
-                    
                     let inquireMessage={};
                     inquireMessage.name=this.ruleForm.name;
                     inquireMessage.cardId=this.ruleForm.cardId;
@@ -226,7 +220,7 @@
                     localStorage.setItem("InquireMsg",inquireMessage);
                     msgData=JSON.stringify(msgData);
                     localStorage.setItem("InstitutionalChoice",'选项1');
-                    localStorage.setItem("msgData",msgData);
+//                  localStorage.setItem("msgData",msgData);
 
                     //保存查询个人信息
                     localStorage.setItem('name',this.ruleForm.name);
@@ -234,6 +228,13 @@
                     localStorage.setItem('phone',this.ruleForm.phone);
 
                     // this.$router.replace('/queryResult');
+                    // 
+                    this.totalMessage=res.data;
+                    this.totalMessage.queryWay='local';
+                    localStorage.setItem("msgData",JSON.stringify(this.totalMessage));
+                    // 兄弟组件传信息
+                    bus.$emit('cMessage',this.totalMessage)
+
                     this.$router.push('/queryResult');
 
                   } 
@@ -260,6 +261,9 @@
         computed: {
 
         },
+        mounted(){
+        	console.log(sessionStorage.getItem('inputData'));
+        }
 
     }
 
@@ -326,7 +330,7 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        margin: 10px 10px 20px 0;
+        margin: 0px 10px 10px 0;
     }
     .el-main{
         flex:1.5;
@@ -354,7 +358,7 @@
     .header_title{
       height:50%;
       font-size: 45px;
-      color: #3c88f6;
+      color: #30af90;
       position: relative;
     }
     .header_title p:before,.header_title p:after{
@@ -370,11 +374,11 @@
     }
     .header_title p:before{
         background-image: url(../../assets/img/tb1.png); 
-        left: 39%;
+        left: 37.5%;
     }
     .header_title p:after{
         background-image: url(../../assets/img/tb2.png); 
-        left: 56%;
+        left: 58%;
     }
     .header_radio{
       height: 8%;
@@ -382,7 +386,7 @@
     }
     .header_input{
       height: 40%;
-      padding:20px 180px;
+      padding:20px 10%;
       margin-top: 20px;
       box-sizing:border-box;
     }
@@ -394,7 +398,7 @@
       letter-spacing: 2px;
     }
     .header_input .el-button{
-      background:#3c88f6;
+      background:#30af90;
       height: 36px;
       text-align: center;
       width: 180px;
@@ -416,6 +420,9 @@
       line-height: 350%;
       font-size: 22px;
       color: #666;
+    }
+    .el-form-item__label{
+    	background: red;
     }
     .main_contain_title:before,.main_contain_title:after{
         content:''; 
@@ -497,7 +504,7 @@
       background-repeat: no-repeat;
       cursor: pointer;
       background-position: center;
-      border-right: 1px solid #3c88f6;
+      border-right: 1px solid #30af90;
     }
 
     .footer_thirdP2{
@@ -506,7 +513,7 @@
       background-repeat: no-repeat;
       cursor: pointer;
       background-position: center;
-      border-right: 1px solid #3c88f6;
+      border-right: 1px solid #30af90;
     }
 
     .footer_thirdP3{
@@ -515,7 +522,7 @@
       background-repeat: no-repeat;
       cursor: pointer;
       background-position: center;
-      border-right: 1px solid #3c88f6;
+      border-right: 1px solid #30af90;
     }
     .footer_thirdP4{
       background-image: url(../../assets/img/about_logo.png);
@@ -523,7 +530,7 @@
       background-repeat: no-repeat;
       cursor: pointer;
       background-position: center;
-      border-right: 1px solid #3c88f6;
+      border-right: 1px solid #30af90;
     }
     .footer_thirdP5{
       background-image: url(../../assets/img/logo1.png);
@@ -598,15 +605,14 @@
         left: 30px;
     }
     .active,.active2{
-        border-right: 5px solid #3c88f6;
+        border-right: 5px solid #30af90;
         background: #d2e3fd;
     }
 
     @media screen and (max-width: 1500px){
-
         .header_input{
           height: 40%;
-          padding:20px 0px;
+          padding:20px 4%;
           margin-top: 20px;
           box-sizing:border-box;
         }
@@ -668,13 +674,14 @@
         .header_title p:before{
             width: 76px;
             height: 48px;
-            left: 38%;
+            left: 34.5%;
         }
         .header_title p:after{
             width: 70px;
             height: 48px;
             line-height: 70px;
             background-size: 65px 20px; 
+            left: 59%;
         }
         .main_contain_title{
             width: 80%;
@@ -693,10 +700,10 @@
 
         }
         .main_contain_title:after{
-            left: 61%;
+            left: 63%;
         }
         .main_contain_title:before{
-            left: 44%;
+            left: 45%;
         }
         .footer_title p:after{ 
             left: 61.3%;
@@ -721,7 +728,7 @@
           width: 160px;
         }
         .cardId_style{
-          width: 200px !important;
+          width: 180px !important;
         }
         .name_style{
           padding-left: 75px;

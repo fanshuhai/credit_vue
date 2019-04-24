@@ -44,7 +44,7 @@
             // })
             // 
             this.$axios.defaults.withCredentials=true;
-            this.$axios.get('http://123.59.181.202:9990/api/v1/userInfo',{
+            this.$axios.get(this.HOST+'/api/v1/userInfo',{
                 params:{
                   userid:sessionStorage.getItem('id_p'),
                 }
@@ -70,7 +70,7 @@
 </script>
 <style scoped>
     .wrapper{
-        margin:10px 10px 0 0;
+        margin:0px 10px 0 0;
         height: auto;
         background: #fff;
     }

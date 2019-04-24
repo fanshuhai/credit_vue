@@ -39,6 +39,7 @@
 </template>
 
 <script>
+	import { validataPhone } from "../../common/http.js"
 	export default {
 		data() {
 			return {
@@ -74,7 +75,7 @@
 				},
 				rules:{
 	              cellphone:[
-	                {required: true, message: '请输入手机号！', trigger:'blur'}
+	                {required: true,validator:validataPhone,trigger:'blur'}
 	              ],
 	              cycle:[
 	                {required: true, message: '请选择时间段！', trigger:'change'}
@@ -100,7 +101,7 @@
 		                .then(res=>{
 		                    console.log(res.data)
 		                    this.content = res.data.message
-		                    if(res.data.cost === '70') {
+		                    if(res.data.cost >0) {
 		                    	this.overdueDetail = res.data.data.result	
 			                    this.overdueDetail.map(item => {
 			                  		if(item.platformType === '0') {
@@ -111,7 +112,7 @@
 			                  			item.platformType = '非银行'
 			                  		}
 			                    })
-		                    } else if(res.data.cost === '0') {
+		                    } else if(res.data.cost === '0' || res.data.cost === '0.00') {
 		                    	this.$message({
 									dangerouslyUseHTMLString: true,
 									message: this.content, 

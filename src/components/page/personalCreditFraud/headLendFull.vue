@@ -56,7 +56,7 @@
 					<el-table-column label="平台类型" prop="platformType"></el-table-column>
 					<el-table-column label="逾期数量" prop="counts"></el-table-column>
 					<el-table-column label="逾期金额区间" prop="money"></el-table-column>
-					<!--<el-table-column label="最近逾期时间"></el-table-column>-->
+					<el-table-column label="最近逾期时间" prop="dTime"></el-table-column>
 				</el-table>
 				<p class="tableTitle">欠款查询</p>
 				<el-table border :data="arrearsInquiry">
@@ -70,6 +70,7 @@
 </template>
 
 <script>
+	import { validataPhone } from "../../common/http.js"
 	export default {
 		data() {
 			return {
@@ -105,7 +106,7 @@
 				},
 				rules:{
 	              cellphone:[
-	                {required: true, message: '请输入手机号！', trigger:'blur'}
+	                {required: true, validator:validataPhone, trigger:'blur'}
 	              ],
 	              cycle:[
 	                {required: true, message: '请选择时间段！', trigger:'change'}
@@ -124,69 +125,171 @@
 			
 		},
 		methods: {
+//			fullQuery(formName){  
+//	            this.$refs[formName].validate((valid)=>{              
+//		            if(valid){
+//		                this.$axios.defaults.withCredentials=true;
+//		                this.$axios.post(this.HOST2+'/api/v1/acedata',{
+//		                    apiCode: "acedata.user.creditinfoall",
+//							cycle:this.newQuery.cycle,
+//						  	cellphone:this.newQuery.cellphone,
+//							accessType:"1",
+//		                })
+//		                .then(res=>{debugger;	
+//		                	console.log(res)
+//		                	console.log(4444)
+//		                	this.content = res.data.message
+//		                	this.codes = res.data.cost
+//		                	if(res.data.cost >=0) {
+//		                		console.log(555)
+//		                		if(res.data.data='异常错误'){
+//		                			console.log(33333)
+//		                			this.$message.error(this.content)
+//		                		}else{
+//			                		this.creditRegistration = res.data.data.result.data.S002.data
+//				                    this.creditRegistration.map(item => {
+//				                  		if(item.platformType === '0') {
+//				                  			item.platformType = '全部'
+//				                  		} else if(item.platformType === '1') {
+//				                  			item.platformType = '银行'
+//				                  		}else if(item.platformType === '2') {
+//				                  			item.platformType = '非银行'
+//				                  		}
+//					                })
+//				                    this.applicationDetail = res.data.data.result.data.S004.data
+//				                    this.applicationDetail.map(item => {
+//				                  		if(item.platformType === '0') {
+//				                  			item.platformType = '全部'
+//				                  		} else if(item.platformType === '1') {
+//				                  			item.platformType = '银行'
+//				                  		}else if(item.platformType === '2') {
+//				                  			item.platformType = '非银行'
+//				                  		}
+//					                })
+//				                    this.dismissalDetail = res.data.data.result.data.S009.data
+//				                    this.dismissalDetail.map(item => {
+//				                  		if(item.platformType === '0') {
+//				                  			item.platformType = '全部'
+//				                  		} else if(item.platformType === '1') {
+//				                  			item.platformType = '银行'
+//				                  		}else if(item.platformType === '2') {
+//				                  			item.platformType = '非银行'
+//				                  		}
+//					                })
+//				                    this.overdueDetail = res.data.data.result.data.S012.data
+//				                    this.overdueDetail.map(item => {
+//				                  		if(item.platformType === '0') {
+//				                  			item.platformType = '全部'
+//				                  		} else if(item.platformType === '1') {
+//				                  			item.platformType = '银行'
+//				                  		}else if(item.platformType === '2') {
+//				                  			item.platformType = '非银行'
+//				                  		}
+//					                })
+//				                    this.arrearsInquiry = res.data.data.result.data.S013.data
+//				                    this.arrearsInquiry.map(item => {
+//				                  		if(item.platformType === '0') {
+//				                  			item.platformType = '全部'
+//				                  		} else if(item.platformType === '1') {
+//				                  			item.platformType = '银行'
+//				                  		}else if(item.platformType === '2') {
+//				                  			item.platformType = '非银行'
+//				                  		}
+//					                })
+//		                		}
+//		                	} else {
+//		                		console.log(22222)
+//		                		this.$message({
+//									dangerouslyUseHTMLString: true,
+//									message: this.content, 
+//									type: "error"})
+//			                		this.creditRegistration = [],
+//						            this.applicationDetail = [],
+//						            this.dismissalDetail = [],
+//						            this.overdueDetail = [],
+//						            this.arrearsInquiry = []
+//		                	}
+//		                    
+//		                })
+//		                .catch(error=>{	
+//		                	
+//		                })
+//		            } else {
+//		            	this.$message({message: "请填写相关信息！",type: "error"})
+//		            }
+//	            })
+//        	}
 			fullQuery(formName){  
 	            this.$refs[formName].validate((valid)=>{              
 		            if(valid){
 		                this.$axios.defaults.withCredentials=true;
-		                this.$axios.post(this.HOST2+'/api/v1/acedata',{
-		                    cycle: this.newQuery.cycle,
-		                    cellphone: this.newQuery.cellphone,
-		                    apiCode: 'acedata.user.creditinfoall',
+		                this.$axios.post(this.HOST2+'/api/v2/acedata',{
+		                    apiCode: "acedata.user.creditinfoall",
+							cycle:this.newQuery.cycle,
+						  	cellphone:this.newQuery.cellphone,
+							accessType:"1",
 		                })
-		                .then(res=>{		                	
+		                .then(res=>{	
+		                	console.log(res.data);
+		                	let dataNum=res.data;
 		                	this.content = res.data.message
 		                	this.codes = res.data.cost
-		                	if(res.data.cost === '140') {
-		                		this.creditRegistration = res.data.data.result.data.S002.data
-			                    this.creditRegistration.map(item => {
-			                  		if(item.platformType === '0') {
-			                  			item.platformType = '全部'
-			                  		} else if(item.platformType === '1') {
-			                  			item.platformType = '银行'
-			                  		}else if(item.platformType === '2') {
-			                  			item.platformType = '非银行'
-			                  		}
-				                })
-			                    this.applicationDetail = res.data.data.result.data.S004.data
-			                    this.applicationDetail.map(item => {
-			                  		if(item.platformType === '0') {
-			                  			item.platformType = '全部'
-			                  		} else if(item.platformType === '1') {
-			                  			item.platformType = '银行'
-			                  		}else if(item.platformType === '2') {
-			                  			item.platformType = '非银行'
-			                  		}
-				                })
-			                    this.dismissalDetail = res.data.data.result.data.S009.data
-			                    this.dismissalDetail.map(item => {
-			                  		if(item.platformType === '0') {
-			                  			item.platformType = '全部'
-			                  		} else if(item.platformType === '1') {
-			                  			item.platformType = '银行'
-			                  		}else if(item.platformType === '2') {
-			                  			item.platformType = '非银行'
-			                  		}
-				                })
-			                    this.overdueDetail = res.data.data.result.data.S012.data
-			                    this.overdueDetail.map(item => {
-			                  		if(item.platformType === '0') {
-			                  			item.platformType = '全部'
-			                  		} else if(item.platformType === '1') {
-			                  			item.platformType = '银行'
-			                  		}else if(item.platformType === '2') {
-			                  			item.platformType = '非银行'
-			                  		}
-				                })
-			                    this.arrearsInquiry = res.data.data.result.data.S013.data
-			                    this.arrearsInquiry.map(item => {
-			                  		if(item.platformType === '0') {
-			                  			item.platformType = '全部'
-			                  		} else if(item.platformType === '1') {
-			                  			item.platformType = '银行'
-			                  		}else if(item.platformType === '2') {
-			                  			item.platformType = '非银行'
-			                  		}
-				                })
+		                	if(res.data.cost >='0') {
+		                		console.log(res.data);
+		                		if(res.data.message=='没有获取有效数据'){
+		                			this.$message.success(res.data.message)
+		                		}else{
+			                		this.creditRegistration = res.data.data.result.data.S002.data
+				                    this.creditRegistration.map(item => {
+				                  		if(item.platformType === '0') {
+				                  			item.platformType = '全部'
+				                  		} else if(item.platformType === '1') {
+				                  			item.platformType = '银行'
+				                  		}else if(item.platformType === '2') {
+				                  			item.platformType = '非银行'
+				                  		}
+					                })
+				                    this.applicationDetail = res.data.data.result.data.S004.data
+				                    this.applicationDetail.map(item => {
+				                  		if(item.platformType === '0') {
+				                  			item.platformType = '全部'
+				                  		} else if(item.platformType === '1') {
+				                  			item.platformType = '银行'
+				                  		}else if(item.platformType === '2') {
+				                  			item.platformType = '非银行'
+				                  		}
+					                })
+				                    this.dismissalDetail = res.data.data.result.data.S009.data
+				                    this.dismissalDetail.map(item => {
+				                  		if(item.platformType === '0') {
+				                  			item.platformType = '全部'
+				                  		} else if(item.platformType === '1') {
+				                  			item.platformType = '银行'
+				                  		}else if(item.platformType === '2') {
+				                  			item.platformType = '非银行'
+				                  		}
+					                })
+				                    this.overdueDetail = res.data.data.result.data.S012.data
+				                    this.overdueDetail.map(item => {
+				                  		if(item.platformType === '0') {
+				                  			item.platformType = '全部'
+				                  		} else if(item.platformType === '1') {
+				                  			item.platformType = '银行'
+				                  		}else if(item.platformType === '2') {
+				                  			item.platformType = '非银行'
+				                  		}
+					                })
+				                    this.arrearsInquiry = res.data.data.result.data.S013.data
+				                    this.arrearsInquiry.map(item => {
+				                  		if(item.platformType === '0') {
+				                  			item.platformType = '全部'
+				                  		} else if(item.platformType === '1') {
+				                  			item.platformType = '银行'
+				                  		}else if(item.platformType === '2') {
+				                  			item.platformType = '非银行'
+				                  		}
+					                })
+		                		}
 		                	} else {
 		                		this.$message({
 									dangerouslyUseHTMLString: true,
@@ -200,7 +303,16 @@
 		                	}
 		                    
 		                })
-		                .catch(error=>{		                   
+		                .catch(error=>{	
+//								dangerouslyUseHTMLString: true,
+//								message: this.content, 
+//								type: "error"})
+//		                		this.creditRegistration = [],
+//					            this.applicationDetail = [],
+//					            this.dismissalDetail = [],
+//					            this.overdueDetail = [],
+//					            this.arrearsInquiry = []
+		                	
 		                })
 		            } else {
 		            	this.$message({message: "请填写相关信息！",type: "error"})

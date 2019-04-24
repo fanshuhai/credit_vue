@@ -148,7 +148,7 @@
     .header_title{
       height:50%;
       font-size: 45px;
-      color: #3c88f6;
+      color: #30af90;
       position: relative;
     }
     .header_title p:before,.header_title p:after{
@@ -181,7 +181,7 @@
       letter-spacing: 2px;
     }
     .header_input .el-button{
-      background:#3c88f6;
+      background:#30af90;
       height: 36px;
       text-align: center;
       width: 180px;
@@ -301,8 +301,8 @@
    
     
     .active,.active2,.active3{
-        border-right: 5px solid #3c88f6;
-        color: #3c88f6 !important;
+        border-right: 5px solid #30af90;
+        color: #30af90 !important;
         background: #d2e3fd;
     }
     @media screen and (max-width: 1500px){

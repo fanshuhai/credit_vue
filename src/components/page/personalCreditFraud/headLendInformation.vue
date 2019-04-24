@@ -1,10 +1,10 @@
 <template>
 	<div class="contentFull">
-		<div class="newCheck">
+		<div class="newCheck selectCheck">
 			<p class="newCheck-content">多头借贷信息查询</p>
 			<div class="newCheck_form">
 				<el-form :inline="true" :model="newQuery" ref="newQuery" :rules="rules">
-					<el-form-item label="查询类型：" prop="type">
+					<el-form-item class='check_error' label="查询类型：" prop="type">
 						<el-checkbox label="全选" v-model="checkAll" :indeterminate="isIndeterminate" @change="handleCheckAll"></el-checkbox>
 						<el-checkbox-group v-model="newQuery.type" @change="handleCheckedTypeChange">							
 							<el-checkbox v-for="(item,index) in typeOption" :label="item.value" :key="item.value">{{item.label}}</el-checkbox>							
@@ -288,63 +288,64 @@
 </template>
 
 <script>
-		const cityOptions = [
-				{
-					value: 'S001',
-					label: '信贷平台注册信息'
-				},
-				{
-					value: 'S002',
-					label: '信贷平台注册详情'
-				},
-				{
-					value: 'S003',
-					label: '贷款申请次数'
-				},
-				{
-					value: 'S004',
-					label: '贷款申请详情'
-				},
-				{
-					value: 'S005',
-					label: '贷款申请结果'
-				},
-				{
-					value: 'S006',
-					label: '贷款放款次数'
-				},
-				{
-					value: 'S007',
-					label: '贷款放款详情'
-				},
-				{
-					value: 'S008',
-					label: '贷款驳回次数'
-				},
-				{
-					value: 'S009',
-					label: '贷款驳回详情'
-				},
-				{
-					value: 'S010',
-					label: '逾期信息查询'
-				},
-				{
-					value: 'S011',
-					label: '逾期平台查询'
-				},
-				{
-					value: 'S012',
-					label: '逾期平台详情查询'
-				},
-				{
-					value: 'S013',
-					label: '欠款查询'
-				}					
-			]
-		const cityOptions_value = [
-		 'S001','S002','S003','S004','S005','S006','S007','S008','S009','S010','S011','S012','S013',	
-	    ]
+	import { validataPhone } from "../../common/http.js"
+	const cityOptions = [
+			{
+				value: 'S001',
+				label: '信贷平台注册信息'
+			},
+			{
+				value: 'S002',
+				label: '信贷平台注册详情'
+			},
+			{
+				value: 'S003',
+				label: '贷款申请次数'
+			},
+			{
+				value: 'S004',
+				label: '贷款申请详情'
+			},
+			{
+				value: 'S005',
+				label: '贷款申请结果'
+			},
+			{
+				value: 'S006',
+				label: '贷款放款次数'
+			},
+			{
+				value: 'S007',
+				label: '贷款放款详情'
+			},
+			{
+				value: 'S008',
+				label: '贷款驳回次数'
+			},
+			{
+				value: 'S009',
+				label: '贷款驳回详情'
+			},
+			{
+				value: 'S010',
+				label: '逾期信息查询'
+			},
+			{
+				value: 'S011',
+				label: '逾期平台查询'
+			},
+			{
+				value: 'S012',
+				label: '逾期平台详情查询'
+			},
+			{
+				value: 'S013',
+				label: '欠款查询'
+			}					
+		]
+	const cityOptions_value = [
+	 'S001','S002','S003','S004','S005','S006','S007','S008','S009','S010','S011','S012','S013',	
+    ]
 	export default {
 		data() {
 			return {
@@ -387,7 +388,7 @@
 				types: '',
 				rules:{
 	              cellphone:[
-	                {required: true, message: '请输入手机号！', trigger:'blur'}
+	                {required: true,validator:validataPhone,trigger:'blur'}
 	              ],
 	              cycle:[
 	                {required: true, message: '请选择时间段！', trigger:'change'}
@@ -432,7 +433,7 @@
 		                })
 		                .then(res=>{
 		                	this.content = res.data.message
-		                	if(res.data.cost === '57') {
+		                	if(res.data.cost >0) {
 		                		this.creditRegistInformation = res.data.data.result.S001
 			                  	this.creditRegistration = res.data.data.result.S002.data
 			                  	this.creditRegistration.map(item => {
@@ -444,7 +445,7 @@
 			                  			item.platformType = '非银行'
 			                  		}
 				                })
-			                  	this.loanApplication = res.data.data.result.S003
+			                  	this.loanApplication = res.data.data.result.S003;
 			                     this.applicationDetail = res.data.data.result.S004.data
 			                     this.applicationDetail.map(item => {
 			                  		if(item.platformType === '0') {
@@ -500,24 +501,24 @@
 			                  			item.platformType = '非银行'
 			                  		}
 				                })
-		                	} else if(res.data.cost === '0') {
+		                	} else if(res.data.cost === '0.00' || res.data.cost === '0') {
 		                		this.$message({
 									dangerouslyUseHTMLString: true,
 									message: this.content, 
 									type: "error"})
-			                		   this.creditRegistInformation = {},
-							           this.creditRegistration = [],
-							           this.loanApplication = {},
-							           this.applicationDetail = [],
-							           this.dismissalDetail = [],
-							           this.overdueDetail = [],
-							           this.arrearsInquiry = [],
-							           this.loanDisbursement = [],
-							           this.loanApplicaResult = {},
-							           this.loanApplicaNum = {},
-							           this.loanRejectNum = {},
-							           this.overdueInformationQuery = {},
-							           this.overdueCycleQuery = {}
+		                		   this.creditRegistInformation = {},
+						           this.creditRegistration = [],
+						           this.loanApplication = {},
+						           this.applicationDetail = [],
+						           this.dismissalDetail = [],
+						           this.overdueDetail = [],
+						           this.arrearsInquiry = [],
+						           this.loanDisbursement = [],
+						           this.loanApplicaResult = {},
+						           this.loanApplicaNum = {},
+						           this.loanRejectNum = {},
+						           this.overdueInformationQuery = {},
+						           this.overdueCycleQuery = {}
 		                	}
 		                	
 		                })
@@ -625,7 +626,7 @@
 	}
 </script>
 
-<style scoped>
+<style lang="" scoped>
 	.contentFull {
 		padding: 40px;
 		width: 100%;
@@ -648,7 +649,7 @@
 	}
 	.queryResult {
 		border: 1px solid #ccc;
-		margin-top: 40px;
+		margin: 40px 0;
 	}
 	.queryResult .el-table {
 		margin-bottom: 30px;

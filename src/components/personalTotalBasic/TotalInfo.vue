@@ -1,23 +1,22 @@
 <template>
     <div class="totalInfo">
       <el-container class="content_main">
-
           <el-aside class="sideMenu" width="205px">
-              <el-menu class="sidebar-el-menu" :default-active="onRoutes" 
+              <el-menu class="sidebar-el-menu themeG_b" :default-active="onRoutes" 
                 unique-opened router>
                   <template v-for="item in items">
                       <template v-if="item.subs">
-                          <el-submenu :index="item.index" :key="item.index">
+                          <el-submenu class="themeG_b" :index="item.index" :key="item.index">
                               <template slot="title">
                                   <i :class="item.icon"></i><span slot="title">{{ item.title }}</span>
                               </template>
-                              <el-menu-item v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index">
+                              <el-menu-item class="themeG_b" v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index">
                                   {{ subItem.title }}
                               </el-menu-item>
                           </el-submenu>
                       </template>
                       <template v-else>
-                          <el-menu-item :index="item.index" :key="item.index">
+                          <el-menu-item class="themeG_b" :index="item.index" :key="item.index">
                               <i :class="item.icon"></i><span slot="title">{{ item.title }}</span>
                           </el-menu-item>
                       </template>
@@ -26,45 +25,45 @@
           </el-aside>
           <el-container class="main_right">
               <el-header>
-                <el-row :gutter="20">
-                      <el-col :span="5">
-                        <div class="grid-content query_orgn">
-                            <span>选择查询机构：</span>
-                            <el-select v-model="elementvalue" placeholder="请选择">
-                              <el-option v-for="(item,index) in options" :key="index" :label="item.label" :value="item.value">
-                              </el-option>
-                            </el-select>
-                        </div>
+                <el-row :gutter="15" type="flex" justify="center">
+                	<el-form :model='ruleForm' :rules='rules' ref='ruleForm' :inline='true' style="width:100%;">
+                      <el-col :span="6" class='queryOrg'>
+                        <!--<div class="grid-content query_orgn">-->
+                            <!--<span>选择查询机构</span>-->
+                            <el-form-item label="选择查询机构">
+	                            <el-select label="选择查询机构" v-model="elementvalue" placeholder="请选择">
+	                              <el-option v-for="(item,index) in options" :key="index" :label="item.label" :value="item.value">
+	                              </el-option>
+	                            </el-select>
+                            </el-form-item>
+                        <!--</div>-->
                       </el-col>
-                      <el-form :model='ruleForm' :rules='rules' ref='ruleForm' style="width:100%;">
-                        <el-col :span="4">
-                          <div class="grid-content query_name">
-                            <span>姓名：</span>
-                            <el-form-item  prop='name'>
+                      
+                        <el-col :span="5" class='queryOrg'>
+                          <!--<div class="grid-content query_name">-->
+                            <el-form-item label="姓名" prop='name'>
                               <el-input placeholder="请输入姓名" v-model="ruleForm.name" clearable></el-input>
                             </el-form-item>
-                          </div>
+                          <!--</div>-->
                         </el-col>
-                        <el-col :span="7">
-                          <div class="grid-content query_cardid">
-                            <span>身份证号：</span>
-                            <el-form-item  prop='cardId'>
+                        <el-col :span="6" class="id-1366">
+                          <!--<div class="grid-content query_cardid">-->
+                            <el-form-item label="身份证号" prop='cardId'>
                               <el-input placeholder="请输入身份证号码" v-model="ruleForm.cardId" clearable></el-input>
                             </el-form-item>
-                          </div>
+                          <!--</div>-->
                         </el-col>
-                        <el-col :span="6">
-                          <div class="grid-content query_phone">
-                            <span>手机号码：</span>
-                            <el-form-item  prop='phone'>
+                        <el-col :span="5" class='queryOrg'>
+                          <!--<div class="grid-content query_phone">-->
+                            <el-form-item label="手机号码" prop='phone'>
                               <el-input placeholder="请输入手机号码" v-model="ruleForm.phone" clearable></el-input>
                             </el-form-item>
-                          </div>
+                          <!--</div>-->
                         </el-col>
-                        <el-col :span="2">
-                          <div class="grid-content">
-                            <el-button @click="querySelect('ruleForm')" type="success">查询</el-button>
-                          </div>
+                        <el-col :span="1">
+                          <!--<div class="grid-content">-->
+                            <el-button class="themeG_b" @click="querySelect('ruleForm')" type="success">查询</el-button>
+                          <!--</div>-->
                         </el-col>
                       </el-form>
                 </el-row>
@@ -80,9 +79,8 @@
 </template>
 
 <script>
-
+    import bus from '../common/bus'
     export default {
-        
         data() {
             let validataName=(rule,value,callback)=>{
               if(value===''){
@@ -137,16 +135,18 @@
                 {
                   value: '选项1',
                   label: '摩尔征信'
-                }, {
-                  value: '选项2',
-                  label: '汇法网'
-                }, {
-                  value: '选项3',
-                  label: '同盾'
-                }, {
-                  value: '选项4',
-                  label: '魔蝎'
-                }, {
+                },
+                //  {
+                //   value: '选项2',
+                //   label: '汇法网'
+                // }, {
+                //   value: '选项3',
+                //   label: '同盾'
+                // }, {
+                //   value: '选项4',
+                //   label: '魔蝎'
+                // },
+                 {
                   value: '选项5',
                   label: '全部'
                 }
@@ -246,7 +246,7 @@
                   {
                       icon: 'el-icon-publicMsg',
                       index: '5',
-                      title: '公共信息',
+                      title: '授权数据',
                       subs: [
                           {
                               index: 'onlineshopping',
@@ -280,6 +280,7 @@
                       ]
                   }
               ],
+              totalMessage:'',
               // activeIndex:'',
 
             }
@@ -318,7 +319,7 @@
                 let rulePhone=$.trim(this.ruleForm.phone);
                 if(this.elementvalue=="选项1"){
                     this.$axios.defaults.withCredentials=true;
-                    this.$axios.get('http://123.59.181.202:9990/api/v1/search',{
+                    this.$axios.get(this.HOST+'/api/v3/search',{
                       params:{
                         name:ruleName,
                         cardId:ruleCardId,
@@ -336,25 +337,36 @@
                         let msgData=res.data;
                         msgData=JSON.stringify(msgData);
                         
-                        localStorage.setItem("msgData",msgData);
+                        
+                        this.totalMessage=res.data;
+                        this.totalMessage.queryWay='local';
+                        localStorage.setItem("msgData",JSON.stringify(this.totalMessage));
+                        // 传递给兄弟组件
+                        bus.$emit('cMessage',this.totalMessage)
+                        bus.$emit('moxieReport','1')
                         //结束加载
                         loading.close();
-                        if(this.$route.path=='/queryResult'){
-                          // 刷新当前页面
-                          window.location.reload();
-                        }else{
+                        if(this.$router.path!='/queryResult'){
                           this.$router.push('/queryResult');
                         }
+                        // if(this.$route.path=='/queryResult'){
+                        //   // 刷新当前页面
+                        //   window.location.reload();
+                        // }else{
+                        //   this.$router.push('/queryResult');
+                        // }
                         
                       } 
                     })
                     .catch(error=>{
-                      // alert('暂无服务');
+                        //结束加载
+                        loading.close();
+                        this.$message.error('网络异常');
                         console.log(error);
                     })
                 }else if(this.elementvalue=="选项2"){
                     this.$axios.defaults.withCredentials=true;
-                    this.$axios.get('http://123.59.181.202:9990/api/v1/hfw/search',{
+                    this.$axios.get(this.HOST+'/api/v1/hfw/search',{
                       params:{
                         name:ruleName,
                         cardId:ruleCardId,
@@ -377,12 +389,14 @@
                       } 
                     })
                     .catch(error=>{
-                      // alert('暂无服务');
+                        //结束加载
+                        loading.close();
+                        this.$message.error('网络异常');
                         console.log(error.response);
                     })
                 }else if(this.elementvalue=="选项3"){
                     this.$axios.defaults.withCredentials=true;
-                    this.$axios.get('http://123.59.181.202:9990/api/v1/tdsearch',{
+                    this.$axios.get(this.HOST+'/api/v1/tdsearch',{
                       params:{
                           account_name:ruleName,
                           id_number:ruleCardId,
@@ -405,7 +419,9 @@
                       } 
                     })
                     .catch(error=>{
-                      // alert('暂无服务');
+                        //结束加载
+                        loading.close();
+                        this.$message.error('网络异常');
                         console.log(error.response);
                     })
                 }else if(this.elementvalue=="选项4"){
@@ -414,7 +430,7 @@
                     this.$router.push('/moxieQuery'); 
                 }else if( this.elementvalue=="选项5"){
                     this.$axios.defaults.withCredentials=true;
-                    this.$axios.get('http://123.59.181.202:9990/api/v1/multiple/search',{
+                    this.$axios.get(this.HOST3+'/api/v2/multiple/search',{
                       params:{
                           account_name:ruleName,
                           id_number:ruleCardId,
@@ -431,19 +447,28 @@
                       }else{
                         let msgData=res.data;
                         msgData=JSON.stringify(msgData);
-                        localStorage.setItem("msgData",msgData);
+                        this.totalMessage=res.data;
+                        this.totalMessage.queryWay='tPart';
+                        // 传递给兄弟组件
+                        bus.$emit('cMessage',this.totalMessage);
+                        localStorage.setItem("msgData",JSON.stringify(this.totalMessage));
                         //结束加载
                         loading.close();
-                        if(this.$route.path=='/queryResult'){
-                          // 刷新当前页面
-                          window.location.reload();
-                        }else{
+                        if(this.$router.path!='/queryResult'){
                           this.$router.push('/queryResult');
                         }
+                        // if(this.$route.path=='/queryResult'){
+                        //   // 刷新当前页面
+                        //   window.location.reload();
+                        // }else{
+                        //   this.$router.push('/queryResult');
+                        // }
                       } 
                     })
                     .catch(error=>{
-                      // alert('暂无服务');
+                        //结束加载
+                        loading.close();
+                        this.$message.error('网络异常');
                         console.log(error.response);
                     })
                 }
@@ -507,6 +532,7 @@
   }
   .el-col {
     border-radius: 4px;
+    text-align:center;
   }
   .grid-content {
     min-height: 36px;
@@ -557,7 +583,7 @@
   .sidebar > ul {
       height:100%;
   }
-  .query_orgn .el-select{
+  /*.query_orgn .el-select{
           width: 160px;
   }
   .query_name .el-form-item{
@@ -567,9 +593,8 @@
   .query_cardid .el-form-item,.query_phone .el-form-item{
       width: 240px;
       display: inline-block;
-  }
+  }*/
   .el-button{
-      background:#3c88f6;
       height: 30px;
       width: 100px;
       border-radius:4px; 
@@ -580,18 +605,18 @@
   /*.el-aside{
     float: left;
   }*/
-  .main_right{
+ .main_right{
     /*float:right;
     width: 90%;*/
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
     height: 92.5vh;
   }
   .sideMenu{
     float:left;
   }
-  @media screen and (min-width: 1900px){
+  @media screen and (min-width:1900px){
     .el-header .el-row {
-        padding: 15px 100px;
+        padding: 15px 50px;
     }
     .query_cardid span{
         padding-left: 30px;
@@ -600,8 +625,8 @@
         padding-left: 10px;
     }
   }
-  @media screen and (max-width: 1500px){
-      .query_orgn .el-select{
+  @media screen and (max-width:1500px){
+      /*.query_orgn .el-select{
           width: 110px;
       }
       .query_name .el-form-item{
@@ -622,15 +647,17 @@
       .el-button{
         position: relative;
         right: 30px;
-      }
+      }*/
   }
   @media screen and (max-width: 1400px){
      .el-container{
         font-size: 13px;
      }
      .totalInfo{
-        width: 1342px;
         min-width: 1342px;
+     }
+     .el-button{
+     	width: 80px;
      }
 
   }

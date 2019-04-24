@@ -419,7 +419,7 @@
         },
         mounted(){
             this.$axios.defaults.withCredentials=true;
-            this.$axios.get('http://123.59.181.202:9990/api/v1/taobao',{
+            this.$axios.get(this.HOST+'/api/v1/taobao',{
               params:{
                 account_name:localStorage.getItem('name'),
                 id_number:localStorage.getItem('cardId'),

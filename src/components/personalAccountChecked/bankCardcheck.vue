@@ -26,7 +26,7 @@
                         </el-col>
                         <el-col :span="6">
                             <el-form-item >
-                                <el-button type="primary" @click="onSubmit_nameBankcard('form')" style="background: #3c88f6;border-color: #3c88f6">提交</el-button>
+                                <el-button type="primary" @click="onSubmit_nameBankcard('form')">提交</el-button>
                             </el-form-item>
                         </el-col>
                     </el-row>
@@ -45,7 +45,7 @@
                         </el-col>
                         <el-col :span="6">
                             <el-form-item>
-                                <el-button type="primary" @click="onSubmit_phoneBankcard('form')" style="background: #3c88f6;border-color: #3c88f6">提交</el-button>
+                                <el-button type="primary" @click="onSubmit_phoneBankcard('form')">提交</el-button>
                             </el-form-item>
                         </el-col>
                     </el-row>
@@ -64,7 +64,7 @@
                         </el-col>
                         <el-col :span="6">
                             <el-form-item>
-                                <el-button type="primary" @click="onSubmit_cardBankcard('form')" style="background: #3c88f6;border-color: #3c88f6">提交</el-button>
+                                <el-button type="primary" @click="onSubmit_cardBankcard('form')">提交</el-button>
                             </el-form-item>
                         </el-col>
                     </el-row>
@@ -246,7 +246,12 @@
                             console.log(res.data);
                             if(res.data.success == true){
                                 if(res.data.message=='没有获取有效数据'){
-                                    this.$message.error("没有获取有效数据")
+                                	if(res.data.data.result=='' || typeof(res.data.data.result)==undefined){
+                                		this.$message.success("没有获取有效数据")
+                                	}else{
+                                	  this.$message.error(res.data.data.result)
+                                	}
+                                	this.searchResultExamp = []
                                 }else{
                                     const datas = res.data.data
                                     const dataArr = new Array();
@@ -255,11 +260,13 @@
                                 }
                             }else{
                                 this.$message.error("异常错误")
+                                this.searchResultExamp = []
                             }
                         
                         })
                         .catch(error=>{
                             this.$message.error("没有获取有效数据")
+                            this.searchResultExamp = []
                         })
                     }
                 });
@@ -280,7 +287,12 @@
                         .then(res=>{
                             if(res.data.success == true){
                                 if(res.data.message=='没有获取有效数据'){
-                                    this.$message.error("没有获取有效数据")
+                                	if(res.data.data.result=='' || typeof(res.data.data.result)==undefined){
+                                		this.$message.success("没有获取有效数据")
+                                	}else{
+                                	  this.$message.error(res.data.data.result)
+                                	}
+                                	this.searchResultExamp = []
                                 }else{
                                     const datas = res.data.data
                                     const dataArr = new Array();
@@ -289,10 +301,12 @@
                                 }
                             }else{
                                 this.$message.error("异常错误")
+                                this.searchResultExamp = []
                             }
                         })
                         .catch(error=>{
                             this.$message.error("没有获取有效数据")
+                            this.searchResultExamp = []
                         })
                     }
                 });
@@ -311,10 +325,14 @@
                             type: "7"
                         })
                         .then(res=>{
-                            console.log(res.data);
                             if(res.data.success == true){
                                 if(res.data.message=='没有获取有效数据'){
-                                    this.$message.error("没有获取有效数据")
+                                	if(res.data.data.result=='' || typeof(res.data.data.result)==undefined){
+                                		this.$message.success("没有获取有效数据")
+                                	}else{
+                                	  this.$message.error(res.data.data.result)
+                                	}
+                                	this.searchResultExamp = []
                                 }else{
                                     const datas = res.data.data
                                     const dataArr = new Array();
@@ -323,10 +341,12 @@
                                 }
                             }else{
                                 this.$message.error("异常错误")
+                                this.searchResultExamp = []
                             }
                         })
                         .catch(error=>{
                             this.$message.error("没有获取有效数据")
+                            this.searchResultExamp = []
                         })
                     }
                 });
@@ -349,7 +369,12 @@
                             console.log(res.data);
                             if(res.data.success == true){
                                 if(res.data.message=='没有获取有效数据'){
-                                    this.$message.error("没有获取有效数据")
+                                	if(res.data.data.result=='' || typeof(res.data.data.result)==undefined){
+                                		this.$message.success("没有获取有效数据")
+                                	}else{
+                                	  this.$message.error(res.data.data.result)
+                                	}
+                                	this.searchResultExamp = []
                                 }else{
                                     const datas = res.data.data
                                     const dataArr = new Array();
@@ -358,10 +383,12 @@
                                 }
                             }else{
                                 this.$message.error("异常错误")
+                                this.searchResultExamp = []
                             }
                         })
                         .catch(error=>{
                             this.$message.error("没有获取有效数据")
+                            this.searchResultExamp = []
                         })
                     }
                 });
@@ -389,7 +416,12 @@
                             console.log(res.data);
                             if(res.data.success == true){
                                 if(res.data.message=='没有获取有效数据'){
-                                    this.$message.error("没有获取有效数据")
+                                	if(res.data.data.result=='' || typeof(res.data.data.result)==undefined){
+                                		this.$message.success("没有获取有效数据")
+                                	}else{
+                                	  this.$message.error(res.data.data.result)
+                                	}
+                                	this.searchResultExamp = []
                                 }else{
                                     const datas = res.data.data
                                     const dataArr = new Array();
@@ -398,10 +430,12 @@
                                 }
                             }else{
                                 this.$message.error("异常错误")
+                                this.searchResultExamp = []
                             }
                         })
                         .catch(error=>{
                             this.$message.error("没有获取有效数据")
+                            this.searchResultExamp = []
                         })
                     }
                 });

@@ -93,7 +93,7 @@
             this.$refs[formName].validate((valid)=>{
               if(valid){
                 this.$axios.defaults.withCredentials=true;
-                this.$axios.get('http://123.59.181.202:9990/api/v1/hfw/search',{
+                this.$axios.get(this.HOST+'/api/v1/hfw/search',{
                   params:{
                     name:this.ruleForm.name,
                     cardId:this.ruleForm.cardId,
@@ -172,7 +172,7 @@
     align-items: center;
   }
   .el-button{
-      background:#3c88f6;
+      background:#30af90;
       height: 45px;
       width: 330px;
       border-radius:4px; 

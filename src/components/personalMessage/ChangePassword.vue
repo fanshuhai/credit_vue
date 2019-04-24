@@ -22,7 +22,7 @@
                     </el-form-item>
               </div>
               <div style="text-align:right">
-                <el-button @click="submitForm('ruleForm')" >提交</el-button>
+                <el-button class="themeG_b" @click="submitForm('ruleForm')" >提交</el-button>
               </div>
             </el-form>
           </div>
@@ -82,41 +82,41 @@
             }
         },
         methods:{
-            submitForm(formName){
-                this.$refs[formName].validate((valid)=>{
-                    if(valid){
-                        this.$axios.defaults.withCredentials=true;
-                        this.$axios.get('http://123.59.181.202:8082/mgr/changePwd',{
-                          params:{
-                            oldPwd:this.ruleForm.originalpass,
-                            newPwd:this.ruleForm.pass,
-                            rePwd:this.ruleForm.checkpass,
-                          }
-                        })
-                        .then(res=>{
-                          console.log(res.data);
-                          if(res.data.status=="104"){
-                              this.$message({
-                                message:res.data.message,
-                                type:'success',
-                              })
-                          }
-                          if(res.data.status=="410"){
-                              this.$message({
-                                message:res.data.message,
-                                type:'error',
-                              })
-                          }
-                        })
-                        .catch(error=>{
-                          alert('暂无服务');
-                            console.log(error.response);
-                        })
-                    }else{
-                        return false;
+          submitForm(formName){
+            this.$refs[formName].validate((valid)=>{
+              if(valid){
+                  this.$axios.defaults.withCredentials=true;
+                  this.$axios.get(this.HOSTLogin+'/mgr/changePwd',{
+                    params:{
+                      oldPwd:this.ruleForm.originalpass,
+                      newPwd:this.ruleForm.pass,
+                      rePwd:this.ruleForm.checkpass,
                     }
-                })
-            },
+                  })
+                  .then(res=>{
+                    console.log(res.data);
+                    if(res.data.status=="104"){
+                        this.$message({
+                          message:res.data.message,
+                          type:'success',
+                        })
+                    }
+                    if(res.data.status=="410"){
+                        this.$message({
+                          message:res.data.message,
+                          type:'error',
+                        })
+                    }
+                  })
+                  .catch(error=>{
+                    alert('暂无服务');
+                      console.log(error.response);
+                  })
+              }else{
+                  return false;
+              }
+            })
+          },
         },
         computed: {
 
@@ -160,7 +160,6 @@
     align-items: center;
   }
   .el-button{
-      background:#3c88f6;
       height: 45px;
       width: 330px;
       border-radius:4px; 

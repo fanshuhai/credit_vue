@@ -74,7 +74,36 @@ export default new Router({
                             path:'/billing',
                             component:resolve => require(['../components/billingOverview/Billing.vue'], resolve),
                             meta: { title: '计时计费表' },
-                        }
+                        },
+                        //个人投资信息核查
+                        {
+                            path: '/personalInvestment',
+                            component: resolve => require(['../components/personalIfoVe/PersonalInvestment.vue'], resolve),
+                            meta: { title: '个人投资信息核查' }
+                        },
+                        //个人司法信息核查
+                        {
+                            path: '/personalJudicialVerification',
+                            component: resolve => require(['../components/personalIfoVe/PersonalJudicialVerification.vue'], resolve),
+                            meta: { title: '个人司法信息核查' }
+                        },
+                        //企业征信报告
+                        {
+                            path: '/enterpriseQuery',
+                            component: resolve => require(['../components/enterpriseCredit/EnterpriseQuery.vue'], resolve),
+                            meta: { title: '企业征信查询' }
+                        },
+                        {
+                            path: '/enterpriseReport',
+                            component: resolve => require(['../components/enterpriseCredit/EnterpriseReport.vue'], resolve),
+                            meta: { title: '企业征信报告' }
+                        },
+                        //企业司法信息
+                        {
+                            path: '/entJusticeMsg',
+                            component: resolve => require(['../components/enterpriseCredit/EntJusticeMsg.vue'], resolve),
+                            meta: { title: '企业司法信息' }
+                        },
                         
                     ]
                 },
@@ -326,10 +355,14 @@ export default new Router({
             path: '/403',
             component: resolve => require(['../components/page/403.vue'], resolve)
         },
-        // {
-        //     path: '*',
-        //     redirect: '/404'
-        // }
+        {
+            path: '*',
+            redirect: '/404',
+        },
+        {
+            path: '/entReport',
+            component: resolve => require(['../components/out_online/EntReport.vue'], resolve)
+        },
     ],
-   // mode:'history'
+    mode:'history'
 })

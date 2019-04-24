@@ -1,4 +1,9 @@
 //fanshuhai 2018/10/19
+import axios from 'axios'
+axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';   //配置请求头
+//axios.defaults.baseURL = 'http://10.1.2.76:9260/';   //配置接口地址
+//axios.defaults.baseURL = 'http://10.1.2.60:9320/'
+//axios.defaults.baseURL = 'http://10.1.2.232:9320/';   //配置接口地址
 export function fetch(url, params) {
   return new Promise((resolve, reject) => {
 //	axios.defaults.withCredentials=true;
@@ -36,6 +41,14 @@ export function getYYDDMM(value){
   return  datestr;
 }
 
+export function validataName(rule,value,callback){
+    if(value===''){
+  callback(new Error('请输入姓名'));
+    }else{
+      callback();
+    }
+};
+
 export function validataCardId(rule,value,callback){
   let regId=/(^\d{15}$)|(d{18}$)|(^\d{17}(\d|X|x)$)/;
   let cardIdValue=$.trim(value);
@@ -72,3 +85,37 @@ export function validataBankcard(rule,value,callback){
     callback();
   }
 };
+
+//export function validataEnterPrise(rule,value,callback){
+//let regEntr=/.*[\u4e00-\u9fa5]+.*$/;
+//let BankValue=$.trim(value);
+//// console.log(value)
+//if(value===''){
+//  callback(new Error('请输入企业名称/企业注册号!'))
+//}else if(regEntr.test(BankValue)===false){
+//  callback(new Error('银行卡号格式不正确！'))
+//}else{
+//  callback();
+//}
+//};
+export function validataEnterPrise(rule,value,callback){
+    if(value===''){
+  callback(new Error('请输入企业名称/企业注册号'));
+    }else{
+      callback();
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+

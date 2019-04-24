@@ -34,7 +34,7 @@
 				:header-row-class-name="tableRowClassName">
 				<el-table-column label="姓名" prop="name"></el-table-column>
 				<el-table-column label="邮箱" prop="email"></el-table-column>
-				<el-table-column label="查询类目" prop="channel"></el-table-column>
+				<el-table-column label="查询类目" prop="channelCode"></el-table-column>
 				<el-table-column label="查询费用" prop="cost"></el-table-column>
 				<el-table-column label="查询时间" prop="queryDate"></el-table-column>
 				<el-table-column label="数据源" prop="datasource"></el-table-column>
@@ -78,8 +78,15 @@
 	            this.$axios.defaults.withCredentials=true;
 	            this.$axios.get(this.HOST3+'/api/v1/cost/moercreditDataInfo')
 	            .then(res=>{
-	              console.log(res.data);
-	             this.moerCreditData=res.data
+	              // console.log(res.data);
+                  if(res.data==='登录超时'){
+                        this.$message('登录超时，请重新登录');
+                        this.$router.push('/login');
+                  }else if(res.data===''||res.data===null||res.data==='{}'){
+                    this.$message('暂无信息');
+                  }else{
+	                this.moerCreditData=res.data
+                  } 
 	             
 	            })
 	            .catch(error=>{
@@ -91,14 +98,20 @@
 	            this.$axios.defaults.withCredentials=true;
 	            this.$axios.get(this.HOST3+'/api/v1/cost/externalDatasourceInfo')
 	            .then(res=>{
-	              console.log(res.data);
-	             	this.thirdPartyData=res.data;
+                  if(res.data==='登录超时'){
+                        this.$message('登录超时，请重新登录');
+                        this.$router.push('/login');
+                  }else if(res.data===''||res.data===null||res.data==='{}'){
+                    this.$message('暂无信息');
+                  }else{
+	                this.thirdPartyData=res.data;
+                  } 
 	            })
 	            .catch(error=>{
 	                // alert('暂无服务')
 	            })
 			},
-			// 计时计费页面 - 第三方平台数据汇总
+			// 计时计费页面 - 第三方平台数据汇总        
 			userRecordInfo(username){
 				const params={}
 				if(username=='' || username==null){
@@ -114,9 +127,16 @@
 	            	params:params
 	            })
 	            .then(res=>{
-	              console.log(res.data);
-	             this.userData=res.data.list;
-	             this.total=res.data.total;
+	              // console.log(res.data);
+                  if(res.data==='登录超时'){
+                        this.$message('登录超时，请重新登录');
+                        this.$router.push('/login');
+                  }else if(res.data===''||res.data===null||res.data==='{}'){
+                    this.$message('暂无信息');
+                  }else{
+		              this.userData=res.data.list;
+		              this.total=res.data.total;
+                  } 
 	            })
 	            .catch(error=>{
 	                // alert('暂无服务')

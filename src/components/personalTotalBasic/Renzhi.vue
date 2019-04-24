@@ -1,8 +1,35 @@
 <template>
   <div>
     <div class="header_info">任职信息</div>
-    <div v-if="cstatus===1" v-for="(renzhi,index) in renzhis" class="case_info">
-          <div class="case_info_header">任职信息{{index+1}}</div>
+    <div v-if="renzhis.legalPerson.length>=1" v-for="(renzhi,index) in renzhis.legalPerson" class="case_info">
+          <div class="case_info_header">担任法定代表人信息{{index+1}}</div>
+          <div class="case_detail">
+            <div class="case_detail_left">职务：</div>
+            <div class="case_detail_right">法定代表人</div>
+          </div>
+
+          <div class="case_detail">
+            <div class="case_detail_left">企业名称：</div>
+            <div class="case_detail_right">{{renzhi.entName}}</div>
+          </div>
+
+          <div class="case_detail">
+            <div class="case_detail_left">企业类型：</div>
+            <div class="case_detail_right">{{renzhi.entType}}</div>
+          </div>
+
+          <div class="case_detail">
+            <div class="case_detail_left">企业状态：</div>
+            <div class="case_detail_right">{{renzhi.entStatus}}</div>
+          </div>
+
+           <div class="case_detail">
+            <div class="case_detail_left">企业注册号：</div>
+            <div class="case_detail_right">{{renzhi.regNo}}</div>
+          </div>
+    </div>
+    <div v-if="renzhis.manager.length>=1" v-for="(renzhi,index) in renzhis.manager" class="case_info">
+          <div class="case_info_header">担任高管信息{{index+1}}</div>
           <div class="case_detail">
             <div class="case_detail_left">职务：</div>
             <div class="case_detail_right">{{renzhi.position}}</div>
@@ -10,22 +37,22 @@
 
           <div class="case_detail">
             <div class="case_detail_left">企业名称：</div>
-            <div class="case_detail_right">{{renzhi.entname}}</div>
+            <div class="case_detail_right">{{renzhi.entName}}</div>
           </div>
 
           <div class="case_detail">
-            <div class="case_detail_left">首席代表标志：</div>
-            <div class="case_detail_right">{{renzhi.chiofthedelsign}}</div>
+            <div class="case_detail_left">企业类型：</div>
+            <div class="case_detail_right">{{renzhi.entType}}</div>
           </div>
 
           <div class="case_detail">
-            <div class="case_detail_left">法定代表人标志：</div>
-            <div class="case_detail_right">{{renzhi.lerepsign}}</div>
+            <div class="case_detail_left">企业状态：</div>
+            <div class="case_detail_right">{{renzhi.entStatus}}</div>
           </div>
 
            <div class="case_detail">
-            <div class="case_detail_left">登记机关：</div>
-            <div class="case_detail_right">{{renzhi.regorg}}</div>
+            <div class="case_detail_left">企业注册号：</div>
+            <div class="case_detail_right">{{renzhi.regNo}}</div>
           </div>
     </div>
 
@@ -63,13 +90,18 @@
           // const xueli=newmsgData.mx_touzi[0].education_list[0];
           // console.log(xueli);
           const renzhi={};
-          if(typeof(newmsgData.industry)==='undefined'){
+          if(typeof(newmsgData.investment)==='undefined'){
             this.cstatus=2;
           }else{
-            if(newmsgData.industry.message=='成功获取相关工商数据！'){
-              renzhi.renzhiNow=newmsgData.industry.gscontent.renzhi_now;
+            if(newmsgData.investment.message=='获取数据成功'){
+              renzhi.renzhiNow=newmsgData.investment.data.result;
               this.renzhis=renzhi.renzhiNow;
-              this.cstatus=1;
+              if(renzhi.renzhiNow.legalPerson.length===0 && renzhi.renzhiNow.manager.length===0){
+              	this.cstatus=2;
+              }else{
+              	this.cstatus=1;
+              }
+              
             }else{
               this.cstatus=2;
             }

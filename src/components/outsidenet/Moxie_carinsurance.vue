@@ -227,7 +227,7 @@
         },
         mounted(){
             this.$axios.defaults.withCredentials=true;
-            this.$axios.get('http://123.59.181.202:9990/api/v1/insurance',{
+            this.$axios.get(this.HOST+'/api/v1/insurance',{
               params:{
                 account_name:localStorage.getItem('name'),
                 id_number:localStorage.getItem('cardId'),
@@ -305,7 +305,7 @@
     align-items: center;
   }
   .el-button{
-      background:#3c88f6;
+      background:#30af90;
       height: 45px;
       width: 330px;
       border-radius:10px;

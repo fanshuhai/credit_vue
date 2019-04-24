@@ -8,34 +8,34 @@
            </el-header>
            <el-main>
                <div class="picktime">
-                  <el-row :gutter="30" class="detail_detail">
-                    <el-col :span="5" :offset="2">
+                  <el-row :gutter="20" class="detail_detail" display="flex" align="middle" justify="center">
+                    <el-col :span="7" >
                       <span>查询类目：</span>
                       <el-select v-model="queryClass" placeholder="查询">
                         <el-option v-for="(item,index) in queryClasses"
                          :label="item.value" :value="item.key" :key="index"></el-option>
                       </el-select>
                     </el-col>
-                    <el-col :span="5">
+                    <el-col :span="6">
                        <span>开始时间：</span>
                        <el-date-picker
                             v-model="value1" type="date"
                             placeholder="选择日期"
                        ></el-date-picker>
                     </el-col>
-                    <el-col :span="5">
+                    <el-col :span="6">
                       <span>结束时间：</span>
                        <el-date-picker
                             v-model="value2" type="date"
                             placeholder="选择日期"
                        ></el-date-picker>
                     </el-col>
-                    <el-col :span="5">
-                      <el-button @click="recordQuery">查询</el-button>
+                    <el-col :span="4">
+                      <el-button class="themeG_b" @click="recordQuery">查询</el-button>
                     </el-col>
                   </el-row>
                </div>
-               <div class="picktime picktime_center" >
+               <!--<div class="picktime picktime_center" >
                   <el-row :gutter="50">
                       <el-col :span="6" :offset="3">
                         <div  class="event_detail boxShadow">
@@ -62,8 +62,8 @@
                         </div>
                       </el-col>
                   </el-row>
-               </div>
-               <div class="queryLoyR">
+               </div>-->
+               <div class="queryLoyR selfTable">
                    <table cellspacing="0" cellpadding="0" >
                        <thead>
                            <tr>
@@ -77,10 +77,10 @@
                        </thead>
                        <tbody>
                            <tr v-for='query in querys'>
-                               <!-- <td>{{query.channel}}</td> -->
+                               <!-- <td>{{query.channelCode}}</td> -->
                                <td>{{query.queryDate}}</td>
-                               <td>{{query.customerName}}</td>
-                               <td>{{query.channel}}</td>
+                               <td>{{query.spare03}}</td>
+                               <td>{{query.channelCode}}</td>
                                <td>{{query.thirdRes}}</td>
                                <td>{{query.cost}}</td>
                            </tr>
@@ -340,7 +340,7 @@
       padding-bottom: 40px;
     }
     .wrapper{
-        margin:10px 10px 0 0;
+        margin:0px 10px 0 0;
         height: auto;
     }
     .el-header{
@@ -386,6 +386,7 @@
     .picktime{
         width: 100%;
         min-height: 70px;
+        line-height: 70px;
         font-family: SourceHanSansCN-Regular;
         color: #333;
     }
@@ -404,7 +405,6 @@
         padding-left: 0%;
     }
     .el-button{
-      background:#3c88f6;
       height: 36px;
       text-align: center;
       width: 120px;
@@ -417,30 +417,11 @@
     .el-date-editor.el-input, .el-date-editor.el-input__inner{
         width: 160px;
     }
-    table{
-        width: 100%;
-        border: 1px solid #e6f0fe;
-    }
-    tr{
-       border: 1px solid #e6f0fe; 
-    }
-    th{
-        height: 40px;
-        text-align: center;
-        width: 16%;
-        line-height: 40px;
-        background: #e6f0fe;
-        font-size: 16px;
-    }
-    td{
-        min-height: 40px;
-        line-height: 40px;
-        font-size: 12px;
-        text-align: center;
-        border-top:1px solid #e6f0fe; 
-    }
     .el-pagination{
         text-align: center;
+    }
+    .el-col{
+    	text-align: center;
     }
     @media screen and (max-width: 1500px){
       .block{
@@ -448,10 +429,14 @@
       }
       .el-main{
         padding: 0 20px;
+        min-height: 630px;
       }
     }
 
     @media screen and (max-width: 1400px){
+      .el-main{
+        min-height: 530px;
+      }
       .block {
           padding-left: 8%;
       }

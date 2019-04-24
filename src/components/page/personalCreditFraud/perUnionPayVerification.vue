@@ -5,7 +5,7 @@
                 <div style="height: 3em;border-bottom: 1px solid #ccc;line-height: 3em;"><span style="margin-left: 30px">个人银联账单查询</span></div>
                 <div style="margin-top:40px">
                     <el-row :gutter="15" style="margin-bottom:20px">
-                        <el-col :span="7">
+                        <el-col :span="8">
                             <el-form-item label="姓名：" style="margin-left: 30px" prop="name">
                                 <el-input v-model="form.name" placeholder=""></el-input>
                             </el-form-item>
@@ -17,12 +17,12 @@
                         </el-col>
                         <el-col :span="6">
                             <!-- <el-form-item>
-                                <el-button type="primary" @click="onSubmit" style="background: #3c88f6">提交</el-button>
+                                <el-button type="primary" @click="onSubmit">提交</el-button>
                             </el-form-item> -->
                         </el-col>
                     </el-row>
                     <el-row :gutter="15" style="margin-bottom:20px">
-                        <el-col :span="7">
+                        <el-col :span="8">
                             <el-form-item label="交易起始时间：" style="margin-left: 30px;" prop="tradeTime1">
                                 <el-date-picker
                                     v-model="form.tradeTime1"
@@ -31,7 +31,7 @@
                                 ></el-date-picker>
                             </el-form-item>
                         </el-col>
-                        <el-col :span="7">
+                        <el-col :span="8">
                             <el-form-item label="交易结束时间：" style="margin-left: 30px" prop="tradeTime2">
                                 <el-date-picker
                                     v-model="form.tradeTime2"
@@ -42,7 +42,7 @@
                         </el-col>
                         <el-col :span="6">
                             <el-form-item>
-                                <el-button type="primary" @click="onSubmit('form')" style="background: #3c88f6">提交</el-button>
+                                <el-button type="primary" @click="onSubmit('form')">提交</el-button>
                             </el-form-item>
                         </el-col>
                     </el-row>
@@ -53,16 +53,16 @@
             <div style="height: 3em;line-height: 3em;">
                 <span style="margin-left: 30px">个人银联账单查询结果</span>
             </div>
-            <template>
-                <div>
-                    <el-table :data="unionpayTableData" :header-cell-style="headStyle" :span-method="SpanMethod" border style="width: 90%;margin-left: 2%;text-align: center;margin-top: 2%">
-                      <el-table-column label="序号" type="index" width="100"></el-table-column>
-                      <el-table-column label="交易时间"  prop="transTime"></el-table-column>
-                      <el-table-column label="交易金额（元）"  prop="transAmount"></el-table-column>
-                      <el-table-column label="币种"  prop="currency"></el-table-column>
-                    </el-table>
-                </div>
-            </template>
+            <!--<template slot-scope="scope">-->
+            <div>
+                <el-table class='tableStyle' :data="unionpayTableData" :header-cell-style="headStyle" border>
+                  <el-table-column label="序号" type="index" width="100"></el-table-column>
+                  <el-table-column label="交易时间"  prop="transTime"></el-table-column>
+                  <el-table-column label="交易金额（元）"  prop="transAmount"></el-table-column>
+                  <el-table-column label="币种"  prop="currency"></el-table-column>
+                </el-table>
+            </div>
+            <!--</template>-->
         </div>
     </div>
     
@@ -177,7 +177,7 @@
                                       }else{
                                         if(res.data.success == true){
                                             if(res.data.message=='没有获取有效数据'){
-                                                this.$message.error("没有获取有效数据");
+                                                this.$message.error(res.data.data);
                                                 this.unionpayTableData=[];
                                             }else{
                                                 // const datas = res.data.data
@@ -196,7 +196,7 @@
                                 
                                 })
                                 .catch(error=>{
-                                    this.$message.error("没有获取有效数据")
+                                    this.$message.error("异常错误")
                                 }) 
 
                             }else{
@@ -235,7 +235,12 @@
        
     }
 </script>
-
 <style scoped>
+	.tableStyle{
+		width: 90%;
+		margin-left: 2%;
+		text-align: center;
+		margin-top: 2%;
+	}
 
 </style>

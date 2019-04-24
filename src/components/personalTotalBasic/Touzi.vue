@@ -5,67 +5,57 @@
           <div class="case_info_header">投资信息{{index+1}}</div>
           <div class="case_detail">
             <div class="case_detail_left">企业名称：</div>
-            <div class="case_detail_right">{{touzi.entname}}</div>
+            <div class="case_detail_right">{{touzi.entName}}</div>
           </div>
 
           <div class="case_detail">
             <div class="case_detail_left">认缴出资额（万元）：</div>
-            <div class="case_detail_right">{{touzi.subconam}}</div>
+            <div class="case_detail_right">{{touzi.contriAmount}}</div>
           </div>
 
           <div class="case_detail">
             <div class="case_detail_left">出资方式：</div>
-            <div class="case_detail_right">{{touzi.conform}}</div>
+            <div class="case_detail_right">{{touzi.contriForm}}</div>
           </div>
 
           <div class="case_detail">
-            <div class="case_detail_left">币种：</div>
+            <div class="case_detail_left">认缴出资币种：</div>
             <div class="case_detail_right">{{touzi.currency}}</div>
           </div>
 
            <div class="case_detail">
             <div class="case_detail_left">出资比例：</div>
-            <div class="case_detail_right">{{touzi.conprop}}</div>
+            <div class="case_detail_right">{{touzi.contriRatio}}</div>
           </div>
 
            <div class="case_detail">
             <div class="case_detail_left">企业（机构）类型：</div>
-            <div class="case_detail_right">{{touzi.enttype}}</div>
+            <div class="case_detail_right">{{touzi.entType}}</div>
           </div>
 
            <div class="case_detail">
             <div class="case_detail_left">注册资本（万元）：</div>
-            <div class="case_detail_right">{{touzi.regcap}}</div>
+            <div class="case_detail_right">{{touzi.regCap}}</div>
           </div>
 
            <div class="case_detail">
             <div class="case_detail_left">注册资本币种：</div>
-            <div class="case_detail_right">{{touzi.regcurrency}}</div>
+            <div class="case_detail_right">{{touzi.regCapCur}}</div>
           </div>
 
            <div class="case_detail">
             <div class="case_detail_left">企业状态：</div>
-            <div class="case_detail_right">{{touzi.entstatus}}</div>
+            <div class="case_detail_right">{{touzi.entStatus}}</div>
           </div>
 
            <div class="case_detail">
-            <div class="case_detail_left">注销日期：</div>
-            <div class="case_detail_right">{{touzi.canceldate}}</div>
+            <div class="case_detail_left">注册号：</div>
+            <div class="case_detail_right">{{touzi.regNo}}</div>
           </div>
 
            <div class="case_detail">
-            <div class="case_detail_left">吊销日期：</div>
-            <div class="case_detail_right">{{touzi.revokedate}}</div>
-          </div>
-
-           <div class="case_detail">
-            <div class="case_detail_left">成立日期：</div>
-            <div class="case_detail_right">{{touzi.esdate}}</div>
-          </div>
-
-           <div class="case_detail">
-            <div class="case_detail_left">登记机关：</div>
-            <div class="case_detail_right">{{touzi.regorg}}</div>
+            <div class="case_detail_left">统一社会信用代码：</div>
+            <div class="case_detail_right">{{touzi.creditCode}}</div>
           </div>
     </div>
 
@@ -103,11 +93,11 @@
           // const xueli=newmsgData.mx_touzi[0].education_list[0];
           // console.log(xueli);
           const touzi={};
-          if(typeof(newmsgData.industry)==='undefined'){
+          if(typeof(newmsgData.investment)==='undefined'){
             this.cstatus=2;
           }else{
-            if(newmsgData.industry.message=='成功获取相关工商数据！'){
-              touzi.touziNow=newmsgData.industry.gscontent.touzi_now;
+            if(newmsgData.investment.message=='获取数据成功'){
+              touzi.touziNow=newmsgData.investment.data.result.shareholder;
               this.touzis=touzi.touziNow;
               this.cstatus=1;
             }else{
