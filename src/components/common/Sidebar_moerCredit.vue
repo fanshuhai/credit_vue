@@ -183,7 +183,6 @@
             return {
                 // collapse: false,
                 items:[],
-
             }
         },
         methods:{

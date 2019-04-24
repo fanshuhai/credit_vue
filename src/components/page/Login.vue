@@ -8,7 +8,7 @@
                       
                   </div>
                   <div class="ms-cont2">
-                                                            大数据智能征信平台
+                                                             大数据智能征信平台
                   </div> 
                 </div>
             </div>
