@@ -160,7 +160,11 @@
                 let rulePhone=$.trim(this.ruleForm.phone);
                 if(this.elementvalue=="选项1"){
                     this.$axios.defaults.withCredentials=true;
+<<<<<<< HEAD
                     this.$axios.get(this.HOST+'/api/v2/search',{
+=======
+                    this.$axios.get(this.HOST+'/api/v1/search',{
+>>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
                       params:{
                         name:ruleName,
                         cardId:ruleCardId,
@@ -257,7 +261,11 @@
                     }
                 }else if( this.elementvalue=="选项5"){
                     this.$axios.defaults.withCredentials=true;
+<<<<<<< HEAD
                     this.$axios.get(this.HOST+'/api/v2/multiple/search',{
+=======
+                    this.$axios.get(this.HOST+'/api/v1/multiple/search',{
+>>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
                       params:{
                           account_name:ruleName,
                           id_number:ruleCardId,

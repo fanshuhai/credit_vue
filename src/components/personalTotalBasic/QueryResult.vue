@@ -871,6 +871,7 @@
 
 <script>
     import bus from '../common/bus'
+<<<<<<< HEAD
     var num=0;
     export default {
         data() {
@@ -879,6 +880,13 @@
                 totalMessage:'',
                 loading:true,
 				reportNum:'',
+=======
+    export default {
+        data() {
+            return { 
+                totalMessage:'',
+
+>>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
                 total_msg:'',
                 currentime:'',
                 reportTime:'',
@@ -955,7 +963,11 @@
           },
           // 导出报告
           reportOut(){
+<<<<<<< HEAD
             this.urlReport=this.HOST+"/api/v2/download?account_name="+localStorage.getItem('name')+"&id_number="+localStorage.getItem('cardId')+"&account_mobile="+localStorage.getItem('phone');
+=======
+            this.urlReport=this.HOST+"/api/v1/download?account_name="+localStorage.getItem('name')+"&id_number="+localStorage.getItem('cardId')+"&account_mobile="+localStorage.getItem('phone');
+>>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
           },
           // 魔蝎报告接口
           moxieReport(){
@@ -1019,10 +1031,14 @@
             })
           },
           // 征信报告信息
+<<<<<<< HEAD
           creditReportMessage(queryMode,res_data){
           	//报告编号 报告时间
           	this.reportNum=res_data.reportId;
           	this.reportTime=res_data.reportTime;
+=======
+          creditReportMessage(res_data){
+>>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
             // 获取身份验证
             this.sensetime_twofactor=res_data.sensetime_twofactor;
             this.acedata_userValidation=res_data.acedata_userValidation;
@@ -1030,7 +1046,11 @@
             this.total_msg=res_data.basicInfo;
             // 归属地数据
             const belongto={};
+<<<<<<< HEAD
             if(typeof(res_data.tongdun)==='undefined' || res_data.tongdun==''){
+=======
+            if(typeof(res_data.tongdun)==='undefined'){
+>>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
                 belongto.id_card_address='查询成功，暂无数据。';
                 belongto.phone_attribution='查询成功，暂无数据。';
 
@@ -1039,6 +1059,7 @@
                 belongto.phone_attribution=res_data.tongdun.result_desc.INFOANALYSIS.address_detect.mobile_address;
             }
             this.belongtos=belongto;
+<<<<<<< HEAD
             // 失信执行人  个人司法信息
             const shixinp={};
             if(typeof(res_data.judicial)==='undefined' || res_data.judicial.message=='请提供正确身份证！[异常输入]'
@@ -1079,22 +1100,44 @@
 			  this.zuifans=shixinp.zuifans;
 			  this.qiankuans=shixinp.qiankuans;
 			  this.shenpans=shixinp.shenpans;
+=======
+            // 失信执行人  法律案件详情
+            const shixinp={};
+            if(typeof(res_data.judicial)==='undefined' || res_data.judicial.message=='请提供正确身份证！[异常输入]' || res_data.judicial.message=='此人无相关风险数据！'){
+              shixinp.blacklist='';
+              shixinp.zhixing='';
+            }else{
+              shixinp.blacklist=res_data.judicial.fxcontent.shixin;
+              shixinp.zhixing=res_data.judicial.fxcontent.zhixing;
+            }
+            this.shixins=shixinp.blacklist;
+            this.zhixings=shixinp.zhixing;
+>>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
             if(Object.keys(this.shixins).length>0){
               this.sstatus=1;
             }else{
               this.sstatus=2;
             };
+<<<<<<< HEAD
             if(Object.keys(this.zhixings).length>0 || Object.keys(this.xiangaos).length>0 || Object.keys(this.xianchus).length>0 
             || Object.keys(this.caipans).length>0 || Object.keys(this.qianshuis).length>0 || Object.keys(this.feizhengs).length>0 
             || Object.keys(this.weifas).length>0 || Object.keys(this.zuifans).length>0 || Object.keys(this.qiankuans).length>0 
             || Object.keys(this.shenpans).length>0){
+=======
+            // console.log(this.shixins);
+            if(Object.keys(this.zhixings).length>0){
+>>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
               this.zstatus=1;
             }else{
               this.zstatus=2;
             };
             //多头借贷
             const headersloan={};
+<<<<<<< HEAD
             if(typeof(res_data.tongdun)==='undefined' || res_data.tongdun==''){
+=======
+            if(typeof(res_data.tongdun)==='undefined'){
+>>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
 
             }else{
                   let loan=res_data.tongdun.result_desc.ANTIFRAUD.risk_items;
@@ -1107,7 +1150,11 @@
                   }
             }
             this.headersloans=headersloan;
+<<<<<<< HEAD
             // console.log(headersloan)
+=======
+            console.log(headersloan)
+>>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
             if(Object.keys(this.headersloans).length>0){
               this.hstatus=1;
             }else{
@@ -1116,7 +1163,11 @@
             
             //风险反欺诈
             const risk_fraud=[];
+<<<<<<< HEAD
             if(typeof(res_data.tongdun)==='undefined' || res_data.tongdun==''){
+=======
+            if(typeof(res_data.tongdun)==='undefined'){
+>>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
 
             }else{
                 const risk_items_t=res_data.tongdun.result_desc.ANTIFRAUD.risk_items;
@@ -1161,6 +1212,7 @@
             }
             // 任职信息  投资信息
             const gscontent={};
+<<<<<<< HEAD
             // console.log(res_data)
             if(typeof(res_data.investment)==='undefined' || res_data.investment.message=='请提供正确身份证！[异常输入]' || res_data.investment.message=='没有获取有效数据'
             || res_data.investment.message=='此人无相关工商数据！' || res_data.investment.success==false || res_data.investment.data=='本数据库中未查得'){
@@ -1235,6 +1287,24 @@
           		})
           	},500)
           },
+=======
+            if(typeof(res_data.industry)==='undefined' || res_data.industry.message=='请提供正确身份证！[异常输入]' || res_data.industry.message=='此人无相关工商数据！'){
+                gscontent.renzhi_now='';
+                gscontent.touzi_now='';
+            }else{
+                gscontent.renzhi_now=res_data.industry.gscontent.renzhi_now;
+                gscontent.touzi_now=res_data.industry.gscontent.touzi_now;
+            }
+            //console.log(gscontent.renzhi_now)
+            this.renzhi_nows=gscontent.renzhi_now;
+            this.touzi_nows=gscontent.touzi_now;
+            if(Object.keys(this.renzhi_nows).length>0){
+              this.tstatus=1;
+            }else{
+              this.tstatus=2;
+            }
+          }
+>>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
 
         },
         computed: {
@@ -1248,6 +1318,7 @@
           // 导出报告
           this.reportOut();
            // 查询时间
+<<<<<<< HEAD
 //        let datetime=new Date();
 //        let y=datetime.getFullYear();
 //        let m=datetime.getMonth()+1;
@@ -1271,6 +1342,31 @@
               this.creditReportMessage(msg.queryWay,msg);
               // 更新 报告url
               this.urlReport=this.HOST+"/api/v2/download?account_name="+localStorage.getItem('name')+"&id_number="+localStorage.getItem('cardId')+"&account_mobile="+localStorage.getItem('phone');
+=======
+          let datetime=new Date();
+          let y=datetime.getFullYear();
+          let m=datetime.getMonth()+1;
+          m=m<10?('0'+m):m;
+          let d=datetime.getDate();
+          d=d<10?('0'+d):d;
+          let currentime1=y+'年'+m+'月'+d+'日';
+          // 获取当前时间
+          this.currentime = currentime1;
+
+          const msgData=localStorage.getItem('msgData');
+          this.totalMessage=JSON.parse(msgData);
+          this.creditReportMessage(this.totalMessage)
+        },
+        created(){
+            bus.$on('cMessage',msg=>{
+              console.log(msg)
+              this.totalMessage=msg;
+              let msgData=JSON.stringify(msg);
+              localStorage.setItem("msgData",msgData);
+              this.creditReportMessage(msg);
+              // 更新 报告url
+              this.urlReport=this.HOST+"/api/v1/download?account_name="+localStorage.getItem('name')+"&id_number="+localStorage.getItem('cardId')+"&account_mobile="+localStorage.getItem('phone');
+>>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
             });
             bus.$on('moxieReport',msg=>{
             	if(msg==1){

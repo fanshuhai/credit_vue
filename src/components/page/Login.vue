@@ -432,6 +432,7 @@
                                 // 侧边栏权限数据
                                 if(data.shiroUser.menuNodeList!==undefined){
                                     if(data.shiroUser.menuNodeList.length>0){
+<<<<<<< HEAD
                                         data.shiroUser.menuNodeList.forEach((item,index,arr)=>{
                                             if(item.id=='168'){
                                                 sessionStorage.setItem('sideData',JSON.stringify(item))
@@ -447,10 +448,27 @@
                                             }else{
                                                 sessionStorage.removeItem('sideData');
                                                 this.$router.push('/403')
+=======
+                                        data.shiroUser.menuNodeList.forEach((item,index)=>{
+                                            if(item.id='168'){
+                                                sessionStorage.setItem('sideData',JSON.stringify(item))
+>>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
                                             }
                                         })
                                     }
                                 };
+<<<<<<< HEAD
+=======
+                                //输入框数据
+                                const inputData={
+                                	name:[],
+                                	id:[],
+                                	phone:[],
+                                	bankCard:[]
+                                };
+                                sessionStorage.setItem('inputData',JSON.stringify(inputData))
+                                this.$router.push('/');
+>>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
                               };
                               if(data==='' || data===null || data==='{}'){
                                 this.$message.error('暂无服务');
