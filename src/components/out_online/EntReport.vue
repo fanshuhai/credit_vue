@@ -1,5 +1,17 @@
 <template>
-	<div class="contentFull"> 
+	<div class="contentFull outReport"
+      	v-loading="loading"
+      	element-loading-text='查询中,请稍后...'
+      	element-loading-background="rgba(0,0,0,0.3)">
+	    <div class="header">
+	        <div class="logo"></div>
+	        <div class="header-center">
+	        	摩尔征信
+	        </div>
+	        <div class="header-right">
+	            <a :href="urlReport" class="report_out report_top">下载报告</a>
+	        </div>
+	    </div>
 		<h1 class="el-header">企业信用报告</h1>
 		<!--查询信息-->
 	    <div class="prostyle">
@@ -7,7 +19,7 @@
 			  <table>
 				  <tr>
 					  <td class="basicStyle basicF">企业名称</td>
-					  <td class="showStyle"></td>
+					  <td class="showStyle">{{entName}}</td>
 				  </tr>
 				  <tr>
 					  <td class="basicStyle basicF">查询机构</td>
@@ -15,17 +27,17 @@
 				  </tr>
 				  <tr>
 					  <td class="basicStyle basicF">查询时间</td>
-					  <td class="showStyle"></td>
+					  <td class="showStyle">{{reportTime}}</td>
 				  </tr>
 				  <tr>
 					  <td class="basicStyle basicF">报告编号</td>
-					  <td class="showStyle"></td>
+					  <td class="showStyle">{{reportNum}}</td>
 				  </tr>
 			  </table>
 			</div>
 
 	          
-	        <div v-if="defamationExecuted.length!=0 || sharesFreeze.length!=0 || liquidation.length!=0 ||administrativeSanction.length!=0 || abnormalInfo.length!=0" class="">
+	        <div class="danInfo" v-if="defamationExecuted.length!=0 || sharesFreeze.length!=0 || liquidation.length!=0 ||administrativeSanction.length!=0 || abnormalInfo.length!=0">
 				<span style="color:#ff0000">风险提示：</span>该企业（机构）命中
 				<span v-if="sharesFreeze.length!=0">【股权冻结】</span>
 				<span v-if="liquidation.length!=0">【清算】</span>
@@ -37,7 +49,7 @@
 	          
 	          
 	        <!--企业基本信息1-->
-			<div class="prostyle">
+			<div class="">
 			  <div class="prostyle_title"><span class="border_style"></span>企业基本信息</div>
 			  <div v-if='basic.length>0' v-for="(item,index) in basic" class="prostyle_main">
 					  <div class="msg_style">企业基本信息{{index+1}}</div>
@@ -1137,35 +1149,18 @@
 				</div>
 			</div>
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+				
+        </div>
+		<div class="prostyle_bottom">
+            <div class="button_bottom">
+              <a :href="urlReport" class="report_out">下载报告</a>
+            </div>
         </div>
 		
 	</div>
 </template>
 
 <script>
-	import { validataEnterPrise } from '../common/http.js';
 	import bus from '../common/bus';
 	export default {
 		data() {
@@ -1173,13 +1168,14 @@
 				
 	            content: '',
 	            
-	            username:'',
+	            entName:'',
 	            //企业报告信息
+	            reportTime:'',
+	            reportNum:'',
 	            reportMsg:'',
 	            noQuery:true,
 	            queryMsg:false,
 	            checkAllData:'全部（0）',
-	            reportButton:false,
 	            loading:false,
 	            
 	            //基本信息1
@@ -1236,9 +1232,16 @@
                 urlReport:'',
 			}
 		},
+		components:{
+			
+		},
 		methods: {
 			showReMsg(totalData){
 				console.log(totalData)
+				this.reportNum=totalData.data.basicInfoBNum;
+				let queryTime=totalData.data.queryDate.split(' ')[0].split('-');
+				queryTime=queryTime[0]+'年'+queryTime[1]+'月'+queryTime[2]+'日';
+				this.reportTime=queryTime;
 				let TData=totalData.data.result;
 //				let totalNum=
 // 缺失+TData.chattelMortgageMainSecuredClaim.length
@@ -1304,7 +1307,7 @@
 	                let regEntr=/.*[\u4e00-\u9fa5]+.*$/;
 	                let enterMsg={};
 	                let ruleName=$.trim(res_data);
-//          	    this.loading=true;
+            	    this.loading=true;
 	          	    if(regEntr.test(ruleName)){
 		          	    enterMsg={
 		                    apiCode: "acedata.user.basicInfoB",
@@ -1337,12 +1340,8 @@
 	          
           	},
           	//导出报告
-          	report_out(){
-			    if(localStorage.getItem('reportType')=='1'){
-  			  	   this.urlReport=this.HOST+'/api/v1/download/pdf/entReport?entName='+localStorage.getItem('reportName');
-			    }else{
-			  	   this.urlReport=this.HOST+'/api/v1/download/pdf/entReport?regNo='+localStorage.getItem('reportName');
-			    } 
+          	report_out(res){
+			  	this.urlReport=this.HOST+'/api/v1/download/pdf/entReport?entName='+res;
 			    console.log(this.urlReport)
             },
 	    },
@@ -1354,11 +1353,9 @@
 //	    	this.reportMsg=enReMsg;
 //	    	this.showReMsg(this.reportMsg);
 //	    	this.typeSelect(this.types);
-//	    	this.report_out();
-//        	bus.$on('enReMsg',msg=>{
-//        		this.showReMsg(msg);
-//        	});
-            this.informationQuery('百度在线网络技术(北京)有限公司')
+			this.entName=this.$route.query.entName
+	    	this.report_out(this.entName);
+            this.informationQuery(this.entName)
 
 	    },
 	    mounted(){
@@ -1375,7 +1372,7 @@
       font-family:SimHei;
     }
     .contentFull{
-    	padding: 0% 10% 3%;
+    	padding: 0% 15% 3%;
     	margin:0 auto;
     	overflow-y: scroll;
     }
@@ -1386,15 +1383,15 @@
       margin: 0;
     }
     .el-header{
-      height: 100px;
-      margin-bottom: 20px;
+      height: 70px;
+      line-height: 70px;
+      margin-top: 100px;
       text-align: center;
       padding-top:12px;
       font-size: 28px;
       color: #30af90;
       font-weight: 600;
       letter-spacing: 5px;
-      line-height: 100px;
     }
     .basic_info{
       width: 100%;
@@ -1432,10 +1429,13 @@
       /*background: #f1f1f1;*/
     }
     td {
-      border: 1px solid #eee;
+      border: 1px solid #A6A9AD;
       border-collapse: collapse;
       padding-left: 10px;
       min-height: 20px;
+    }
+    td:nth-child(odd){
+    	background: #eee;
     }
     table tr:nth-child(even) {
       background-color: #ffffff;
@@ -1451,9 +1451,8 @@
       height: 60px;
       line-height: 60px;
       font-size: 22px;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #A6A9AD;
       color: #30af90;
-      border-right: 8px solid #30af90;
     }
     .border_style{
       padding-right:4px;
@@ -1517,7 +1516,7 @@
       width: 100%;
       height: 40px;
       line-height: 40px;
-      background: #f0f0f0;
+      background: #A6A9AD;
       font-weight: revert;	
       padding-left: 20px;
       box-sizing: border-box;
@@ -1544,4 +1543,71 @@
 		 width: 20%;
 		 text-align: center;
 	 }
+	.danInfo{
+		margin-top: 10px;
+	}
+	.header{
+		height: 90px;
+	    line-height: 90px;
+	    color: #FFF;
+	    position: fixed;
+	    width: 69.1%;
+	}
+    .header .logo{
+        float: left;
+        width:250px;
+        height: 100%;
+        line-height: 100%;
+        background-image:url(../../assets/img/logo.png);
+        background-size:50% 50%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+  .prostyle_bottom{
+    width: 100%;
+    height: 200px;
+    padding-top: 50px;
+    padding-left: 0%;
+    box-sizing: border-box;
+  }
+  .button_bottom{
+    width: 100%;
+    margin:0 auto;
+  }
+  .report_out{
+    display: block;
+    letter-spacing: 20px;
+    color: #fff;
+    width: 200px;
+    line-height: 45px;
+    text-align: center;
+    padding-left: 10px;
+    background:#30af90;
+    height: 45px;
+    border-radius:4px;
+    font-size: 16px;
+    margin:0 auto;
+  }
+  .report_top{ 
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    letter-spacing: 5px;
+  }
+    .header-center{
+        float: left;
+        height: 100%;
+        font-size: 20px;
+        letter-spacing: 4px;
+    }
+	.header-right{
+	    float: right;
+	    padding-right: 100px;
+	    position: relative;
+	    height: 100%;
+	}
 </style>

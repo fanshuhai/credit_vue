@@ -149,6 +149,19 @@
 .entReportDe .el-loading-spinner {
     top: 250px;
 }
+
+.outReport .el-loading-spinner .el-loading-text {
+     color: #fff; 
+}
+/*清除浮动*/
+.clearfix::after{
+	clear: both;
+	display: block;
+	height: 0;
+	font-size: 0;
+	content: '';
+	visibility: hidden;
+}
 @media screen and  (max-width: 1500px){
 /*moerCreditPersonal--start*/
   .header_input .el-form-item__label {

@@ -674,7 +674,7 @@
                       </tr>
                       <tr v-for='(renzhi_now,index) in legalPerson'>
                         <td>{{index+1}}</td>
-                        <td>{{renzhi_now.entName}}</td>
+                        <td class="entSty" @click="queryEnt(renzhi_now.entName)">{{renzhi_now.entName}}</td>
                         <td>{{renzhi_now.name}}</td>
                         <td>{{renzhi_now.entType}}</td>
                         <td>{{renzhi_now.regCap}}万（{{renzhi_now.regCapCur}}）</td>
@@ -710,7 +710,7 @@
                       </tr>
                       <tr v-for='(renzhi_now,index) in manager'>
                         <td>{{index+1}}</td>
-                        <td>{{renzhi_now.entName}}</td>
+                        <td class="entSty" @click="queryEnt(renzhi_now.entName)">{{renzhi_now.entName}}</td>
                         <td>{{renzhi_now.position}}</td>
                         <td>{{renzhi_now.entType}}</td>
                         <td>{{renzhi_now.regCap}}万（{{renzhi_now.regCapCur}}）</td>
@@ -750,7 +750,7 @@
                       </tr>
                       <tr v-for='(touzi_now,index) in shareholder'>
                         <td>{{index+1}}</td>
-                        <td>{{touzi_now.entName}}</td>
+                        <td class="entSty" @click="queryEnt(touzi_now.entName)">{{touzi_now.entName}}</td>
                         <td>{{touzi_now.entType}}</td>
                         <td>{{touzi_now.regCap}}万（{{touzi_now.regCapCur}}）</td>
                         <td>{{touzi_now.entStatus}}</td>
@@ -865,12 +865,26 @@
                 </div>
              </div>-->
       </el-container>
+	    <el-dialog class="queryDialog"
+	    	:center="true"
+			:show-close="false"
+			:visible.sync="dialogVisible"
+			top="20%"
+			width="30%">
+			<div class="dialogRe">确定查询该企业的信用信息吗？</div>
+			<span id="" slot="footer" class="dialog-footer">
+				<el-button @click="dialogVisible=false">取  消</el-button>
+				<el-button type="primary" @click="entReport">确  定</el-button>
+			</span>
+			
+		</el-dialog>
      
     </div>
 </template>
 
 <script>
     import bus from '../common/bus'
+    import VDialog from '../common/Dialog.vue'
     var num=0;
     export default {
         data() {
@@ -932,7 +946,11 @@
 
                 num:1,
                 max:10,
+                dialogVisible:false,
             }
+        },
+        components:{
+        	VDialog
         },
         methods:{
           goFund(){
@@ -1235,11 +1253,24 @@
           		})
           	},500)
           },
+         //跳转企业报告
+         queryEnt(res){
+         	this.dialogVisible=true;
+         	this.entName=res;
+         },
+         entReport(){
+         	this.dialogVisible=false;
+         	let routeTurn=this.$router.resolve({
+         		path:'entReport',
+         		query:{entName:this.entName}
+         	})
+         	window.open(routeTurn.href,'_blanks')
+         },
 
         },
         computed: {
           
-
+			
         },
         watch:{
           
@@ -1459,7 +1490,7 @@
     width:180px;
     text-align:right;
   }
-  .el-button{
+  /*.el-button{
     background:#30af90;
     height: 45px;
     text-align: center;
@@ -1471,7 +1502,7 @@
     
     margin:0 auto;
     position: relative;
-  }
+  }*/
   .report_out{
     display: block;
     letter-spacing: 20px;
@@ -1514,6 +1545,24 @@
   .authorization td:nth-child(3){
     color: #30af90;
     cursor: pointer;
+  }
+  .entSty{
+  	cursor: pointer;
+  	color: #0000FF;
+  }
+  .dialogRe{
+  	text-align: center;
+  	letter-spacing: 5px;
+  	font-size: 16px;
+  	height: 20px;
+  	line-height: 20px;
+  	font-weight: bold;
+  }
+  .queryDialog .el-button+.el-button {
+    margin-left: 100px;
+  }
+  .queryDialog .el-button{
+  	width: 100px;
   }
 </style>
   

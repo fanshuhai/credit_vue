@@ -1791,6 +1791,9 @@
     color:#666;
     border: 1px solid #666666;
   }
+  td:nth-child(odd){
+  	background: #EEEEEE;
+  }
   .basic_info table tr,.basic_info table td{
     height: 20px;
     line-height: 20px;
