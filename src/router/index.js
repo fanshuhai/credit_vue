@@ -364,5 +364,5 @@ export default new Router({
             component: resolve => require(['../components/out_online/EntReport.vue'], resolve)
         },
     ],
-    mode:'history'
+//  mode:'history
 })

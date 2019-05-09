@@ -79,15 +79,7 @@
                            <tr v-for='query in querys'>
                                <!-- <td>{{query.channelCode}}</td> -->
                                <td>{{query.queryDate}}</td>
-<<<<<<< HEAD
                                <td>{{query.spare03}}</td>
-=======
-<<<<<<< HEAD
-                               <td>{{query.spare03}}</td>
-=======
-                               <td>{{query.customerName}}</td>
->>>>>>> 4aaa06e46aa2269a4bb9f52ef6de200d5f2c11f7
->>>>>>> d043cdd5d739fd30c9449613262a0eb0ea813aed
                                <td>{{query.channelCode}}</td>
                                <td>{{query.thirdRes}}</td>
                                <td>{{query.cost}}</td>

@@ -1313,17 +1313,14 @@
 		                    apiCode: "acedata.user.basicInfoB",
 							entName:ruleName,
 						    accessType:"1"
-		                };
-		                localStorage.setItem("reportType",'1');
+		               };
 	          	    }else{
 		          	    enterMsg={
 		                    apiCode: "acedata.user.basicInfoB",
 							regNo:ruleName,
 						    accessType:"1"
 		               };
-		               localStorage.setItem("reportType",'2');
 	          	    }
-	          	    localStorage.setItem("reportName",ruleName);
 	                this.$axios.defaults.withCredentials=true;
 	                this.$axios.post(this.HOST2+'/api/v1/acedata',enterMsg)
 	                .then(res=>{

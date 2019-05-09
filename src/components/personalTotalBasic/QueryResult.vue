@@ -1260,11 +1260,13 @@
          },
          entReport(){
          	this.dialogVisible=false;
+         	const newPage=window.open('','_blanks')
          	let routeTurn=this.$router.resolve({
          		path:'entReport',
          		query:{entName:this.entName}
          	})
-         	window.open(routeTurn.href,'_blanks')
+         	const newhref=routeTurn.href;
+         	newPage.location=newhref;
          },
 
         },
